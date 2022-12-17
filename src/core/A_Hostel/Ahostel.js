@@ -1,6 +1,7 @@
 import React from "react";
 import Base from "../Base";
 import A_Hostel from "./ahostel.jpg";
+import "./ahostel.css";
 
 function Ahostel() {
   return (

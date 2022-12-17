@@ -1,8 +1,40 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated,signout } from "../user/helper/userapicalls";
 import Logo from "./logo.png";
 
 function Menu() {
+
+  const navigate = useNavigate();
+  const showLogin = () => {
+    if (!isAuthenticated()) {
+      return (
+        <>
+          <Nav.Link href="/login">Login</Nav.Link>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+          <Nav.Link>
+            <span
+              className="text-warning"
+              onClick={() => {
+                signout(() => {
+                  navigate("/");
+                });
+              }}
+            >
+              Sign Out
+            </span>
+          </Nav.Link>
+        </>
+      );
+    }
+  };
+
   return (
     <div className="navbarMenu">
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
@@ -33,7 +65,9 @@ function Menu() {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Explore Mess" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/MegaLadiesMess">Mega Ladies Mess</NavDropdown.Item>
+              <NavDropdown.Item href="/MegaLadiesMess">
+                Mega Ladies Mess
+              </NavDropdown.Item>
               <NavDropdown.Item href="/G_Mess">G Mess</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/A_Mess">A Mess</NavDropdown.Item>
@@ -52,7 +86,7 @@ function Menu() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="/login">LOGIN</Nav.Link>
+            {showLogin()}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
