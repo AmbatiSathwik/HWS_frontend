@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Nav } from "react-bootstrap";
-import Logo from "./nitc-logo.png";
+import Logo from "../assets/images/nitc-logo.png";
 
 function Footer() {
   return (

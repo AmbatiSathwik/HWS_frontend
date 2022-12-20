@@ -1,7 +1,7 @@
 import { API } from "../../backend";
 
 export const signin = (user) => {
-  return fetch(`${API}login`, {
+  return fetch(`${API}student/login`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -19,8 +19,9 @@ export const signin = (user) => {
 
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
-    localStorage.setItem("jwt", JSON.stringify(data.jwttoken));
-    localStorage.setItem("id", JSON.stringify(data._id));
+    localStorage.setItem("jwt", JSON.stringify(data.data.jwttoken));
+    localStorage.setItem("id", JSON.stringify(data.data._id));
+    localStorage.setItem("role",JSON.stringify(data.data.role))
     next();
   }
 };
@@ -40,9 +41,10 @@ export const signout = (next) => {
   if (typeof window !== undefined) {
     localStorage.removeItem("id");
     localStorage.removeItem("jwt");
+    localStorage.removeItem("role");
 
     next();
-    return fetch(`${API}signout`, {
+    return fetch(`${API}student/signout`, {
       method: "GET",
     })
       .then((res) => {
@@ -56,7 +58,7 @@ export const signout = (next) => {
 
 export const forgotpassword = (id) => {
   console.log("forgot");
-  return fetch(`${API}forgot-password/${id}`, { method: "GET" }).then((res) => {
+  return fetch(`${API}student/forgot-password/${id}`, { method: "GET" }).then((res) => {
     return res.json();
   });
 };

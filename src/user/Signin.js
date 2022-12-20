@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
-import LOGO from "./login.png";
-import Pic from "./picture1.jpg";
+import LOGO from "../assets/images/login.png";
+import Pic from "../assets/images/picture1.jpg";
 import { Button, Form } from "react-bootstrap";
 import {
   authenticate,
@@ -68,7 +68,7 @@ function Signin() {
             forgot: "Your new password will be sent to your mail.",
           });
         } else {
-          setDetails({ ...details, forgot: "Enter proper username" });
+          setDetails({ ...details, forgot: "Enter proper username." });
         }
       });
     } else {
@@ -98,6 +98,7 @@ function Signin() {
             setDetails({
               username: "",
               password: "",
+              loginas: "student",
               error: false,
               loading: false,
               forgot: false,
