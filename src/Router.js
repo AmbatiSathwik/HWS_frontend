@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./core/About";
 import ExploreHostels from "./core/ExploreHostels";
 import ExploreMess from "./core/ExploreMess";
 import Home from "./core/Home";
@@ -16,6 +17,8 @@ export default function Router() {
           <Route path="/explore_mess" exact element={<ExploreMess />} />
           <Route path="/login" exact element={<Signin />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
+          <Route path="/about" exact element={<About />} />
+          <Route path="/contact" exact element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>
