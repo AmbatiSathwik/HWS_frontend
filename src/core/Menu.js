@@ -70,6 +70,12 @@ function Menu() {
               <NavDropdown.Item href="./explore_hostel#F_Hostel">
                 F Hostel
               </NavDropdown.Item>
+              <NavDropdown.Item href="./explore_hostel#PG1_Hostel">
+                PG Hostel-1
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./explore_hostel#PG2_Hostel">
+                PG Hostel-2
+              </NavDropdown.Item>
               <NavDropdown.Item href="./explore_hostel#MegaGentsHostel">
                 Mega Hostel-Gents
               </NavDropdown.Item>
