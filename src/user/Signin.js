@@ -14,8 +14,8 @@ import { Navigate } from "react-router-dom";
 
 function Signin() {
   const [details, setDetails] = useState({
-    username: "asathwik",
-    password: "123456",
+    username: "b190500cs",
+    password: "b190500cs",
     forgot: false,
     loading: false,
     loginas: "student",
@@ -89,7 +89,7 @@ function Signin() {
   const onSubmit = (event) => {
     event.preventDefault();
     setDetails({ ...details, error: false, loading: true });
-    signin({ username, password, loginas })
+    signin({ rollno:username, pswd:password, loginas })
       .then((data) => {
         if (data.err) {
           setDetails({ ...details, error: data.error, loading: false });

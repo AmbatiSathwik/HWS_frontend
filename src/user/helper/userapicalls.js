@@ -19,9 +19,9 @@ export const signin = (user) => {
 
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
-    localStorage.setItem("jwt", JSON.stringify(data.data.jwttoken));
-    localStorage.setItem("id", JSON.stringify(data.data._id));
-    localStorage.setItem("role",JSON.stringify(data.data.role))
+    localStorage.setItem("jwt", JSON.stringify(data.data.token));
+    localStorage.setItem("id", JSON.stringify(data.data.rollno));
+    localStorage.setItem("role", "student"); //change this
     next();
   }
 };
@@ -58,7 +58,9 @@ export const signout = (next) => {
 
 export const forgotpassword = (id) => {
   console.log("forgot");
-  return fetch(`${API}student/forgot-password/${id}`, { method: "GET" }).then((res) => {
-    return res.json();
-  });
+  return fetch(`${API}student/forgot-password/${id}`, { method: "GET" }).then(
+    (res) => {
+      return res.json();
+    }
+  );
 };

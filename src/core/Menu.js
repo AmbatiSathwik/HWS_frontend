@@ -14,23 +14,43 @@ function Menu() {
         </>
       );
     } else {
-      return (
-        <>
-          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-          <Nav.Link>
-            <span
-              className="text-warning"
-              onClick={() => {
-                signout(() => {
-                  navigate("/");
-                });
-              }}
-            >
-              Sign Out
-            </span>
-          </Nav.Link>
-        </>
-      );
+      if (localStorage.getItem("role") === "student") {
+        return (
+          <>
+            <NavDropdown title="Dashboard" id="basic-nav-dropdown">
+              <NavDropdown.Item href="./dashboard">Dashboard</NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#profile">
+                Student Details
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messrating">
+                Mess Rating
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messregistration">
+                Mess Registration
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messcard">
+                Mess Card Download
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messdue">
+                Mess Due
+              </NavDropdown.Item>
+            </NavDropdown>
+
+            <Nav.Link>
+              <span
+                className="text-warning"
+                onClick={() => {
+                  signout(() => {
+                    navigate("/");
+                  });
+                }}
+              >
+                Sign Out
+              </span>
+            </Nav.Link>
+          </>
+        );
+      }
     }
   };
 
