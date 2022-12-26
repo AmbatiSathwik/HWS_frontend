@@ -6,12 +6,12 @@ import { isAuthenticated } from "./helper/userapicalls";
 
 function Dashboard() {
   const Type = () => {
-    const role = localStorage.getItem("role");
+    const role = localStorage.getItem("role").slice(1,-1);
 
     if (role === "student") {
       return <StudentProfile />;
     }
-    if (role === "messadmin") {
+    if (role === "mess-admin") {
       return <MessAdminProfile />;
     }
   };

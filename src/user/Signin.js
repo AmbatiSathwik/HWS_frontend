@@ -15,7 +15,7 @@ import { Navigate } from "react-router-dom";
 function Signin() {
   const [details, setDetails] = useState({
     username: "b190500cs",
-    password: "b190500cs",
+    password: "76d4659247",
     forgot: false,
     loading: false,
     loginas: "student",
@@ -89,11 +89,13 @@ function Signin() {
   const onSubmit = (event) => {
     event.preventDefault();
     setDetails({ ...details, error: false, loading: true });
-    signin({ rollno:username, pswd:password, loginas })
+    signin({ rollno: username, pswd: password, loginas })
       .then((data) => {
         if (data.err) {
+          console.log(data.err);
           setDetails({ ...details, error: data.error, loading: false });
         } else {
+          data.data.role = details.loginas;
           authenticate(data, () => {
             setDetails({
               username: "",
@@ -168,7 +170,7 @@ function Signin() {
                   <option value="caretaker">Hostel Caretaker</option>
 
                   <option value="hostelseceretary">Hostel Seceretary</option>
-                  <option value="messadmin">Mess Admin</option>
+                  <option value="mess-admin">Mess Admin</option>
                 </Form.Select>
 
                 <Button

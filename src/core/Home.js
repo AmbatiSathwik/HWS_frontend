@@ -2,7 +2,7 @@ import React from "react";
 import "../styles.css";
 import Base from "./Base";
 import Slider from "./Slider";
-import A_Hostel from "../assets/images/ahostel.jpg";
+import A_Hostel from "../assets/images/ahostel.png";
 
 function Home() {
   return (

@@ -7,7 +7,10 @@ import {
   studentDetails,
   studentMessDetails,
   getMessName,
+  submitMessReview,
+  checkMessReview,
 } from "./helper/studentapicalls";
+import MC from "../assets/images/messcard.png";
 
 //details, mess registration, mess card details with download, mess dues,
 function StudentProfile() {
@@ -24,8 +27,9 @@ function StudentProfile() {
     month: 10,
     year: 2022,
     messId: 2,
-    messName: "sadsdas",
-    isAvailable: false,
+    messName: "",
+    messUserId: "1",
+    isAvailable: true, //change
   });
 
   const [rating, setRating] = useState({
@@ -35,6 +39,7 @@ function StudentProfile() {
     catering: 0,
     hygine: 0,
     puntuality: 0,
+    isDone: false,
   });
 
   const getMonthName = (monthNumber) => {
@@ -62,6 +67,7 @@ function StudentProfile() {
         });
       }
     });
+
     // studentMessDetails().then((data) => {
     //   if (data.err) {
     //     setMessDetails({ ...messdetails, isAvailable: false });
@@ -71,19 +77,32 @@ function StudentProfile() {
     //       year: data.data.year,
     //       month: data.data.month,
     //       messId: data.data.messId,
+    //       messUserId: data.data.id,
     //       isAvailable: true,
     //     });
     //   }
     // });
-    // if (messdetails.messId) {
-    //   getMessName(messdetails.messId)
-    //     .then((data) => {
-    //       setMessDetails({ ...messdetails, messName: data.data.name });
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // }
+    if (messdetails.messId) {
+      getMessName(messdetails.messId)
+        .then((data) => {
+          setMessDetails({ ...messdetails, messName: data.data.name });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    checkMessReview(messdetails.messId).then((data) => {
+      setRating({
+        ...rating,
+        isDone: data.data.review,
+        quality: data.data.rating.quality,
+        quantity: data.data.rating.quantity,
+        taste: data.data.rating.taste,
+        catering: data.data.rating.catering,
+        hygine: data.data.rating.hyginess,
+        puntuality: data.data.rating.punctuality,
+      });
+    });
   }, []);
 
   let degree =
@@ -133,104 +152,208 @@ function StudentProfile() {
     setRating({ ...rating, [name]: rate });
   };
 
-  useEffect(()=>{
-    console.log(rating)
-  },[rating])
+  const onReviewSubmit = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const roll = localStorage.getItem("id").slice(1, -1);
+    const review = {
+      messId: messdetails.messId,
+      studentId: roll,
+      year: year,
+      month: month,
+      quality: rating.quality,
+      quantity: rating.quantity,
+      taste: rating.taste,
+      catering: rating.catering,
+      hygieness: rating.hygine,
+      puntuality: rating.puntuality,
+    };
+    submitMessReview(review).then((data) => {
+      setRating({ ...rating, isDone: true });
+    });
+  };
 
   const showRating = () => {
-    if (messdetails.isAvailable) {
+    const ratingAvailable = date.getDate() >= 25 ? true : false;
+    if (ratingAvailable) {
+      if (!messdetails.isAvailable) {
+        return (
+          <strong>
+            <p align="center">
+              You didn't took the mess for the month of{" "}
+              {getMonthName(date.getMonth() + 1)}, So you are unable to rate
+              mess for this month.{" "}
+            </p>
+          </strong>
+        );
+      } else {
+        if (!rating.isDone) {
+          return (
+            <>
+              <Row>
+                <Col align="right">
+                  <strong>Mess Name:</strong>
+                </Col>
+                <Col align="left">{messdetails.messName}</Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right">
+                  <strong>Month, Year:</strong>
+                </Col>
+                <Col align="left">
+                  {getMonthName(messdetails.month)}, {messdetails.year}
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right" className="my-1">
+                  <strong>Quality:</strong>
+                </Col>
+                <Col align="left">
+                  <Rating onClick={onRatingClick("quality")} />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right" className="my-1">
+                  <strong>Quantity:</strong>
+                </Col>
+                <Col align="left">
+                  <Rating onClick={onRatingClick("quantity")} />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right" className="my-1">
+                  <strong>Taste:</strong>
+                </Col>
+                <Col align="left">
+                  <Rating onClick={onRatingClick("taste")} />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right" className="my-1">
+                  <strong>Catering:</strong>
+                </Col>
+                <Col align="left">
+                  <Rating onClick={onRatingClick("catering")} />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right" className="my-1">
+                  <strong>hygine:</strong>
+                </Col>
+                <Col align="left">
+                  <Rating onClick={onRatingClick("hygine")} />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right" className="my-1">
+                  <strong>Puntuality:</strong>
+                </Col>
+                <Col align="left">
+                  <Rating onClick={onRatingClick("puntuality")} />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="center">
+                  <Button
+                    onClick={onReviewSubmit}
+                    variant="primary"
+                    disabled={rating.isDone}
+                  >
+                    Submit
+                  </Button>
+                </Col>
+              </Row>
+            </>
+          );
+        } else {
+          return (
+            <strong>
+              <p align="center">
+                You already rated the {messdetails.messName} mess for the month
+                of {getMonthName(date.getMonth() + 1)}, So you are unable to
+                rate mess for this month again.{" "}
+              </p>
+              <br />
+              <p align="center">Your rating are:</p>
+              <Row>
+                <Col align="center">Quality : {rating.quality}</Col>
+              </Row>
+              <Row>
+                <Col align="center">Quantity : {rating.quantity}</Col>
+              </Row>
+              <Row>
+                <Col align="center">Taste : {rating.taste}</Col>
+              </Row>
+              <Row>
+                <Col align="center">Catering : {rating.catering}</Col>
+              </Row>
+              <Row>
+                <Col align="center">Hygieness : {rating.hygine}</Col>
+              </Row>
+              <Row>
+                <Col align="center">Punctuality : {rating.puntuality}</Col>
+              </Row>
+            </strong>
+          );
+        }
+      }
+    } else {
       return (
         <strong>
           <p align="center">
-            You didn't took the mess for the month of{" "}
-            {getMonthName(date.getMonth() + 1)}, So you are unable to rate mess
-            for this month.{" "}
+            Mess Rating for the month of {getMonthName(date.getMonth() + 1)}{" "}
+            will be available from 25th of this month.
           </p>
         </strong>
-      );
-    } else {
-      return (
-        <>
-          <Row>
-            <Col align="right">
-              <strong>Mess Name:</strong>
-            </Col>
-            <Col align="left">{messdetails.messName}</Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right">
-              <strong>Month, Year:</strong>
-            </Col>
-            <Col align="left">
-              {getMonthName(messdetails.month)}, {messdetails.year}
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right" className="my-1">
-              <strong>Quality:</strong>
-            </Col>
-            <Col align="left">
-              <Rating onClick={onRatingClick("quality")} />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right" className="my-1">
-              <strong>Quantity:</strong>
-            </Col>
-            <Col align="left">
-              <Rating onClick={onRatingClick("quantity")} />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right" className="my-1">
-              <strong>Taste:</strong>
-            </Col>
-            <Col align="left">
-              <Rating onClick={onRatingClick("taste")} />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right" className="my-1">
-              <strong>Catering:</strong>
-            </Col>
-            <Col align="left">
-              <Rating onClick={onRatingClick("catering")} />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right" className="my-1">
-              <strong>hygine:</strong>
-            </Col>
-            <Col align="left">
-              <Rating onClick={onRatingClick("hygine")} />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="right" className="my-1">
-              <strong>Puntuality:</strong>
-            </Col>
-            <Col align="left">
-              <Rating onClick={onRatingClick("puntuality")} />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="center"><Button>Submit</Button></Col>
-          </Row>
-          
-        </>
       );
     }
   };
 
-  const ratingAvailable = date.getDate() > 25 ? true : false;
+  const showMessRegistration = () => {};
+
+  const showMessCard = () => {
+    if (messdetails.isAvailable) {
+      return (
+        <Row>
+          <Col align="center">
+            <img src={MC} alt="just messcard logo" />
+          </Col>
+          <Col>
+            <div className="messcarddownload">
+              <Row>
+                <h3 align="center">MESS CARD</h3>
+                <Col>Mess User Id : {messdetails.messUserId}</Col>
+              </Row>
+              <br />
+              <Row>
+                <Col>
+                  This mess card is given to {details.name} with roll number of{" "}
+                  {details.rollno} has issued {messdetails.messName} for the
+                  month of {getMonthName(messdetails.month)}, {messdetails.year}
+                  .
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col align="right">
+                  <Button>Download Mess Card</Button>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+        </Row>
+      );
+    }
+  };
 
   return (
     <Base title="STUDENT DASHBOARD">
@@ -320,6 +443,29 @@ function StudentProfile() {
         <br />
         {showRating()}
       </div>
+      <br />
+      <div id="messregistration" className="p-4">
+        <h3 align="center">Mess Registration</h3>
+        <br />
+        {showMessRegistration()}
+      </div>
+      <br />
+      <div id="messcard" className="p-4">
+        <h3 align="center">Mess Card Download</h3>
+        <br />
+        {showMessCard()}
+      </div>
+      <br />
+      <div id="messdue" className="p-4">
+        <h3 align="center">Mess Dues</h3>
+        <br />
+      </div>
+      <br />
+      <div id="messarchive" className="p-4">
+        <h3 align="center">Your Previous Mess Details</h3>
+        <br />
+      </div>
+      <br />
     </Base>
   );
 }

@@ -1,3 +1,4 @@
+import { json } from "react-router-dom";
 import { API } from "../../backend";
 
 export const studentDetails = () => {
@@ -46,7 +47,7 @@ export const studentMessDetails = () => {
 
 export const getMessName = (id) => {
   const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
-  return fetch(`${API}/mess/${id}/`, {
+  return fetch(`${API}mess/${id}/`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -57,3 +58,48 @@ export const getMessName = (id) => {
     return data.json();
   });
 };
+
+export const checkMessReview = (id) => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const roll = localStorage.getItem("id").slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const data = { messId: id, studentId: roll, year: year, month: month };
+  return fetch(`${API}mess/check-mess-review/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export const submitMessReview = (review) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  return fetch(`${API}mess/mess-review/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(review),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+//require api to find whether student filled review or not

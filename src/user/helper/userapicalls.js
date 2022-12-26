@@ -1,27 +1,46 @@
 import { API } from "../../backend";
 
 export const signin = (user) => {
-  return fetch(`${API}student/login`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  })
-    .then((res) => {
-      return res.json();
+  if (user.loginas === "student") {
+    return fetch(`${API}student/login`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-    .catch((e) => {
-      console.log(e);
-    });
+      .then((res) => {
+        return res.json();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+  else if(user.loginas === "mess-admin")
+  {
+    return fetch(`${API}mess/mess-admin/login`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 };
 
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
     localStorage.setItem("jwt", JSON.stringify(data.data.token));
     localStorage.setItem("id", JSON.stringify(data.data.rollno));
-    localStorage.setItem("role", "student"); //change this
+    localStorage.setItem("role", JSON.stringify(data.data.role)); //change this
     next();
   }
 };

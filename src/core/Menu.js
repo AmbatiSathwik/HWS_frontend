@@ -14,7 +14,7 @@ function Menu() {
         </>
       );
     } else {
-      if (localStorage.getItem("role") === "student") {
+      if (localStorage.getItem("role").slice(1, -1) === "student") {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
@@ -33,6 +33,48 @@ function Menu() {
               </NavDropdown.Item>
               <NavDropdown.Item href="./dashboard#messdue">
                 Mess Due
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messarchive">
+                Mess Archieve
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./studentpasswordChange">
+                Change Password
+              </NavDropdown.Item>
+            </NavDropdown>
+
+            <Nav.Link>
+              <span
+                className="text-warning"
+                onClick={() => {
+                  signout(() => {
+                    navigate("/");
+                  });
+                }}
+              >
+                Sign Out
+              </span>
+            </Nav.Link>
+          </>
+        );
+      } else if (localStorage.getItem("role").slice(1, -1) === "mess-admin") {
+        return (
+          <>
+            <NavDropdown title="Dashboard" id="basic-nav-dropdown">
+              <NavDropdown.Item href="./dashboard">Dashboard</NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messrating">
+                Mess Ratings
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#enrollment">
+                Start Enrollment
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messdetails">
+                Mess Details
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#messavailability">
+                Mess Availability
+              </NavDropdown.Item>
+              <NavDropdown.Item href="./dashboard#studentdetails">
+                Student Details
               </NavDropdown.Item>
             </NavDropdown>
 

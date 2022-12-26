@@ -26,7 +26,13 @@ code {
 }
 
 .SlideShow {
-  height: 400px;
+  height: 500px;
+  background: black;
+  overflow: hidden;
+}
+
+.SlideShow img {
+  opacity: 0.5;
 }
 
 @media only screen and (max-width: 600px) {
@@ -89,10 +95,54 @@ code {
   margin-top: 20px;
 }
 
-#messrating{
+#messrating {
   background-color: #f8efef;
   border-radius: 20px;
   margin: 0 20px;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
+}
+
+#messregistration {
+  background-color: #f8efef;
+  border-radius: 20px;
+  margin: 0 20px;
+  box-shadow: 10px 5px 5px rgb(157, 156, 156);
+  margin-top: 20px;
+}
+
+#messcard {
+  background-color: #f8efef;
+  border-radius: 20px;
+  margin: 0 20px;
+  box-shadow: 10px 5px 5px rgb(157, 156, 156);
+  margin-top: 20px;
+}
+
+#messdue {
+  background-color: #f8efef;
+  border-radius: 20px;
+  margin: 0 20px;
+  box-shadow: 10px 5px 5px rgb(157, 156, 156);
+  margin-top: 20px;
+}
+
+#messarchive {
+  background-color: #f8efef;
+  border-radius: 20px;
+  margin: 0 20px;
+  box-shadow: 10px 5px 5px rgb(157, 156, 156);
+  margin-top: 20px;
+}
+
+.messcarddownload {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+}
+.passwordchange {
+  background-color: #f8efef;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px 20px;
 }

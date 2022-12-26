@@ -1,6 +1,6 @@
 import React from "react";
 import ImageSlider, { Slide } from "react-auto-image-slider";
-import A_Hostel from "../assets/images/ahostel.jpg";
+import A_Hostel from "../assets/images/ahostel.png";
 
 function Slider() {
   return (
