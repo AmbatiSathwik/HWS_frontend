@@ -102,4 +102,22 @@ export const submitMessReview = (review) => {
     });
 };
 
-//require api to find whether student filled review or not
+export const changePassword = (pass) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const roll = localStorage.getItem("id").slice(1, -1);
+  return fetch(`${API}student/change-password/${roll}/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(pass),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};

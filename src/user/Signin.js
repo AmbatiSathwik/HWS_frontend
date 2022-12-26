@@ -15,7 +15,7 @@ import { Navigate } from "react-router-dom";
 function Signin() {
   const [details, setDetails] = useState({
     username: "b190500cs",
-    password: "76d4659247",
+    password: "B190500CS",
     forgot: false,
     loading: false,
     loginas: "student",
@@ -25,15 +25,16 @@ function Signin() {
   const { username, password, forgot, loading, loginas, error } = details;
 
   const contactHO = () => {
-    const msg = username ? forgot : "Enter username and click forgot password";
-    return (
-      <div
-        className="alert alert-success"
-        style={{ display: forgot ? "" : "none" }}
-      >
-        {msg}
-      </div>
-    );
+    if (username === "") {
+      return (
+        <div
+          className="alert alert-success"
+          style={{ display: forgot ? "" : "none" }}
+        >
+          Enter username and click forgot password
+        </div>
+      );
+    }
   };
 
   const loadingMessage = () => {
@@ -51,7 +52,7 @@ function Signin() {
     return (
       <div
         className="alert alert-warning"
-        style={{ display: error ? "" : "none" }}
+        style={{ display: error !== "" ? "" : "none" }}
       >
         {error}
       </div>
@@ -61,6 +62,7 @@ function Signin() {
   const forgotPass = (event) => {
     event.preventDefault();
     if (username) {
+      setDetails({ ...details, forgot: true });
       forgotpassword(username).then((data) => {
         if (data.message) {
           setDetails({
@@ -77,7 +79,13 @@ function Signin() {
   };
 
   const handleChange = (name) => (event) => {
-    setDetails({ ...details, error: false, [name]: event.target.value });
+    setDetails({
+      ...details,
+      error: "",
+      forgot: false,
+      loading: false,
+      [name]: event.target.value,
+    });
   };
 
   const performRedirect = () => {
@@ -88,12 +96,12 @@ function Signin() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setDetails({ ...details, error: false, loading: true });
+    setDetails({ ...details, error: "", loading: true });
     signin({ rollno: username, pswd: password, loginas })
       .then((data) => {
         if (data.err) {
           console.log(data.err);
-          setDetails({ ...details, error: data.error, loading: false });
+          setDetails({ ...details, error: data.err, loading: false });
         } else {
           data.data.role = details.loginas;
           authenticate(data, () => {
@@ -101,7 +109,7 @@ function Signin() {
               username: "",
               password: "",
               loginas: "student",
-              error: false,
+              error: "",
               loading: false,
               forgot: false,
             });
