@@ -1,4 +1,3 @@
-import { json } from "react-router-dom";
 import { API } from "../../backend";
 
 export const studentDetails = () => {
@@ -22,10 +21,7 @@ export const studentDetails = () => {
     });
 };
 
-export const studentMessDetails = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+export const studentMessDetails = (month,year) => {
   const roll = localStorage.getItem("id").slice(1, -1);
   const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
 
@@ -59,13 +55,13 @@ export const getMessName = (id) => {
   });
 };
 
-export const checkMessReview = (id) => {
+export const checkMessReview = () => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const roll = localStorage.getItem("id").slice(1, -1);
   const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
-  const data = { messId: id, studentId: roll, year: year, month: month };
+  const data = { studentId: roll, year: year, month: month };
   return fetch(`${API}mess/check-mess-review/`, {
     method: "POST",
     headers: {
@@ -121,3 +117,55 @@ export const changePassword = (pass) => {
       console.log(e);
     });
 };
+
+export const messVacancy = () => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  return fetch(`${API}mess/mess-availablity/dummy/`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  }).then((data) => {
+    return data.json();
+  });
+};
+
+export const registerStudentMess = (mess) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  return fetch(`${API}mess/mess-user`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(mess),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export const updateStudentMess = (mess) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  return fetch(`${API}mess/mess-user/update`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(mess),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}

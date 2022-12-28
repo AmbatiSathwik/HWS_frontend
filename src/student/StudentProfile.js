@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Form } from "react-bootstrap";
 import Base from "../core/Base";
 import LG1 from "../assets/images/studentintro.png";
 import { Rating } from "react-simple-star-rating";
@@ -9,8 +9,13 @@ import {
   getMessName,
   submitMessReview,
   checkMessReview,
+  messVacancy,
+  registerStudentMess,
+  updateStudentMess,
 } from "./helper/studentapicalls";
 import MC from "../assets/images/messcard.png";
+import { jsPDF } from "jspdf";
+import NL1 from "../assets/images/nitc-logo-black.png";
 
 //details, mess registration, mess card details with download, mess dues,
 function StudentProfile() {
@@ -21,15 +26,16 @@ function StudentProfile() {
     dob: "",
     phno: "",
     address: "",
+    gender: "",
   });
 
   const [messdetails, setMessDetails] = useState({
-    month: 10,
-    year: 2022,
-    messId: 2,
+    month: "",
+    year: "",
+    messId: "",
     messName: "",
-    messUserId: "1",
-    isAvailable: true, //change
+    messUserId: "",
+    isAvailable: false, //change
   });
 
   const [rating, setRating] = useState({
@@ -42,6 +48,13 @@ function StudentProfile() {
     isDone: false,
   });
 
+  const [vacancy, setVacancy] = useState({ available: [] });
+
+  const messname = {
+    1: "Test 1",
+    2: "Test 2",
+  };
+
   const getMonthName = (monthNumber) => {
     const date = new Date();
     date.setMonth(monthNumber - 1);
@@ -50,6 +63,9 @@ function StudentProfile() {
   };
 
   const date = new Date();
+  const mon = date.getMonth() + 1 + 1 <= 12 ? date.getMonth() + 1 : 1;
+  const yea =
+    date.getMonth() + 2 <= 12 ? date.getFullYear() : date.getFullYear() + 1;
 
   useEffect(() => {
     studentDetails().then((data) => {
@@ -64,34 +80,51 @@ function StudentProfile() {
           dob: data.data.dob,
           phno: data.data.phno,
           address: data.data.address,
+          gender: data.data.gender,
         });
       }
     });
 
-    // studentMessDetails().then((data) => {
-    //   if (data.err) {
-    //     setMessDetails({ ...messdetails, isAvailable: false });
-    //   } else {
-    //     setMessDetails({
-    //       ...messdetails,
-    //       year: data.data.year,
-    //       month: data.data.month,
-    //       messId: data.data.messId,
-    //       messUserId: data.data.id,
-    //       isAvailable: true,
-    //     });
-    //   }
-    // });
-    if (messdetails.messId) {
-      getMessName(messdetails.messId)
-        .then((data) => {
-          setMessDetails({ ...messdetails, messName: data.data.name });
-        })
-        .catch((e) => {
-          console.log(e);
+    studentMessDetails(mon, yea).then((data) => {
+      if (data.err) {
+        setMessDetails({ ...messdetails, isAvailable: false });
+        studentMessDetails(date.getMonth() + 1, date.getFullYear()).then(
+          (data) => {
+            if (data.err) {
+              setMessDetails({ ...messdetails, isAvailable: false });
+            } else {
+              setMessDetails({
+                ...messdetails,
+                year: data.data.year,
+                month: data.data.month,
+                messId: data.data.messId,
+                messName: messname[data.data.messId],
+                messUserId: data.data.id,
+                isAvailable: true,
+              });
+            }
+          }
+        );
+      } else {
+        setMessDetails({
+          ...messdetails,
+          year: data.data.year,
+          month: data.data.month,
+          messId: data.data.messId,
+          messName: messname[data.data.messId],
+          messUserId: data.data.id,
+          isAvailable: true,
         });
-    }
-    checkMessReview(messdetails.messId).then((data) => {
+      }
+    });
+
+    messVacancy().then((data) => {
+      setVacancy({ ...vacancy, available: data.data });
+    });
+  }, []);
+
+  useEffect(() => {
+    checkMessReview().then((data) => {
       setRating({
         ...rating,
         isDone: data.data.review,
@@ -120,7 +153,7 @@ function StudentProfile() {
           <br />
           <h4>
             You are allocated a {messdetails.messName || "No mess"} for the
-            month of {getMonthName(date.getMonth() + 1)}. Collect your mess card
+            month of {getMonthName(messdetails.month)}. Collect your mess card
             here.
           </h4>
           <br />
@@ -170,7 +203,7 @@ function StudentProfile() {
       puntuality: rating.puntuality,
     };
     submitMessReview(review).then((data) => {
-      setRating({ ...rating, isDone: true });
+      setRating({ ...rating, isDone: data.data.review });
     });
   };
 
@@ -318,7 +351,201 @@ function StudentProfile() {
     }
   };
 
-  const showMessRegistration = () => {};
+  const [messreg, setMessReg] = useState({ messId: "none" });
+  const handleMessReg = (event) => {
+    setMessReg({ messId: event.target.value });
+  };
+
+  const messRegistration = () => {
+    if (messreg.messId !== "none") {
+      const messUser = {
+        studentId: details.rollno,
+        gender: details.gender,
+        messId: messreg.messId,
+      };
+      registerStudentMess(messUser).then((data) => {
+        setMessDetails({
+          ...messdetails,
+          year: data.data.year,
+          month: data.data.month,
+          messId: data.data.messId,
+          messName: messname[data.data.messId],
+          messUserId: data.data.id,
+          isAvailable: true,
+        });
+      });
+    }
+  };
+
+  const messUpdate = () => {
+    if (messreg.messId !== "none") {
+      const messUser = {
+        studentId: details.rollno,
+        gender: details.gender,
+        messId: messreg.messId,
+      };
+      updateStudentMess(messUser).then((data) => {
+        setMessDetails({
+          ...messdetails,
+          messId: messreg.messId,
+          messName: messname[messreg.messId],
+        });
+        window.location.reload(false);
+      });
+    }
+  };
+
+  const showMessRegistration = () => {
+    if (date.getDate() >= 25 && rating.isDone) {
+      if (!messdetails.isAvailable) {
+        return (
+          <div>
+            <Row>
+              <Col xs={4} align="right">
+                <strong>Available mess :</strong>
+              </Col>
+              <Col xs={8} align="left">
+                <Form.Select onChange={handleMessReg}>
+                  <option value="none">Select Mess</option>
+                  {vacancy.available.map((mess) => {
+                    if (
+                      details.gender === "male" &&
+                      mess.boysCapacity - mess.boysCount > 0
+                    ) {
+                      return (
+                        <option value={mess.messId} key={mess.messId}>{`${
+                          messname[mess.messId]
+                        } - ${
+                          mess.boysCapacity - mess.boysCount
+                        } seats vacant right now`}</option>
+                      );
+                    } else if (
+                      details.gender === "female" &&
+                      mess.girlsCapacity - mess.girlsCount > 0
+                    ) {
+                      return (
+                        <option key={mess.messId}>{`${
+                          messname[mess.messId]
+                        } - ${
+                          mess.girlsCapacity - mess.girlsCount
+                        } seats vacant right now`}</option>
+                      );
+                    }
+                  })}
+                </Form.Select>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col align="right" className="mx-4">
+                <Button onClick={messRegistration}>Submit</Button>
+              </Col>
+            </Row>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <Row>
+              <Col align="center">
+                You already took {messdetails.messName} mess for this month. But
+                you can still change mess till 1st of next month.
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col xs={4} align="right">
+                <strong>Change mess :</strong>
+              </Col>
+              <Col xs={8} align="left">
+                <Form.Select onChange={handleMessReg}>
+                  <option value="none">Select Mess</option>
+                  {vacancy.available.map((mess) => {
+                    if (
+                      details.gender === "male" &&
+                      mess.boysCapacity - mess.boysCount > 0
+                    ) {
+                      return (
+                        <option value={mess.messId} key={mess.messId}>{`${
+                          messname[mess.messId]
+                        } - ${
+                          mess.boysCapacity - mess.boysCount
+                        } seats vacant right now`}</option>
+                      );
+                    } else if (
+                      details.gender === "female" &&
+                      mess.girlsCapacity - mess.girlsCount > 0
+                    ) {
+                      return (
+                        <option key={mess.messId}>{`${
+                          messname[mess.messId]
+                        } - ${
+                          mess.girlsCapacity - mess.girlsCount
+                        } seats vacant right now`}</option>
+                      );
+                    }
+                  })}
+                </Form.Select>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col align="right" className="mx-4">
+                <Button onClick={messUpdate}>Submit</Button>
+              </Col>
+            </Row>
+          </div>
+        );
+      }
+    } else if (date.getDate() < 25) {
+      return (
+        <Row>
+          <Col align="center">
+            <strong>
+              Mess registration for next month will be available from 25th of
+              this month
+            </strong>
+          </Col>
+        </Row>
+      );
+    } else if (messdetails.isAvailable && !rating.isDone) {
+      return (
+        <Row>
+          <Col align="center">
+            <strong>
+              Please rate the precious mess to register for next month mess.
+            </strong>
+          </Col>
+        </Row>
+      );
+    }
+  };
+
+  const messCardDownload = () => {
+    const doc = new jsPDF();
+    doc.addImage(NL1, "PNG", 30, 30, 20, 20);
+    doc.setFontSize(22);
+    doc.text("MESS CARD", 100, 20, { align: "center" });
+    doc.setFontSize(16);
+    const messid = `Mess User Id : ${messdetails.messUserId}`;
+    const dt = `Date : ${date.getDate()}/${
+      date.getMonth() + 1
+    }/${date.getFullYear()}`;
+    const info = `This mess card is given to ${
+      details.name
+    } with roll number of \n ${details.rollno} has issued ${
+      messdetails.messName
+    } mess for the month of \n ${getMonthName(messdetails.month)}, ${
+      messdetails.year
+    }.`;
+    const messName = `Mess Name : ${messdetails.messName}`;
+
+    doc.text(messid, 150, 40);
+    doc.text(dt, 150, 50);
+    doc.text(info, 30, 70);
+    doc.text(messName, 30, 100);
+    doc.save("messcard.pdf");
+  };
 
   const showMessCard = () => {
     if (messdetails.isAvailable) {
@@ -345,9 +572,25 @@ function StudentProfile() {
               <br />
               <Row>
                 <Col align="right">
-                  <Button>Download Mess Card</Button>
+                  <Button onClick={messCardDownload}>Download Mess Card</Button>
                 </Col>
               </Row>
+            </div>
+          </Col>
+        </Row>
+      );
+    } else {
+      return (
+        <Row>
+          <Col align="center">
+            <img src={MC} alt="just messcard logo" />
+          </Col>
+          <Col align="center">
+            <div className="messcarddownload">
+              <h4>
+                You didn't registered for mess yet. Please register for mess to
+                get your Mess Card.
+              </h4>
             </div>
           </Col>
         </Row>
