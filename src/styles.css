@@ -22,20 +22,30 @@ code {
 }
 
 .children {
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
-
+.SlideContainer {
+}
 .SlideShow {
-  height: 500px;
-  background: black;
-  overflow: hidden;
+  color: white;
+  background: url("./assets/images/home.jpeg") no-repeat center center;
+  background-size: cover;
+  height: 80vh;
 }
-
-.SlideShow img {
-  opacity: 0.5;
+.SlideShowText {
+  color: white;
+  text-align: center;
+  padding-top: 35vh;
+  font-size: 50px;
 }
-
+.navbarMenu {
+  width: 100vw;
+}
 @media only screen and (max-width: 600px) {
+  .SlideShowText {
+    padding-top: 10vh;
+    font-size: 20px;
+  }
   .clgname {
     margin-left: 50px;
   }
@@ -75,8 +85,10 @@ code {
 #studentintro {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
+  width: 90vw;
+  margin: 0 auto;
 }
 
 .studentintroimg {
@@ -90,15 +102,17 @@ code {
 #profile {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+  margin: 0 auto;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
+  width: 90vw;
 }
 
 #messrating {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+  width: 90vw;
+  margin: 0 auto;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
 }
@@ -106,7 +120,8 @@ code {
 #messregistration {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+  width: 90vw;
+  margin: 0 auto;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
 }
@@ -114,7 +129,8 @@ code {
 #messcard {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+  width: 90vw;
+  margin: 0 auto;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
 }
@@ -122,7 +138,8 @@ code {
 #messdue {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+  width: 90vw;
+  margin: 0 auto;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
 }
@@ -130,7 +147,8 @@ code {
 #messarchive {
   background-color: #f8efef;
   border-radius: 20px;
-  margin: 0 20px;
+  width: 90vw;
+  margin: 0 auto;
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
 }
@@ -145,4 +163,34 @@ code {
   padding: 20px;
   border-radius: 20px;
   margin: 10px 20px;
+}
+
+.rules {
+  background-color: #ebf3fb;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px 20px;
+  box-shadow: 10px 5px 5px rgb(157, 156, 156);
+}
+
+.homepagebutton {
+  background-color: #48596a;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 25px;
+  
+}
+
+.homepagebutton a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.card{
+  background-color: #f8efef;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px 20px;
+  box-shadow: 10px 5px 5px rgb(157, 156, 156);
 }

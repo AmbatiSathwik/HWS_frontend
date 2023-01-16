@@ -98,7 +98,7 @@ function Menu() {
 
   return (
     <div className="navbarMenu">
-      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand href="/">
           <img src={Logo} width="150" alt="Logo" />
         </Navbar.Brand>

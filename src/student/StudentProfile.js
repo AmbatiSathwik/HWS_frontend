@@ -600,115 +600,117 @@ function StudentProfile() {
 
   return (
     <Base title="STUDENT DASHBOARD">
-      <div id="studentintro" className="p-4 mt-2">
-        <Row>
-          <Col align="center" className="studentintroimg">
-            <img src={LG1} alt="student image" width="80%" height="100%" />
-          </Col>
-          <Col>
-            <div className="studentintrotex">{msg()}</div>
-          </Col>
-        </Row>
-      </div>
+      <div className="studentContainer">
+        <div id="studentintro" className="p-4 mt-2">
+          <Row>
+            <Col align="center" className="studentintroimg">
+              <img src={LG1} alt="student image" width="80%" height="100%" />
+            </Col>
+            <Col>
+              <div className="studentintrotex">{msg()}</div>
+            </Col>
+          </Row>
+        </div>
 
-      <div id="profile" className="p-4">
-        <h3 align="center">Student Details</h3>
+        <div id="profile" className="p-4">
+          <h3 align="center">Student Details</h3>
+          <br />
+          <Row>
+            <Col align="center">
+              <strong>
+                <label>Roll Number</label>
+              </strong>
+              <div>{details.rollno.toUpperCase()}</div>
+            </Col>
+            <Col align="center">
+              <strong>
+                <label>Name</label>
+              </strong>
+              <div>{details.name}</div>
+            </Col>
+            <Col align="center">
+              <strong>
+                {" "}
+                <label>Degree</label>
+              </strong>
+              <div>{degree}</div>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col align="center">
+              <strong>
+                <label>Email</label>
+              </strong>
+              <div>{details.email}</div>
+            </Col>
+            <Col align="center">
+              <strong>
+                <label>Date of Birth</label>
+              </strong>
+              <div>{details.dob.split("-").reverse().join("-")}</div>
+            </Col>
+            <Col align="center">
+              <strong>
+                <label>Phone Number</label>
+              </strong>
+              <div>{details.phno}</div>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col align="center">
+              <strong>
+                {" "}
+                <label>Address</label>
+              </strong>
+              <div>{details.address}</div>
+            </Col>
+            <Col align="center">
+              <strong>
+                <label>Hostel Name</label>
+              </strong>
+              <div></div>
+            </Col>
+            <Col align="center">
+              <strong>
+                <label>Room Number</label>
+              </strong>
+              <div></div>
+            </Col>
+          </Row>
+        </div>
         <br />
-        <Row>
-          <Col align="center">
-            <strong>
-              <label>Roll Number</label>
-            </strong>
-            <div>{details.rollno.toUpperCase()}</div>
-          </Col>
-          <Col align="center">
-            <strong>
-              <label>Name</label>
-            </strong>
-            <div>{details.name}</div>
-          </Col>
-          <Col align="center">
-            <strong>
-              {" "}
-              <label>Degree</label>
-            </strong>
-            <div>{degree}</div>
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col align="center">
-            <strong>
-              <label>Email</label>
-            </strong>
-            <div>{details.email}</div>
-          </Col>
-          <Col align="center">
-            <strong>
-              <label>Date of Birth</label>
-            </strong>
-            <div>{details.dob.split("-").reverse().join("-")}</div>
-          </Col>
-          <Col align="center">
-            <strong>
-              <label>Phone Number</label>
-            </strong>
-            <div>{details.phno}</div>
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col align="center">
-            <strong>
-              {" "}
-              <label>Address</label>
-            </strong>
-            <div>{details.address}</div>
-          </Col>
-          <Col align="center">
-            <strong>
-              <label>Hostel Name</label>
-            </strong>
-            <div></div>
-          </Col>
-          <Col align="center">
-            <strong>
-              <label>Room Number</label>
-            </strong>
-            <div></div>
-          </Col>
-        </Row>
-      </div>
-      <br />
 
-      <div id="messrating" className="p-4">
-        <h3 align="center">Mess Rating</h3>
+        <div id="messrating" className="p-4">
+          <h3 align="center">Mess Rating</h3>
+          <br />
+          {showRating()}
+        </div>
         <br />
-        {showRating()}
-      </div>
-      <br />
-      <div id="messregistration" className="p-4">
-        <h3 align="center">Mess Registration</h3>
+        <div id="messregistration" className="p-4">
+          <h3 align="center">Mess Registration</h3>
+          <br />
+          {showMessRegistration()}
+        </div>
         <br />
-        {showMessRegistration()}
-      </div>
-      <br />
-      <div id="messcard" className="p-4">
-        <h3 align="center">Mess Card Download</h3>
+        <div id="messcard" className="p-4">
+          <h3 align="center">Mess Card Download</h3>
+          <br />
+          {showMessCard()}
+        </div>
         <br />
-        {showMessCard()}
-      </div>
-      <br />
-      <div id="messdue" className="p-4">
-        <h3 align="center">Mess Dues</h3>
+        <div id="messdue" className="p-4">
+          <h3 align="center">Mess Dues</h3>
+          <br />
+        </div>
+        <br />
+        <div id="messarchive" className="p-4">
+          <h3 align="center">Your Previous Mess Details</h3>
+          <br />
+        </div>
         <br />
       </div>
-      <br />
-      <div id="messarchive" className="p-4">
-        <h3 align="center">Your Previous Mess Details</h3>
-        <br />
-      </div>
-      <br />
     </Base>
   );
 }

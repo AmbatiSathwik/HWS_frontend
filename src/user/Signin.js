@@ -15,7 +15,7 @@ import { Navigate } from "react-router-dom";
 function Signin() {
   const [details, setDetails] = useState({
     username: "b190500cs",
-    password: "B190500CS",
+    password: "ec934d7f3a",
     forgot: false,
     loading: false,
     loginas: "student",
