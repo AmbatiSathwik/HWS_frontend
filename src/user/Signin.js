@@ -18,7 +18,7 @@ function Signin() {
     password: "ec934d7f3a",
     forgot: false,
     loading: false,
-    loginas: "student",
+    loginas: "mess-admin",
     error: "",
   });
 
