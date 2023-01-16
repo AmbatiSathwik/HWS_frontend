@@ -11,16 +11,22 @@ function MessAdminProfile() {
         <Row>
           <Col xs={6}>
             <img src={Admin} width="100%" alt="admin-logo" />
-          </Col >
-          <Col xs={6}>
-            
           </Col>
+          <Col xs={6}></Col>
         </Row>
       </div>
       <div className="card">
-        <h3 align="center">
-          Mess Ratings
-        </h3>
+        <h3 align="center">Mess Ratings</h3>
+      </div>
+      <div className="card">
+        <h3 align="center">Mess Details</h3>
+      </div>
+      <div className="card">
+        <h3 align="center">Student Details</h3>
+        
+      </div>
+      <div className="card">
+        <h3 align="center">Update Mess Details</h3>
       </div>
     </Base>
   );
