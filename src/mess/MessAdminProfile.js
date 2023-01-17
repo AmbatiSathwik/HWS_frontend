@@ -25,7 +25,6 @@ function MessAdminProfile() {
         
         const ws=wb.Sheets[wsname];
         const data=XLSX.utils.sheet_to_json(ws);
-        console.log(data)
         resolve(data);
         
       };
@@ -36,7 +35,6 @@ function MessAdminProfile() {
     });
     promise.then((data)=>{
       setItem(data)
-      console.log(data)
     })
   };
 // },[])
@@ -61,7 +59,7 @@ function MessAdminProfile() {
 
       <div className="card">
         <h3 align="center">Student Details</h3>
-        <div>
+        <div className="card-body" style={{overflowY: 'scroll', maxHeight: '500px'}}>
           <input type="file" onChange={(e)=>{
             const file=e.target.files[0];
             readExcel(file);
