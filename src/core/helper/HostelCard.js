@@ -13,7 +13,7 @@ function img(props)
 function text(props)
 {
     return(
-        <Col xs="5">
+        <Col xs="6">
             <p>{props.Hosteldetails.description}</p>
             <p>
                 <strong>Chief Warden :</strong> {props.Hosteldetails.warden}
@@ -53,7 +53,7 @@ function HostelCard(props)
             <div className="m-5">
                 <Row>
                     {text(props)}
-                    <Col xs="3"></Col>
+                    <Col xs="2"></Col>
                     {img(props)}
                 </Row>
             </div>
