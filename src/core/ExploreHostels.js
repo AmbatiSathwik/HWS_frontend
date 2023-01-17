@@ -17,14 +17,14 @@ function ExploreHostels() {
   const details = hostelDetails().data;
   return (
       <Base title="">
-        <HostelCard id="A" name="A Hostel" image={AH} Hosteldetails = {details.ahostel} class = "card" type="2"/>
-        <HostelCard id="B" name="B Hostel" image={BH} Hosteldetails = {details.bhostel} class = "card" type="1"/>
-        <HostelCard id="C" name="C Hostel" image={CH} Hosteldetails = {details.chostel} class = "card" type="2"/>
-        <HostelCard id="D" name="D Hostel" image={DH} Hosteldetails = {details.dhostel} class = "card" type="1"/>
-        <HostelCard id="E" name="E Hostel" image={EH} Hosteldetails = {details.ehostel} class = "card" type="2"/>
-        <HostelCard id="F" name="F Hostel" image={FH} Hosteldetails = {details.fhostel} class = "card" type="1"/>
-        <HostelCard id="G" name="G Hostel" image={GH} Hosteldetails = {details.ghostel} class = "card" type="2"/>
-        <HostelCard id="PG1" name="PG1 Hostel" image={PG1H} Hosteldetails = {details.pg1hostel} class = "card" type="1"/>
+        <HostelCard id="A_Hostel" name="A Hostel" image={AH} Hosteldetails = {details.ahostel} class = "card" type="2"/>
+        <HostelCard id="B_Hostel" name="B Hostel" image={BH} Hosteldetails = {details.bhostel} class = "card" type="1"/>
+        <HostelCard id="C_Hostel" name="C Hostel" image={CH} Hosteldetails = {details.chostel} class = "card" type="2"/>
+        <HostelCard id="D_Hostel" name="D Hostel" image={DH} Hosteldetails = {details.dhostel} class = "card" type="1"/>
+        <HostelCard id="E_Hostel" name="E Hostel" image={EH} Hosteldetails = {details.ehostel} class = "card" type="2"/>
+        <HostelCard id="F_Hostel" name="F Hostel" image={FH} Hosteldetails = {details.fhostel} class = "card" type="1"/>
+        <HostelCard id="G_Hostel" name="G Hostel" image={GH} Hosteldetails = {details.ghostel} class = "card" type="2"/>
+        <HostelCard id="PG1_Hostel" name="PG1 Hostel" image={PG1H} Hosteldetails = {details.pg1hostel} class = "card" type="1"/>
 
 
       </Base>
