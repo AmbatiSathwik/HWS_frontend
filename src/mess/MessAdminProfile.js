@@ -7,11 +7,9 @@ import StarRatings from "react-star-ratings";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
 function MessAdminProfile() {
-  const [boys,setboys]=useState(200);
-  const [girls,setgirls]=useState(200);
-  const [boys1,setboys1]=useState(0);
-  const [girls1,setgirls1]=useState(0);
-
+  const [boys,setboys]=useState(20);
+  const [girls,setgirls]=useState(20);
+  const [total,settotal]=useState(40);
   //mess details state vaiables
   const [messname,setmessname]=useState("A");
   const [totalstrength,settotalstrength]=useState(400);
@@ -161,21 +159,19 @@ function MessAdminProfile() {
         <h3 align="center"><strong>Mess Availability</strong></h3>
         <Row>
           <Col xs={6}>
-            <img src={mess_availability_update} width="100%" alt="admin-logo" />
+            <img src={mess_availability_update} style={{marginLeft:"30px"}} width="70%" alt="admin-logo" />
           </Col>
           <Col xs={6}>
               <form>
                 <div className="form-group">
-                  <label >Girl Count:</label>
-                  <input value={girls1} onChange={(x)=>{setgirls1(x.target.value)
-                    console.log(girls1)
-                  }}></input>
+                  <p><strong>Boys Count:</strong> 200</p>
+                  <p><strong>Girls Count:</strong> 200</p>
+                  <label ><strong>Boysavailabality:</strong></label>
+                  <input style={{marginLeft:"8px"}}  value={boys} onChange={(x)=>{setboys(x.target.value); setgirls(total-x.target.value)}}></input>
                   <br></br>
-                  <label >Boy Count:</label>
-                  <input  value={boys1} onChange={(x)=>{setboys1(x.target.value)}}></input>
-                  <p>boysavailabality: {boys-girls1+Number(boys1)}</p>
-                  <p>girlsavaliavilty: {girls-boys1+Number(girls1)}</p>
-                  <button>Update</button>
+                  <label ><strong>Girlsavailability:</strong></label>
+                  <input style={{marginLeft:"14px",marginTop:"4px"}} value={girls} onChange={(x)=>{setgirls(x.target.value); setboys(total-x.target.value)}}></input>
+                  <button style={{borderRadius: '6px',border: '1px solid',color: 'white',marginLeft:"300px",transform:"scale(0.6)", backgroundColor:'black', padding: '8px 16px'}}>Update Avaiability</button>
                   </div>
               </form>
           </Col>
