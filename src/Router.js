@@ -4,6 +4,7 @@ import About from "./core/About";
 import ExploreHostels from "./core/ExploreHostels";
 import ExploreMess from "./core/ExploreMess";
 import Home from "./core/Home";
+import MessAdminProfile from "./mess/MessAdminProfile";
 import StudentChangePassword from "./student/StudentChangePassword";
 import Dashboard from "./user/Dashboard";
 import Signin from "./user/Signin";
@@ -20,6 +21,7 @@ export default function Router() {
           <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/about" exact element={<About />} />
           <Route path="/contact" exact element={<About />} />
+          <Route path="/mess" exact element={ <MessAdminProfile/>} />
           <Route
             path="/studentpasswordChange"
             exact
