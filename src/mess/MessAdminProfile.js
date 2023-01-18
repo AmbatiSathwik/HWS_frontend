@@ -19,7 +19,7 @@ function MessAdminProfile() {
   const [girlcapacity, setgirlcapacity] = useState(200);
   const [isveg, setisveg] = useState("Yes");
   //mess rating state variables
-  const [quality, setquality] = useState(3);
+  const [quality, setquality] = useState(3.5);
   const [hyginity, sethyginity] = useState(4);
   const [responsiveness, setresponsiveness] = useState(2);
   const [quantity, setquantity] = useState(1);
