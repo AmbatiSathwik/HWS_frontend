@@ -9,9 +9,9 @@ import StarRatings from "react-star-ratings";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
 function MessAdminProfile() {
-  const [boys, setboys] = useState(20);
-  const [girls, setgirls] = useState(20);
-  const [total, settotal] = useState(40);
+  const [boys,setboys]=useState(20);
+  const [girls,setgirls]=useState(20);
+  const [total,settotal]=useState(40);
   //mess details state vaiables
   const [messname, setmessname] = useState("A");
   const [totalstrength, settotalstrength] = useState(400);
