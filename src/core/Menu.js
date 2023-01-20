@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, NavDropdown, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/userapicalls";
-import Logo from "../assets/images/logo.png";
+import Logo from "../assets/images/nitc-logo.png";
 
 function Menu() {
   const navigate = useNavigate();
@@ -103,6 +103,7 @@ function Menu() {
           
           <div className="mainlogo">
           <img  src={Logo} height="60" alt="Logo" />
+          <h3 style={{color:"white"}}>NITC Hostels</h3>
           </div>
         </Navbar.Brand>
       </div>
