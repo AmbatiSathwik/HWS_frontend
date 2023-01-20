@@ -5,7 +5,7 @@ import Logo from "../assets/images/nitc-logo.png";
 function Footer() {
   return (
     <div className="footer">
-      <Row>
+      <Row className="footerRow">
         <Col xs={5} className="m-3">
           <Row>
             <Col xs={2}>

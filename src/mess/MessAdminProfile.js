@@ -22,9 +22,9 @@ function MessAdminProfile() {
   const [quality, setquality] = useState(3);
   const [hyginity, sethyginity] = useState(4);
   const [responsiveness, setresponsiveness] = useState(2);
-  const [quantity, setquantity] = useState(1);
-  const [availability, setavailability] = useState(4);
-  const [overall, setoverall] = useState(3);
+  const [quantity, setquantity] = useState(1.5);
+  const [availability, setavailability] = useState(4.6);
+  const [overall, setoverall] = useState(3.23);
 
   const [item, setItem] = useState([]);
   // useEffect (()=>{
@@ -80,6 +80,9 @@ function MessAdminProfile() {
                 name="rating"
               />
             </Col>
+            <Col align="left" xs={2}>
+              <h4> {quality}</h4>
+            </Col>
           </Row>
           <Row>
             <Col xs={3}>
@@ -93,6 +96,9 @@ function MessAdminProfile() {
                 starDimension="40px"
                 name="rating"
               />
+            </Col>
+            <Col align="left" xs={2}>
+              <h4> {hyginity}</h4>
             </Col>
           </Row>
 
@@ -109,6 +115,9 @@ function MessAdminProfile() {
                 name="rating"
               />
             </Col>
+            <Col align="left" xs={2}>
+              <h4> {responsiveness}</h4>
+            </Col>
           </Row>
 
           <Row>
@@ -123,6 +132,9 @@ function MessAdminProfile() {
                 starDimension="40px"
                 name="rating"
               />
+            </Col>
+            <Col align="left" xs={2}>
+              <h4> {quantity}</h4>
             </Col>
           </Row>
 
@@ -139,6 +151,9 @@ function MessAdminProfile() {
                 name="rating"
               />
             </Col>
+            <Col align="left" xs={2}>
+              <h4> {availability}</h4>
+            </Col>
           </Row>
           <Row>
             <Col xs={3}>
@@ -152,6 +167,9 @@ function MessAdminProfile() {
                 starDimension="40px"
                 name="rating"
               />
+            </Col>
+            <Col align="left" xs={2}>
+              <h4> {overall}</h4>
             </Col>
           </Row>
         </Row>

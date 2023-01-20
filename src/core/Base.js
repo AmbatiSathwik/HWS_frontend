@@ -11,6 +11,7 @@ const Base = ({ title, children }) => {
           <div className="text-center text-dark mt-3">
             <h2>{title}</h2>
           </div>
+          <div></div>
           <div>{children}</div>
         </div>
       </div>
