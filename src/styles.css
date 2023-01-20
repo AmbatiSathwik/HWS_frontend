@@ -1,11 +1,7 @@
 body {
   margin: 0;
   width: 100%;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-color: #fef5e5;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -344,19 +340,30 @@ code {
 
 /* css for team ends  */
 
-.studentPageCol{
+.studentPageCol {
   padding: 0px 0px;
 }
 
-.studentPageButton{
-  width: 100%;
+.studentPageButton {
+  width: 90%;
   border: 0px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+  opacity: 0.6;
+  background: #fef5e5;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid transparent;
+  transition: ease border-bottom 250ms;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
 }
 
-.studentPageButton:active{
-  background-color: white;
+.studentPageButtonactive {
+  border-bottom: 2px solid #212529;
+  opacity: 1;
+  background-color: #212529;
+  color: white;
 }
 
 /* media queries  */

@@ -19,6 +19,7 @@ function MessAdminProfile() {
   const [girlcapacity, setgirlcapacity] = useState(200);
   const [isveg, setisveg] = useState("Yes");
   //mess rating state variables
+
   const [quality, setquality] = useState(3);
   const [hyginity, sethyginity] = useState(4);
   const [responsiveness, setresponsiveness] = useState(2);
@@ -55,7 +56,8 @@ function MessAdminProfile() {
   };
   // },[])
   return (
-    <Base title="MESS ADMIN DASHBOARD">
+    <Base >
+      <h2 align="center">MESS ADMIN DASHBOARD</h2>
       <div className="card">
         <Row>
           <Col xs={6}>

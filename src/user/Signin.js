@@ -123,7 +123,7 @@ function Signin() {
   };
 
   return (
-    <Base title="">
+    <Base>
       {errorMessage()}
       {contactHO()}
       {loadingMessage()}

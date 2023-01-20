@@ -598,8 +598,11 @@ function StudentProfile() {
     }
   };
 
+  const [type, setType] = useState("Mess");
+
   return (
-    <Base title="STUDENT DASHBOARD">
+    <Base>
+      <h2 align="center">STUDENT DASHBOARD</h2>
       <div className="studentContainer">
         <div id="profile" className="p-4">
           <h3 align="center">Student Details</h3>
@@ -680,11 +683,34 @@ function StudentProfile() {
 
         <div>
           <Row>
-            <Col className="studentPageCol">
-              <button className="studentPageButton" active="true">MESS</button>
+            <Col className="studentPageCol" align="right">
+              <button
+                className={
+                  type === "Mess"
+                    ? "studentPageButton studentPageButtonactive"
+                    : "studentPageButton"
+                }
+                onClick={() => {
+                  setType("Mess");
+                }}
+              >
+                <strong>MESS</strong>
+              </button>
             </Col>
-            <Col className="studentPageCol">
-              <button className="studentPageButton">HOSTEL</button>
+            <Col className="studentPageCol" align="left ">
+              <button
+                className={
+                  type === "Hostel"
+                    ? "studentPageButton studentPageButtonactive"
+                    : "studentPageButton"
+                }
+                onClick={() => {
+                  setType("Hostel");
+                }}
+                disabled
+              >
+                <strong>HOSTEL</strong>
+              </button>
             </Col>
           </Row>
         </div>
