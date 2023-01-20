@@ -9,14 +9,8 @@ function Home() {
     <Base title={""}>
       <div className="SlideContainer">
         <div className="SlideShow">
-          {/* <Slider /> */}
-          <div className="SlideShowText">
-            Welcome to NITC Hostels
-            <br/>
-            <div className="homepagebutton">
-            <Link to="/explore_hostel" >Explore Hostels </Link>
-            </div>
-            </div>
+           <Slider /> 
+           
         </div>
       </div>
       <br />

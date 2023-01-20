@@ -29,18 +29,8 @@ code {
   width: 100%;
 }
 
-.SlideShow {
-  color: white;
-  background: url("./assets/images/home.jpeg") no-repeat center center;
-  background-size: cover;
-  height: 80vh;
-}
-.SlideShowText {
-  color: white;
-  text-align: center;
-  padding-top: 35vh;
-  font-size: 50px;
-}
+ 
+ 
 .navbarMenu {
   width: 100%;
 }
@@ -204,6 +194,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1% 0 0 0 ;
 }
 
 .menu {
