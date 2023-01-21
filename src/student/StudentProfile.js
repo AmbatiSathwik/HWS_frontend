@@ -598,20 +598,12 @@ function StudentProfile() {
     }
   };
 
-  return (
-    <Base title="STUDENT DASHBOARD">
-      <div className="studentContainer">
-        <div id="studentintro" className="p-4 mt-2">
-          <Row>
-            <Col align="center" className="studentintroimg">
-              <img src={LG1} alt="student image" width="80%" height="100%" />
-            </Col>
-            <Col>
-              <div className="studentintrotex">{msg()}</div>
-            </Col>
-          </Row>
-        </div>
+  const [type, setType] = useState("Mess");
 
+  return (
+    <Base>
+      <h2 align="center">STUDENT DASHBOARD</h2>
+      <div className="studentContainer">
         <div id="profile" className="p-4">
           <h3 align="center">Student Details</h3>
           <br />
@@ -679,6 +671,60 @@ function StudentProfile() {
               <div></div>
             </Col>
           </Row>
+          <br />
+        </div>
+        <br />
+
+        <div id="messdue" className="p-4">
+          <h3 align="center">Dues</h3>
+          <br />
+        </div>
+        <br />
+
+        <div>
+          <Row>
+            <Col className="studentPageCol" align="right">
+              <button
+                className={
+                  type === "Mess"
+                    ? "studentPageButton studentPageButtonactive"
+                    : "studentPageButton"
+                }
+                onClick={() => {
+                  setType("Mess");
+                }}
+              >
+                <strong>MESS</strong>
+              </button>
+            </Col>
+            <Col className="studentPageCol" align="left ">
+              <button
+                className={
+                  type === "Hostel"
+                    ? "studentPageButton studentPageButtonactive"
+                    : "studentPageButton"
+                }
+                onClick={() => {
+                  setType("Hostel");
+                }}
+                disabled
+              >
+                <strong>HOSTEL</strong>
+              </button>
+            </Col>
+          </Row>
+        </div>
+        <br />
+
+        <div id="studentintro" className="p-4 mt-2">
+          <Row>
+            <Col align="center" className="studentintroimg">
+              <img src={LG1} alt="student image" width="80%" height="100%" />
+            </Col>
+            <Col>
+              <div className="studentintrotex">{msg()}</div>
+            </Col>
+          </Row>
         </div>
         <br />
 
@@ -700,15 +746,12 @@ function StudentProfile() {
           {showMessCard()}
         </div>
         <br />
-        <div id="messdue" className="p-4">
-          <h3 align="center">Mess Dues</h3>
-          <br />
-        </div>
-        <br />
+
         <div id="messarchive" className="p-4">
           <h3 align="center">Your Previous Mess Details</h3>
           <br />
         </div>
+        <br />
         <br />
       </div>
     </Base>

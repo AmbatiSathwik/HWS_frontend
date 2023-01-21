@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
-import LOGO from "../assets/images/login.png";
-import Pic from "../assets/images/picture1.jpg";
+import LOGO from "../assets/GIF/fingerprint-scan.gif";
+import key from "../assets/GIF/key.gif";
+import Pic from "../assets/images/login_nitc.jpg";
 import { Button, Form } from "react-bootstrap";
 import {
   authenticate,
@@ -15,10 +16,10 @@ import { Navigate } from "react-router-dom";
 function Signin() {
   const [details, setDetails] = useState({
     username: "b190500cs",
-    password: "ec934d7f3a",
+    password: "2f617c716e",
     forgot: false,
     loading: false,
-    loginas: "mess-admin",
+    loginas: "student",
     error: "",
   });
 
@@ -108,7 +109,7 @@ function Signin() {
             setDetails({
               username: "",
               password: "",
-              loginas: "mess-admin",
+              loginas: "student",
               error: "",
               loading: false,
               forgot: false,
@@ -122,7 +123,7 @@ function Signin() {
   };
 
   return (
-    <Base title="">
+    <Base>
       {errorMessage()}
       {contactHO()}
       {loadingMessage()}
@@ -130,29 +131,26 @@ function Signin() {
         <MDBContainer fluid>
           <MDBRow>
             <MDBCol sm="6">
-              <div className="d-flex flex-row ps-5 pt-5">
+              <div className="login-heading">
                 <img src={LOGO} width="70" alt="Login logo" />
+                <span className="login-heading-span">Log In</span>
               </div>
 
               <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-                <h3
-                  className="fw-normal mb-3 ps-5 pb-3"
-                  style={{ letterSpacing: "1px" }}
-                >
-                  Log in
-                </h3>
-
                 <MDBInput
                   wrapperClass="mb-4 mx-5 w-100"
                   label="Username"
                   id="formControlLg"
                   type="text"
                   size="lg"
+                  className="MDBinput"
                   placeholder="Username"
                   value={username}
+                  right={0}
                   onChange={handleChange("username")}
                 />
                 <MDBInput
+                  className="MDBinput"
                   wrapperClass="mb-4 mx-5 w-100"
                   label="Password"
                   id="formControlLg"
@@ -203,7 +201,7 @@ function Signin() {
                 height="100%"
                 alt="Login image"
                 className="w-100 loginimg"
-                style={{ objectFit: "cover", objectPosition: "left" }}
+                style={{ objectFit: "cover", objectPosition: "center" }}
               />
             </MDBCol>
           </MDBRow>

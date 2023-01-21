@@ -1,8 +1,8 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/userapicalls";
-import Logo from "../assets/images/logo.png";
+import Logo from "../assets/images/nitc-logo.png";
 
 function Menu() {
   const navigate = useNavigate();
@@ -98,12 +98,19 @@ function Menu() {
 
   return (
     <div className="navbarMenu">
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <div  className="menu">
         <Navbar.Brand href="/">
-          <img src={Logo} width="150" alt="Logo" />
+          
+          <div className="mainlogo">
+          <img  src={Logo} height="60" alt="Logo" />
+          <h3 style={{color:"white"}}>NITC Hostels</h3>
+          </div>
         </Navbar.Brand>
+      </div>
+      <Navbar bg="dark" variant="dark" expand="lg" className="menu">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
@@ -180,7 +187,9 @@ function Menu() {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <div className="loginOptions">
           <Nav>{showLogin()}</Nav>
+          </div>
         </Navbar.Collapse>
       </Navbar>
     </div>

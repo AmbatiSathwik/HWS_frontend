@@ -52,7 +52,8 @@ function StudentChangePassword() {
   };
 
   return (
-    <Base title="Change Password">
+    <Base >
+      <h2 align="center">Change Password</h2>
       {Message()}
       {loadingMessage()}
       <div className="passwordchange">

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   width: 100%;
+  background-color: #fef5e5;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -20,46 +21,34 @@ code {
   bottom: 0; */
   width: 100%;
 }
+.footerRow {
+  width: 100%;
+}
 
-.SlideShow {
-  color: white;
-  background: url("./assets/images/home.jpeg") no-repeat center center;
-  background-size: cover;
-  height: 80vh;
-}
-.SlideShowText {
-  color: white;
-  text-align: center;
-  padding-top: 35vh;
-  font-size: 50px;
-}
 .navbarMenu {
-  width: 100vw;
-}
-@media only screen and (max-width: 600px) {
-  .SlideShowText {
-    padding-top: 10vh;
-    font-size: 20px;
-  }
-  .clgname {
-    margin-left: 50px;
-  }
-  .SlideShow {
-    height: 200px;
-  }
-  .studentintroimg {
-    display: none;
-  }
+  width: 100%;
 }
 
 .loginpage {
-  border: 2px solid #212529;
-  margin: 20px 50px;
+  margin: 20px auto;
+  width: 50%;
   border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+  background-color: white;
 }
 
 .loginimg {
   border-radius: 0px 20px 20px 0px;
+}
+
+.login-heading {
+  width: 60%;
+  margin: 4% auto;
+}
+.login-heading-span {
+  display: inline-block;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .forgot {
@@ -189,3 +178,204 @@ code {
   box-shadow: 10px 5px 5px rgb(157, 156, 156);
   margin-top: 20px;
 }
+
+.menu {
+  padding-top: 0px;
+}
+
+.mainlogo {
+  /* margin-left: 700px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1% 0 0 0;
+}
+
+.menu {
+  background-color: #212529;
+}
+
+.loginOptions {
+  margin-right: 40px;
+}
+
+.navbarOptions {
+  margin-left: 40px;
+}
+
+/* css for team  */
+
+.our-team {
+  padding: 30px 0 40px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.our-team .picture {
+  display: inline-block;
+  height: 130px;
+  width: 130px;
+  margin-bottom: 50px;
+  z-index: 1;
+  position: relative;
+}
+
+.our-team .picture::before {
+  content: "";
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  background-color: #212529;
+  position: absolute;
+  bottom: 135%;
+  right: 0;
+  left: 0;
+  opacity: 0.9;
+  transform: scale(3);
+  transition: all 0.3s linear 0s;
+}
+
+.our-team:hover .picture::before {
+  height: 100%;
+}
+
+.our-team .picture::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #212529;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.our-team .picture img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: all 0.9s ease 0s;
+}
+
+.our-team:hover .picture img {
+  box-shadow: 0 0 0 14px #ffffff;
+  transform: scale(0.7);
+}
+
+.our-team .title {
+  display: block;
+  font-size: 15px;
+  color: #4e5052;
+  text-transform: capitalize;
+}
+
+.our-team .social {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #212529;
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  transition: all 0.5s ease 0s;
+}
+
+.our-team:hover .social {
+  bottom: 0;
+}
+
+.our-team .social li {
+  display: inline-block;
+}
+
+.our-team .social li a {
+  display: block;
+  padding: 10px;
+  font-size: 17px;
+  color: white;
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+.our-team .social li a:hover {
+  color: #212529;
+  background-color: #ffffff;
+}
+
+.team-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.info-card {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  margin: 2% 2% 1% 2%;
+}
+.about-wrap {
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto 3% auto;
+}
+
+.about-img {
+  width: 50px;
+}
+
+/* css for team ends  */
+
+.studentPageCol {
+  padding: 0px 0px;
+}
+
+.studentPageButton {
+  width: 90%;
+  border: 0px;
+  padding: 10px 30px;
+  cursor: pointer;
+  opacity: 0.6;
+  background: #fef5e5;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid transparent;
+  transition: ease border-bottom 250ms;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+
+.studentPageButtonactive {
+  border-bottom: 2px solid #212529;
+  opacity: 1;
+  background-color: #212529;
+  color: white;
+}
+
+.MDBinput {
+  background-color: white !important ;
+}
+
+/* media queries  */
+@media only screen and (max-width: 600px) {
+  .SlideShowText {
+    padding-top: 10vh;
+    font-size: 20px;
+  }
+  .clgname {
+    margin-left: 50px;
+  }
+  .SlideShow {
+    height: 200px;
+  }
+  .studentintroimg {
+    display: none;
+  }
+  .loginpage {
+    width: 80%;
+  }
+}
+/* media query ends  */

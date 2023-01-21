@@ -9,9 +9,9 @@ import StarRatings from "react-star-ratings";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
 function MessAdminProfile() {
-  const [boys, setboys] = useState(20);
-  const [girls, setgirls] = useState(20);
-  const [total, settotal] = useState(40);
+  const [boys,setboys]=useState(20);
+  const [girls,setgirls]=useState(20);
+  const [total,settotal]=useState(40);
   //mess details state vaiables
   const [messname, setmessname] = useState("A");
   const [totalstrength, settotalstrength] = useState(400);
@@ -19,12 +19,17 @@ function MessAdminProfile() {
   const [girlcapacity, setgirlcapacity] = useState(200);
   const [isveg, setisveg] = useState("Yes");
   //mess rating state variables
+<<<<<<< HEAD
   const [quality, setquality] = useState(3.5);
+=======
+
+  const [quality, setquality] = useState(3);
+>>>>>>> 2b63858b1bfbdfa54dcd5cf5e317554b7cdc1fc2
   const [hyginity, sethyginity] = useState(4);
   const [responsiveness, setresponsiveness] = useState(2);
-  const [quantity, setquantity] = useState(1);
-  const [availability, setavailability] = useState(4);
-  const [overall, setoverall] = useState(3);
+  const [quantity, setquantity] = useState(1.5);
+  const [availability, setavailability] = useState(4.6);
+  const [overall, setoverall] = useState(3.23);
 
   const [item, setItem] = useState([]);
   // useEffect (()=>{
@@ -55,7 +60,8 @@ function MessAdminProfile() {
   };
   // },[])
   return (
-    <Base title="MESS ADMIN DASHBOARD">
+    <Base >
+      <h2 align="center">MESS ADMIN DASHBOARD</h2>
       <div className="card">
         <Row>
           <Col xs={6}>
@@ -80,6 +86,9 @@ function MessAdminProfile() {
                 name="rating"
               />
             </Col>
+            <Col align="left" xs={2}>
+              <h4> {quality}</h4>
+            </Col>
           </Row>
           <Row>
             <Col xs={3}>
@@ -93,6 +102,9 @@ function MessAdminProfile() {
                 starDimension="40px"
                 name="rating"
               />
+            </Col>
+            <Col align="left" xs={2}>
+              <h4> {hyginity}</h4>
             </Col>
           </Row>
 
@@ -109,6 +121,9 @@ function MessAdminProfile() {
                 name="rating"
               />
             </Col>
+            <Col align="left" xs={2}>
+              <h4> {responsiveness}</h4>
+            </Col>
           </Row>
 
           <Row>
@@ -123,6 +138,9 @@ function MessAdminProfile() {
                 starDimension="40px"
                 name="rating"
               />
+            </Col>
+            <Col align="left" xs={2}>
+              <h4> {quantity}</h4>
             </Col>
           </Row>
 
@@ -139,6 +157,9 @@ function MessAdminProfile() {
                 name="rating"
               />
             </Col>
+            <Col align="left" xs={2}>
+              <h4> {availability}</h4>
+            </Col>
           </Row>
           <Row>
             <Col xs={3}>
@@ -152,6 +173,9 @@ function MessAdminProfile() {
                 starDimension="40px"
                 name="rating"
               />
+            </Col>
+            <Col align="left" xs={2}>
+              <h4> {overall}</h4>
             </Col>
           </Row>
         </Row>

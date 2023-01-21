@@ -20,6 +20,7 @@
     "react-auto-image-slider": "^1.0.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
+    "react-carousel-minimal": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.2",
