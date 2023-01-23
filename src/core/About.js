@@ -1,98 +1,104 @@
 import React from "react";
 import Base from "./Base";
-import {Card,CardContent,CardMedia,Typography,CardActionArea }from '@mui/material';
-import Admin from "../assets/images/mess-admin.png";
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Grid from '@mui/material/Grid';
-import MailIcon from '@mui/icons-material/Mail';
-const customstyle = {
-    display: "inline-flex",justifyContent:"center", margin: "10px", textAlign: "center",
-    boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-    position: "relative",
-    borderRadius:"15px 50px 30px"
-    
-}
-const data1=[
+import { Link } from "react-router-dom";
+import { Row, Col, Nav } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
+import AH from "../assets/images/ahostel1.jpg";
+import BH from "../assets/images/bhostel.jpg";
+import CH from "../assets/images/chostel.jpg";
+import DH from "../assets/images/dhostel.jpg";
+import EH from "../assets/images/ehostel.jpg";
+import FH from "../assets/images/fhostel.jpg";
+import GH from "../assets/images/ghostel.jpg";
+import PG1H from "../assets/images/pg1hostel.jpg";
+
+import profile from "../../src/assets/GIF/rightarrow.gif";
+let arr=[
   {
-      id:"1",
-      Name:"abcdef",
-      imglink:Admin,
-      email:"random@gmail.com ",
-      profile:"https://www.linkedin.com/"
-  },{
-    id:"1",
-    Name:"abcdef",
-    imglink:Admin,
-    email:"random@gmail.com ",
-    profile:"https://www.linkedin.com/"
-},{
-  id:"1",
-  Name:"abcdef",
-  imglink:Admin,
-  email:"random@gmail.com ",
-  profile:"https://www.linkedin.com/"
-},{
-  id:"1",
-  Name:"abcdef",
-  imglink:Admin,
-  email:"random@gmail.com ",
-  profile:"https://www.linkedin.com/"
-},{
-  id:"1",
-  Name:"abcdef",
-  imglink:Admin,
-  email:"random@gmail.com ",
-  profile:"https://www.linkedin.com/"
-},{
-  id:"1",
-  Name:"abcdef",
-  imglink:Admin,
-  email:"random@gmail.com ",
-  profile:"https://www.linkedin.com/"
-},{
-  id:"1",
-  Name:"abcdef",
-  imglink:Admin,
-  email:"random@gmail.com ",
-  profile:"https://www.linkedin.com/"
-}]
+    name:"A",
+    imageSrc:AH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"B",
+    imageSrc:BH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"C",
+    imageSrc:CH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"D",
+    imageSrc:DH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"E",
+    imageSrc:EH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"F",
+    imageSrc:FH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"G",
+    imageSrc:GH,
+    warden:"abcd",
+    phno:999999999,
+  },
+  {
+    name:"PG1",
+    imageSrc:PG1H,
+    warden:"abcd",
+    phno:999999999,
+  }
+];
 
-
-function About(props) {
-    let data=data1;
-    return <Base title="About Us">  <Grid container spacing={1} style={{justifyContent:"center",  margin: "0 auto"  }}> {data.map((x) => {
-            
-           return <Grid item xs={12} md={4} lg={3} >
-            <Card  sx={{ width:"250px",height:"400px"}}  style={customstyle}>
-                    <CardActionArea>
-                    <Card sx={{width:"250px",height:"300px"}}><CardMedia 
-                            alt={x.title}
-                            component="img"
-                            height="70%"
-                            width="80%"
-                            image={x.imglink} 
-                    /></Card>
-                        <CardContent>
-                         <Typography gutterBottom variant="h6" component="div" >
-                            {x.Name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {x.discription}
-                        </Typography>
-                         
-                        <a href={x.profile} > <LinkedInIcon /> </a>
-                        <a href={x.email}><MailIcon/></a>
-                        
-                        </CardContent>
-                </CardActionArea> 
-            </Card>
-            </Grid>
-             
-    })} </Grid> </Base>
-
-
+function About() {
+  return (
+    <Base title="Hostels" >  
+    <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>
+      {arr.map((x) => (
+        <Col >
+            <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
+          <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />
+          <Card.Body>
+            <center><Card.Title >Hostel {x.name}</Card.Title></center>
+            <h6>
+             Warden: {x.warden}
+            </h6>
+            <h6>
+             Mobile: {x.phno}
+            </h6>
+            <Link to={"/explore_hostel#A_Hostel"} state={{from:x.name}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
+            </img>
+            </Link>
+          </Card.Body>
+        </Card>
+        </Col>
+      ))}
+    </Row> 
+  </Base>
+  );
 }
-
-
 
 export default About;
+
+
+
+
+
+
+
+
+
