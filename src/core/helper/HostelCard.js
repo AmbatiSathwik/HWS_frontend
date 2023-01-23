@@ -1,10 +1,10 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row,Card } from "react-bootstrap";
 
 function img(props)
 {
     return(
-        <Col xs="4">
+        <Col xs="12" lg="4">
             <img src={props.image} alt={props.name} width="100%" />
         </Col>
     );
@@ -13,10 +13,10 @@ function img(props)
 function text(props)
 {
     return(
-        <Col xs="6">
+        <Col xs="12" lg="6">
             <p>{props.Hosteldetails.description}</p>
             <p>
-                <strong>Chief Warden :</strong> {props.Hosteldetails.warden}
+                <strong>Warden :</strong> {props.Hosteldetails.warden}
             </p>
             <p>
                 <strong>Care Taker :</strong> {props.Hosteldetails.caretaker}
@@ -30,18 +30,21 @@ function text(props)
             <p>
                 <strong>Number of Inmates :</strong> {props.Hosteldetails.inmates}
             </p>
+            <p>
+                <strong>Warden Phone No :</strong> {props.Hosteldetails.wphone}
+            </p>
         </Col>
     );
 }
 function HostelCard(props)
 {
     if(props.type==="2") return(
-        <div id={props.id} className="card">
+        <div id={props.id} className="card" style={{backgroundColor:"#ECECEC"}}>
             <h2 align="center">{props.name}</h2>
             <div className="m-5">
                 <Row>
                     {img(props)}
-                    <Col xs="1"></Col>
+                    <Col xs="12" lg="1"></Col>
                     {text(props)}
                 </Row>
             </div>
@@ -53,7 +56,7 @@ function HostelCard(props)
             <div className="m-5">
                 <Row>
                     {text(props)}
-                    <Col xs="2"></Col>
+                    <Col xs="12" lg="2"></Col>
                     {img(props)}
                 </Row>
             </div>
@@ -61,4 +64,68 @@ function HostelCard(props)
     );
 }
 
-export default HostelCard;
+function Facilities(props)
+{
+    if(props.hasFacility === true) return(
+        <div>
+            <center><h1>Facilities</h1></center>
+            <div className="card" style={{backgroundColor:"#ECECEC",textAlign:"center"}}>
+                <h2>{props.facilityName}</h2>
+                <div className="m-5">
+                    <Row>
+                        <Col xs="12" lg="6">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </Col>
+                        <Col xs="12" lg="2"></Col>
+                        <Col xs="12" lg="4">
+                            <img src={props.image} alt={props.name} width="100%" style={{margin:"auto"}}/>
+                        </Col>
+                    </Row>
+                </div>
+            </div>
+        </div>);
+    else return(<div></div>);
+}
+
+function GroupCards() {
+    return (
+        <div>
+            <Row>
+                <Col sm="12" md="6" lg="4">
+                    <Card style={{height:"250px"}}>
+                        <Card.Body>
+                            <Card.Title>Warden</Card.Title>
+                            <Card.Text>Name : </Card.Text>
+                            <Card.Text>Ph No. : </Card.Text>
+                            <Card.Text>Department : </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col sm="12" md="6" lg="4">
+                    <Card style={{height:"250px"}}>
+                        <Card.Body>
+                            <Card.Title>Care Taker</Card.Title>
+                            <Card.Text>Name : </Card.Text>
+                            <Card.Text>Ph No. : </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+
+                <Col sm="12" md="6" lg="4">
+                    <Card style={{height:"250px"}}>
+                        <Card.Body>
+                            <Card.Title>Hostel Sec.</Card.Title>
+                            <Card.Text>Name : </Card.Text>
+                            <Card.Text>Ph No. : </Card.Text>
+                            <Card.Text>Room No. : </Card.Text>
+                            <Card.Text>Department : </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </div>
+
+    );
+}
+
+export {HostelCard,Facilities,GroupCards} ;
