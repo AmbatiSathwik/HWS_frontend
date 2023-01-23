@@ -11,91 +11,53 @@ import EH from "../assets/images/ehostel.jpg";
 import FH from "../assets/images/fhostel.jpg";
 import GH from "../assets/images/ghostel.jpg";
 import PG1H from "../assets/images/pg1hostel.jpg";
+
 import profile from "../../src/assets/GIF/rightarrow.gif";
-const lod = require('lodash');
-
-
 let arr=[
   {
-    value:"A",
-    name:"A Hostel",
+    name:"A",
     imageSrc:AH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"B",
-    name:"B Hostel",
+    name:"B",
     imageSrc:BH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"C",
-    name:"C Hostel",
+    name:"C",
     imageSrc:CH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"D",
-    name:"D Hostel",
+    name:"D",
     imageSrc:DH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"E",
-    name:"E Hostel",
+    name:"E",
     imageSrc:EH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"F",
-    name:"F Hostel",
+    name:"F",
     imageSrc:FH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"G",
-    name:"G Hostel",
+    name:"G",
     imageSrc:GH,
     warden:"abcd",
     phno:999999999,
   },
   {
-    value:"PG1",
-    name:"PG1 Hostel",
-    imageSrc:PG1H,
-    warden:"abcd",
-    phno:999999999,
-  },
-  {
-    value:"PG2",
-    name:"PG2 Hostel",
-    imageSrc:PG1H,
-    warden:"abcd",
-    phno:999999999,
-  },
-  {
-    value:"MHG",
-    name:"Mega Hostel Girls",
-    imageSrc:PG1H,
-    warden:"abcd",
-    phno:999999999,
-  },
-  {
-    value:"MHB1",
-    name:"Mega Hostel Boys 1",
-    imageSrc:PG1H,
-    warden:"abcd",
-    phno:999999999,
-  },
-  {
-    value:"MHB2",
-    name:"Mega Hostel Boys 2",
+    name:"PG1",
     imageSrc:PG1H,
     warden:"abcd",
     phno:999999999,
@@ -111,14 +73,14 @@ function About() {
             <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
           <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />
           <Card.Body>
-            <center><Card.Title > {x.name}</Card.Title></center>
+            <center><Card.Title >Hostel {x.name}</Card.Title></center>
             <h6>
              Warden: {x.warden}
             </h6>
             <h6>
              Mobile: {x.phno}
             </h6>
-            <Link to={"/hostels/"+lod.lowerCase(x.name)} state={{from:x.value}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
+            <Link to={"/explore_hostel#A_Hostel"} state={{from:x.name}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
             </img>
             </Link>
           </Card.Body>

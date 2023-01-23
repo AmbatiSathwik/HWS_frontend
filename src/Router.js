@@ -22,6 +22,7 @@ export default function Router() {
           <Route path="/about" exact element={<About />} />
           <Route path="/contact" exact element={<About />} />
           <Route path="/mess" exact element={ <MessAdminProfile/>} />
+          <Route path="/hostels/:name" exact element={ <ExploreHostels/>} />
           <Route
             path="/studentpasswordChange"
             exact
