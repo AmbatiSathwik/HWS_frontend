@@ -6,12 +6,20 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import mess_availability_update from "../assets/images/mess_availability_update.png";
 import StarRatings from "react-star-ratings";
+import { messreviesavg } from "./helper/messapicalls";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
+
+const getMonthName = (monthNumber) => {
+  const date = new Date();
+  date.setMonth(monthNumber - 1);
+
+  return date.toLocaleString("en-US", { month: "long" });
+};
 function MessAdminProfile() {
-  const [boys,setboys]=useState(20);
-  const [girls,setgirls]=useState(20);
-  const [total,settotal]=useState(40);
+  const [boys, setboys] = useState(20);
+  const [girls, setgirls] = useState(20);
+  const [total, settotal] = useState(40);
   //mess details state vaiables
   const [messname, setmessname] = useState("A");
   const [totalstrength, settotalstrength] = useState(400);
@@ -20,12 +28,16 @@ function MessAdminProfile() {
   const [isveg, setisveg] = useState("Yes");
   //mess rating state variables
 
-  const [quality, setquality] = useState(3);
-  const [hyginity, sethyginity] = useState(4);
-  const [responsiveness, setresponsiveness] = useState(2);
-  const [quantity, setquantity] = useState(1.5);
-  const [availability, setavailability] = useState(4.6);
-  const [overall, setoverall] = useState(3.23);
+  const [rate, setRate] = useState({
+    quality: 0,
+    quantity: 0,
+    taste: 0,
+    catering: 0,
+    hygine: 0,
+    puntuality: 0,
+  });
+
+  const { quality, quantity, taste, catering, hygine, puntuality } = rate;
 
   const [item, setItem] = useState([]);
   // useEffect (()=>{
@@ -55,8 +67,24 @@ function MessAdminProfile() {
     });
   };
   // },[])
+
+  useEffect(() => {
+    messreviesavg(1).then((data) => {
+      console.log(data);
+      setRate({
+        ...rate,
+        quality: data.data.quality,
+        quantity: data.data.quantity,
+        taste: data.data.taste,
+        catering: data.data.catering,
+        hygine: data.data.hyginess,
+        puntuality: data.data.punctuality,
+      });
+    });
+  }, []);
+
   return (
-    <Base >
+    <Base>
       <h2 align="center">MESS ADMIN DASHBOARD</h2>
       <div className="card">
         <Row>
@@ -69,109 +97,154 @@ function MessAdminProfile() {
       <div className="card">
         <h3 align="center">Mess Ratings</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
+          <div>
+            <Row>
+              <Col align="right">
+                <strong>Month, Year:</strong>
+              </Col>
+              <Col align="left">{getMonthName(1)}, 2023 /* change this */</Col>
+            </Row>
+          </div>
           <Row>
-            <Col xs={3}>
+            <Col xs={4} align="right">
               <h4>Quality: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={quality}
+                rating={rate.quality}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {quality}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate.quality}</h4>
             </Col>
           </Row>
+          <br />
           <Row>
-            <Col xs={3}>
-              <h4>Hyginity: </h4>
+            <Col xs={4} align="right">
+              <h4>Hygine: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={hyginity}
+                rating={rate.hygine}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {hyginity}</h4>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs={3}>
-              <h4>Responsiveness: </h4>
-            </Col>
-            <Col xs={4}>
-              <StarRatings
-                rating={responsiveness}
-                starRatedColor="blue"
-                numberOfStars={5}
-                starDimension="40px"
-                name="rating"
-              />
-            </Col>
-            <Col align="left" xs={2}>
-              <h4> {responsiveness}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate.hygine}</h4>
             </Col>
           </Row>
 
           <Row>
-            <Col xs={3}>
+            <Col xs={4} align="right">
+              <h4>Taste: </h4>
+            </Col>
+            <Col xs={4} align="center" className="mess-admin-rating">
+              <StarRatings
+                rating={rate.taste}
+                starRatedColor="blue"
+                numberOfStars={5}
+                starDimension="40px"
+                name="rating"
+              />
+            </Col>
+            <Col align="left" xs={4}>
+              <h4> {rate.taste}</h4>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={4} align="right">
               <h4>Quantity: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={quantity}
+                rating={rate.quantity}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {quantity}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate.quantity}</h4>
             </Col>
           </Row>
 
           <Row>
-            <Col xs={3}>
-              <h4>Availability: </h4>
+            <Col xs={4} align="right">
+              <h4>Catering: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={availability}
+                rating={rate.catering}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {availability}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate.catering}</h4>
             </Col>
           </Row>
           <Row>
-            <Col xs={3}>
-              <h4>Overall: </h4>
+            <Col xs={4} align="right">
+              <h4>Puntuality: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={overall}
+                rating={rate.puntuality}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {overall}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate.puntuality}</h4>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4} align="right" >
+              <h4>Overall: </h4>
+            </Col>
+            <Col xs={4} align="center" className="mess-admin-rating">
+              <StarRatings
+                rating={
+                  (quality +
+                    quantity +
+                    taste +
+                    catering +
+                    hygine +
+                    puntuality) /
+                  6
+                }
+                starRatedColor="blue"
+                numberOfStars={5}
+                starDimension="40px"
+                name="rating"
+              />
+            </Col>
+            <Col align="left" xs={4}>
+              <h4>
+                {" "}
+                {(
+                  (quality +
+                    quantity +
+                    taste +
+                    catering +
+                    hygine +
+                    puntuality) /
+                  6
+                ).toFixed(2)}
+              </h4>
             </Col>
           </Row>
         </Row>
@@ -206,7 +279,7 @@ function MessAdminProfile() {
               readExcel(file);
             }}
           ></input>
-          <table class="table container">
+          <table className="table container">
             <thead>
               <tr>
                 <th scope="col">MESS</th>
