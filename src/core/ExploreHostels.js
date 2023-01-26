@@ -1,6 +1,6 @@
 import React from "react";
 import Base from "./Base";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Row, Col, Nav } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import AH from "../assets/images/ahostel1.jpg";
@@ -12,7 +12,9 @@ import FH from "../assets/images/fhostel.jpg";
 import GH from "../assets/images/ghostel.jpg";
 import PG1H from "../assets/images/pg1hostel.jpg";
 import profile from "../../src/assets/GIF/rightarrow.gif";
+import { hostelDetails } from "./helper/coreapicalls";
 const lod = require('lodash');
+const details = hostelDetails().data;
 
 
 let arr=[
@@ -22,6 +24,7 @@ let arr=[
     imageSrc:AH,
     warden:"abcd",
     phno:999999999,
+    info: details.ahostel
   },
   {
     value:"B",
@@ -29,6 +32,7 @@ let arr=[
     imageSrc:BH,
     warden:"abcd",
     phno:999999999,
+    info: details.bhostel
   },
   {
     value:"C",
@@ -36,6 +40,7 @@ let arr=[
     imageSrc:CH,
     warden:"abcd",
     phno:999999999,
+    info: details.chostel
   },
   {
     value:"D",
@@ -43,6 +48,7 @@ let arr=[
     imageSrc:DH,
     warden:"abcd",
     phno:999999999,
+    info: details.dhostel
   },
   {
     value:"E",
@@ -50,6 +56,7 @@ let arr=[
     imageSrc:EH,
     warden:"abcd",
     phno:999999999,
+    info: details.ehostel
   },
   {
     value:"F",
@@ -57,6 +64,7 @@ let arr=[
     imageSrc:FH,
     warden:"abcd",
     phno:999999999,
+    info: details.fhostel
   },
   {
     value:"G",
@@ -64,6 +72,7 @@ let arr=[
     imageSrc:GH,
     warden:"abcd",
     phno:999999999,
+    info: details.ghostel
   },
   {
     value:"PG1",
@@ -71,6 +80,7 @@ let arr=[
     imageSrc:PG1H,
     warden:"abcd",
     phno:999999999,
+    info: details.pg1hostel
   },
   {
     value:"PG2",
@@ -78,6 +88,7 @@ let arr=[
     imageSrc:PG1H,
     warden:"abcd",
     phno:999999999,
+    info: details.ahostel
   },
   {
     value:"MHG",
@@ -85,6 +96,7 @@ let arr=[
     imageSrc:PG1H,
     warden:"abcd",
     phno:999999999,
+    info: details.ahostel
   },
   {
     value:"MHB1",
@@ -92,6 +104,7 @@ let arr=[
     imageSrc:PG1H,
     warden:"abcd",
     phno:999999999,
+    info: details.ahostel
   },
   {
     value:"MHB2",
@@ -99,15 +112,19 @@ let arr=[
     imageSrc:PG1H,
     warden:"abcd",
     phno:999999999,
+    info: details.ahostel
   }
 ];
 
 function About() {
+  const navigate = useNavigate()
   return (
     <Base title="Hostels" >  
     <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>
       {arr.map((x) => (
-        <Col >
+          <div className="hostel-card-div">
+          <Link to={"/hostels/"+x.value+"/"} state={{from:x.info}}>
+        <Col>
             <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
           <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />
           <Card.Body>
@@ -118,12 +135,16 @@ function About() {
             <h6>
              Mobile: {x.phno}
             </h6>
-            <Link to={"/hostels/"+lod.lowerCase(x.name)} state={{from:x.value}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
+
+            <img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
             </img>
-            </Link>
+
           </Card.Body>
+
         </Card>
         </Col>
+      </Link>
+          </div>
       ))}
     </Row> 
   </Base>

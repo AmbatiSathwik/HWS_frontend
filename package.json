@@ -29,6 +29,7 @@
     "react-simple-star-rating": "^5.1.7",
     "react-star-ratings": "^2.3.0",
     "stackblur-canvas": "^2.5.0",
+    "swiper": "^8.4.6",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },
