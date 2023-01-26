@@ -16,9 +16,7 @@ export const signin = (user) => {
       .catch((e) => {
         console.log(e);
       });
-  }
-  else if(user.loginas === "mess-admin")
-  {
+  } else if (user.loginas === "mess-admin") {
     return fetch(`${API}mess/mess-admin/login`, {
       method: "POST",
       headers: {
@@ -39,7 +37,11 @@ export const signin = (user) => {
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
     localStorage.setItem("jwt", JSON.stringify(data.data.token));
-    localStorage.setItem("id", JSON.stringify(data.data.rollno));
+    if (JSON.stringify(data.data.rollno)) {
+      localStorage.setItem("id", JSON.stringify(data.data.rollno));
+    } else {
+      localStorage.setItem("id", JSON.stringify(data.data.email));
+    }
     localStorage.setItem("role", JSON.stringify(data.data.role)); //change this
     next();
   }

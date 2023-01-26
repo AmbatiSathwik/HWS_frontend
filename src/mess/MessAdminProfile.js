@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import mess_availability_update from "../assets/images/mess_availability_update.png";
 import StarRatings from "react-star-ratings";
-import { messreviesavg } from "./helper/messapicalls";
+import { messadminDetails, messreviesavg } from "./helper/messapicalls";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
 
@@ -68,9 +68,28 @@ function MessAdminProfile() {
   };
   // },[])
 
+  const [details, setDetails] = useState({
+    name: "",
+    email: "",
+    phno: "",
+    messId: "",
+  });
+
+  useEffect(() => {
+    messadminDetails().then((data) => {
+      setDetails({
+        ...details,
+        name: data.data.name,
+        email: data.data.email,
+        phno: data.data.phno,
+        messId: data.data.messId,
+      });
+    });
+  }, []);
+
+  
   useEffect(() => {
     messreviesavg(1).then((data) => {
-      console.log(data);
       setRate({
         ...rate,
         quality: data.data.quality,
@@ -91,7 +110,9 @@ function MessAdminProfile() {
           <Col xs={6}>
             <img src={Admin} width="100%" alt="admin-logo" />
           </Col>
-          <Col xs={6}></Col>
+          <Col xs={6}>
+            <h5>{details.name}</h5>
+          </Col>
         </Row>
       </div>
       <div className="card">
@@ -212,7 +233,7 @@ function MessAdminProfile() {
             </Col>
           </Row>
           <Row>
-            <Col xs={4} align="right" >
+            <Col xs={4} align="right">
               <h4>Overall: </h4>
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">

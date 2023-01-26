@@ -1,4 +1,3 @@
-
 import { json } from "react-router-dom";
 import { API } from "../../backend";
 
@@ -29,56 +28,75 @@ export const messreviesavg = (id) => {
     });
 };
 
+export const messadminDetails = () => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const email = localStorage.getItem("id").slice(1, -1);
+  return fetch(`${API}mess/mess-admin-by-email`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify({ email }),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 export const messDetails = () => {
   return {
     data: {
       ahostel: {
-        name:"A Hostel",
-        description:"Both veg and non-veg messes are available in A-Hostel.",
-         
-        img : AH,
+        name: "A Hostel",
+        description: "Both veg and non-veg messes are available in A-Hostel.",
+
+        img: AH,
       },
       bhostel: {
-        name:"B Hostel",
-        description:"Both veg and non-veg messes are available.  ",
-         
-        img : BH
+        name: "B Hostel",
+        description: "Both veg and non-veg messes are available.  ",
+
+        img: BH,
       },
       chostel: {
-        name:"C Hostel",
-        description:" . Only vegetarian mess is available.",
-        
-        img : CH
+        name: "C Hostel",
+        description: " . Only vegetarian mess is available.",
+
+        img: CH,
       },
       dhostel: {
-        name:"D Hostel",
-        description:"North Indian vegetarian mess is available.",
-        
-        img : DH
+        name: "D Hostel",
+        description: "North Indian vegetarian mess is available.",
+
+        img: DH,
       },
       ehostel: {
-        name:"E Hostel",
-        description:"A North Indian Vegetarian mess is available.",
-         
-        img : EH
+        name: "E Hostel",
+        description: "A North Indian Vegetarian mess is available.",
+
+        img: EH,
       },
       fhostel: {
-        name:"F Hostel",
-        description:"A cosmopolitan mess is available. ",         
-        img : FH
+        name: "F Hostel",
+        description: "A cosmopolitan mess is available. ",
+        img: FH,
       },
       ghostel: {
-        name:"G Hostel",
-        description:"A cosmopolitan mess is available.",
-        
-        img : GH
+        name: "G Hostel",
+        description: "A cosmopolitan mess is available.",
+
+        img: GH,
       },
       pg1hostel: {
-        name:"PG1 Hostel",
-        description:"A cosmopolitan mess is available.",
-        img : PG1H
+        name: "PG1 Hostel",
+        description: "A cosmopolitan mess is available.",
+        img: PG1H,
       },
     },
-  }
+  };
 };
