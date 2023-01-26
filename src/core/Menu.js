@@ -98,19 +98,17 @@ function Menu() {
 
   return (
     <div className="navbarMenu">
-      <div  className="menu">
+      <div className="menu">
         <Navbar.Brand href="/">
-          
           <div className="mainlogo">
-          <img  src={Logo} height="60" alt="Logo" />
-          <h3 style={{color:"white"}}>NITC Hostels</h3>
+            <img src={Logo} height="60" alt="Logo" />
+            <h3 style={{ color: "white" }}>NITC Hostels</h3>
           </div>
         </Navbar.Brand>
       </div>
       <Navbar bg="dark" variant="dark" expand="lg" className="menu">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
@@ -188,7 +186,7 @@ function Menu() {
             </NavDropdown>
           </Nav>
           <div className="loginOptions">
-          <Nav>{showLogin()}</Nav>
+            <Nav>{showLogin()}</Nav>
           </div>
         </Navbar.Collapse>
       </Navbar>

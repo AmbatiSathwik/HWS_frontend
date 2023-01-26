@@ -68,7 +68,8 @@ function About() {
   });
 
   return (
-    <Base title="About Us">
+    <Base>
+      <h2 align="center">About Us</h2>
       <div className="team-wrap">
         <div className="container">
           <div className="row  about-wrap">{loop}</div>
