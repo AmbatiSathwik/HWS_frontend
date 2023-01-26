@@ -359,7 +359,35 @@ code {
   background-color: white !important ;
 }
 
+.swiper-container {
+  width: 480px;
+  padding: 10px;
+}
 
+/* css for swiper image  */
+
+
+.swiper-img:hover {
+  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
+  filter: drop-shadow(0px 0px 6px rgb(44, 62, 80));
+}
+
+.swiper-img-wrap{
+  overflow: hidden;
+}
+
+.hostel-card-div a{
+  text-decoration: none;
+  color: black;
+}
+
+/* css for administration table in hostel page*/
+
+.archive-table {
+  height: 300px;
+  overflow: scroll;
+}
 
 /* media queries  */
 @media only screen and (max-width: 600px) {
@@ -383,6 +411,46 @@ code {
     display:none
   }
 }
+
+/* media queries for swiper  */
+@media screen and (min-width: 360px) {
+  .swiper-container {
+    width: 360px;
+  }
+  .swiper-img{
+    margin: 15px;
+    border-radius: 7%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
+  }
+  .swiper-img {
+    margin: 25px;
+    border-radius: 7%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .swiper-container {
+    width: 992px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .swiper-container {
+    width: 1200px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .swiper-container {
+    width: 1920px;
+  }
+}
+
 /* media query ends  */
 .hostel_card:hover {
   transform: scale(1.1);

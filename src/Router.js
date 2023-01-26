@@ -8,6 +8,7 @@ import MessAdminProfile from "./mess/MessAdminProfile";
 import StudentChangePassword from "./student/StudentChangePassword";
 import Dashboard from "./user/Dashboard";
 import Signin from "./user/Signin";
+import Hostels from "./core/Hostels";
 
 export default function Router() {
   return (
@@ -22,7 +23,7 @@ export default function Router() {
           <Route path="/about" exact element={<About />} />
           <Route path="/contact" exact element={<About />} />
           <Route path="/mess" exact element={ <MessAdminProfile/>} />
-          <Route path="/hostels/:name" exact element={ <ExploreHostels/>} />
+          <Route path="/hostels/:name" exact element={ <Hostels/>} />
           <Route
             path="/studentpasswordChange"
             exact
