@@ -15,11 +15,11 @@ import { Navigate } from "react-router-dom";
 
 function Signin() {
   const [details, setDetails] = useState({
-    username: "karthik@gmail.com",
-    password: "karthik",
+    username: "b190500cs",
+    password: "d774ac13ab",
     forgot: false,
     loading: false,
-    loginas: "mess-admin",
+    loginas: "student",
     error: "",
   });
 
