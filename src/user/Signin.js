@@ -4,6 +4,11 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
 import LOGO from "../assets/GIF/fingerprint-scan.gif";
 import key from "../assets/GIF/key.gif";
 import Pic from "../assets/images/login_nitc.jpg";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { InputAdornment,IconButton,InputLabel,FormControl,OutlinedInput } from '@mui/material';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import {Input,TextField} from '@mui/material';
+
 import { Button, Form } from "react-bootstrap";
 import {
   authenticate,
@@ -12,6 +17,7 @@ import {
   forgotpassword,
 } from "./helper/userapicalls";
 import { Navigate } from "react-router-dom";
+import { Label } from "@mui/icons-material";
 
 function Signin() {
   const [details, setDetails] = useState({
@@ -22,7 +28,8 @@ function Signin() {
     loginas: "student",
     error: "",
   });
-
+  const [showPassword, setshowPassword] = useState(false)
+  
   const { username, password, forgot, loading, loginas, error } = details;
 
   const contactHO = () => {
@@ -121,7 +128,8 @@ function Signin() {
         console.log(e);
       });
   };
-
+  
+  
   return (
     <Base>
       {errorMessage()}
@@ -149,18 +157,41 @@ function Signin() {
                   right={0}
                   onChange={handleChange("username")}
                 />
-                <MDBInput
-                  className="MDBinput"
-                  wrapperClass="mb-4 mx-5 w-100"
-                  label="Password"
-                  id="formControlLg"
-                  type="password"
-                  size="lg"
+                
+                 {/* <MDBInput
+                    className="MDBinput"
+                    wrapperClass="mb-4 mx-5 w-100"
+                    label="Password"
+                    id="formControlLg"
+                    type="password"
+                    size="lg"
+                    value={password}
+                    onChange={handleChange("password")}
+                    placeholder="Password"
+                  > 
+                  </MDBInput>
+                 */}
+                <FormControl variant="outlined" className="mb-4 mx-5 w-100">
+                <OutlinedInput
+                  style={{borderRadius:"8px" ,height:"50px"}}
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => {setshowPassword( !showPassword);}}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                   onChange={handleChange("password")}
                   placeholder="Password"
                 />
-
+                <p>Password</p>
+                </FormControl>
                 <Form.Select
                   className="mb-4 mx-5 w-100"
                   aria-label="Default select example"

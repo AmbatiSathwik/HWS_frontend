@@ -2,7 +2,18 @@ import Base from "../core/Base";
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { changePassword } from "./helper/studentapicalls";
-
+function Warn()
+{
+  return(
+    <div>
+      <h6>At least one lowercase letter,</h6>
+      <h6>One uppercase letter,</h6>
+      <h6>One numeric digit,</h6>
+      <h6>One special character should be present,</h6>
+      <h6>Size should be in between 6 and 20</h6>
+    </div>
+  )
+}
 function StudentChangePassword() {
   const [pass, setPass] = useState({
     oldPass: "B190500CS",
@@ -25,8 +36,17 @@ function StudentChangePassword() {
       </div>
     );
   };
+  
   const onSubmit = (event) => {
     event.preventDefault();
+    var Passwordverify = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    console.log("password");
+    if(!newPass.match(Passwordverify))
+    {
+      setPass({...pass,msg:"Password Constraints Does Not Met"})
+   }
+    else
+    {
     setPass({ ...pass, loading: true });
     changePassword({ newPassword: newPass, currPassword: oldPass }).then(
       (data) => {
@@ -38,6 +58,7 @@ function StudentChangePassword() {
         }
       }
     );
+    }
   };
 
   const Message = () => {
@@ -81,6 +102,7 @@ function StudentChangePassword() {
           />
         </div>
         <br />
+        <Warn></Warn>
         <div className="d-grid gap-2">
           <Button variant="primary" size="lg" onClick={onSubmit}>
             Change Password
