@@ -366,18 +366,17 @@ code {
 
 /* css for swiper image  */
 
-
 .swiper-img:hover {
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
   filter: drop-shadow(0px 0px 6px rgb(44, 62, 80));
 }
 
-.swiper-img-wrap{
+.swiper-img-wrap {
   overflow: hidden;
 }
 
-.hostel-card-div a{
+.hostel-card-div a {
   text-decoration: none;
   color: black;
 }
@@ -408,7 +407,7 @@ code {
     width: 80%;
   }
   .mess-admin-rating {
-    display:none
+    display: none;
   }
 }
 
@@ -417,7 +416,7 @@ code {
   .swiper-container {
     width: 360px;
   }
-  .swiper-img{
+  .swiper-img {
     margin: 15px;
     border-radius: 7%;
   }
@@ -456,4 +455,15 @@ code {
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
   filter: drop-shadow(0px 0px 6px rgb(44, 62,  80));
+}
+
+.hideCard {
+  
+  opacity: 0
+}
+
+.showCard {
+  opacity: 1;
+  filter: blur(0px);
+  transition: opacity 2s linear;
 }

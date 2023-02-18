@@ -2,11 +2,11 @@
 import Base from "../core/Base";
 import Admin from "../assets/images/mess-admin.png";
 import * as XLSX from "xlsx";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import mess_availability_update from "../assets/images/mess_availability_update.png";
 import StarRatings from "react-star-ratings";
-import { messreviesavg } from "./helper/messapicalls";
+import { messadminDetails, messreviesavg } from "./helper/messapicalls";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
 
@@ -68,9 +68,27 @@ function MessAdminProfile() {
   };
   // },[])
 
+  const [details, setDetails] = useState({
+    name: "",
+    email: "",
+    phno: "",
+    messId: "",
+  });
+
+  useEffect(() => {
+    messadminDetails().then((data) => {
+      setDetails({
+        ...details,
+        name: data.data.name,
+        email: data.data.email,
+        phno: data.data.phno,
+        messId: data.data.messId,
+      });
+    });
+  }, []);
+
   useEffect(() => {
     messreviesavg(1).then((data) => {
-      console.log(data);
       setRate({
         ...rate,
         quality: data.data.quality,
@@ -83,18 +101,57 @@ function MessAdminProfile() {
     });
   }, []);
 
+  const config = {
+    rootMargin:"0px 0px 0px 0px",
+    threshold: 0
+  }
+
+  const targetRef = useRef(null)
+
+  useEffect(()=>{
+    console.log(targetRef)
+    const observer = new window.IntersectionObserver((entries,self)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting)
+        {
+          changeClass(entry.target)
+          self.unobserve(entry.target)
+        }
+        
+      })
+    })
+    const obs = document.querySelectorAll('.card')
+    obs.forEach((ob)=>{
+      observer.observe(ob)
+    },config)
+
+    return ()=>{
+      obs.forEach((ob)=>{
+        observer.unobserve(ob)
+      })
+    }
+
+  },[])
+
+  const changeClass = (im) => {
+    im.className = "card showCard"
+    
+  }
+
   return (
     <Base>
       <h2 align="center">MESS ADMIN DASHBOARD</h2>
-      <div className="card">
+      <div className="card hideCard" ref={targetRef}>
         <Row>
           <Col xs={6}>
             <img src={Admin} width="100%" alt="admin-logo" />
           </Col>
-          <Col xs={6}></Col>
+          <Col xs={6}>
+            <h5>{details.name}</h5>
+          </Col>
         </Row>
       </div>
-      <div className="card">
+      <div className="card hideCard" ref={targetRef}>
         <h3 align="center">Mess Ratings</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
           <div>
@@ -212,7 +269,7 @@ function MessAdminProfile() {
             </Col>
           </Row>
           <Row>
-            <Col xs={4} align="right" >
+            <Col xs={4} align="right">
               <h4>Overall: </h4>
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
@@ -249,7 +306,7 @@ function MessAdminProfile() {
           </Row>
         </Row>
       </div>
-      <div className="card">
+      <div className="card hideCard" ref={targetRef}>
         <h3 align="center">Mess Details</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
           <Col xs={6}>
@@ -266,7 +323,7 @@ function MessAdminProfile() {
         </Row>
       </div>
 
-      <div className="card">
+      <div className="card hideCard" ref={targetRef}>
         <h3 align="center">Student Details</h3>
         <div
           className="card-body"
@@ -318,7 +375,7 @@ function MessAdminProfile() {
         </div>
       </div>
 
-      <div className="card">
+      <div className="card hideCard">
         <h3 align="center">Update Mess Details</h3>
 
         <Row>

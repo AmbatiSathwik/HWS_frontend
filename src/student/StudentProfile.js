@@ -208,7 +208,7 @@ function StudentProfile() {
   };
 
   const showRating = () => {
-    const ratingAvailable = date.getDate() >= 25 ? true : false;
+    const ratingAvailable = date.getDate() >= 0 ? true : false;
     if (ratingAvailable) {
       if (!messdetails.isAvailable) {
         return (
