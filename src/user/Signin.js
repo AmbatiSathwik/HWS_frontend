@@ -145,7 +145,7 @@ function Signin() {
               </div>
 
               <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-                <MDBInput
+                {/*<MDBInput
                   wrapperClass="mb-4 mx-5 w-100"
                   label="Username"
                   id="formControlLg"
@@ -157,8 +157,7 @@ function Signin() {
                   right={0}
                   onChange={handleChange("username")}
                 />
-                
-                 {/* <MDBInput
+                  <MDBInput
                     className="MDBinput"
                     wrapperClass="mb-4 mx-5 w-100"
                     label="Password"
@@ -171,6 +170,16 @@ function Signin() {
                   > 
                   </MDBInput>
                  */}
+                 <FormControl variant="outlined" className="mb-4 mx-5 w-100">
+                <OutlinedInput
+                  style={{borderRadius:"8px" ,height:"50px"}}
+                  value={username}
+                  onChange={handleChange("username")}
+                  placeholder="Username"
+                />
+                <p>Username</p>
+                </FormControl>
+                
                 <FormControl variant="outlined" className="mb-4 mx-5 w-100">
                 <OutlinedInput
                   style={{borderRadius:"8px" ,height:"50px"}}
