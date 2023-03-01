@@ -14,7 +14,7 @@ function Menu() {
         </>
       );
     } else {
-      if (localStorage.getItem("role").slice(1, -1) === "student") {
+      if (localStorage.getItem("role")?.slice(1,-1) === "student") {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
@@ -56,7 +56,7 @@ function Menu() {
             </Nav.Link>
           </>
         );
-      } else if (localStorage.getItem("role").slice(1, -1) === "mess-admin") {
+      } else if (localStorage.getItem("role")?.slice(1,-1) === "mess-admin") {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
