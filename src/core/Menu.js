@@ -111,79 +111,10 @@ function Menu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
-              <NavDropdown.Item href="./explore_hostel#MegaLadiesHostel">
-                Mega Hostel-Ladies
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/explore_hostel#G_Hostel">
-                G Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/explore_hostel#A_Hostel">
-                A Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#B_Hostel">
-                B Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#C_Hostel">
-                C Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#D_Hostel">
-                D Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#E_Hostel">
-                E Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#F_Hostel">
-                F Hostel
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#PG1_Hostel">
-                PG Hostel-1
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#PG2_Hostel">
-                PG Hostel-2
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#MegaGentsHostel">
-                Mega Hostel-Gents
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_hostel#MegaGentsNewHostel">
-                Mega Hostel New-Gents
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="Explore Mess" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/explore_mess#MegaLadiesMess">
-                Mega Ladies Mess
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/explore_mess#G_Mess">
-                G Mess
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/explore_mess#A_Mess">
-                A Mess
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_mess#B_Mess">
-                B Mess
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_mess#C_Mess">
-                C Mess
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_mess#D_Mess">
-                D Mess
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_mess#MegaGentsMess">
-                Mega Hostel Mess-Gents
-              </NavDropdown.Item>
-              <NavDropdown.Item href="./explore_mess#MegaGentsNewMess">
-                Mega Hostel New Mess-Gents
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/explore_mess#E_Mess">
-                E Mess
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/explore_mess#F_Mess">
-                F Mess
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/explore_hostel">Explore Hostels</Nav.Link>
+            <Nav.Link href="/explore_mess">Explore Messes</Nav.Link>
+            
+            
           </Nav>
           <div className="loginOptions">
             <Nav>{showLogin()}</Nav>

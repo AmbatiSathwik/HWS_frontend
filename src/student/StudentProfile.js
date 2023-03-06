@@ -12,6 +12,7 @@ import {
   messVacancy,
   registerStudentMess,
   updateStudentMess,
+  previousMessDetails,
 } from "./helper/studentapicalls";
 import MC from "../assets/images/messcard.png";
 import { jsPDF } from "jspdf";
@@ -47,6 +48,8 @@ function StudentProfile() {
     puntuality: 0,
     isDone: false,
   });
+
+  const [previousMess, setpreviousMess] = useState({ data: [] });
 
   const [vacancy, setVacancy] = useState({ available: [] });
 
@@ -120,6 +123,19 @@ function StudentProfile() {
 
     messVacancy().then((data) => {
       setVacancy({ ...vacancy, available: data.data });
+    });
+
+    previousMessDetails().then((data) => {
+      data.data.map((obj) => {
+        setpreviousMess({
+          ...previousMess,
+          data: previousMess.data.append({
+            year: obj.year,
+            month: obj.month,
+            messName: messname[obj.messId],
+          }),
+        });
+      });
     });
   }, []);
 
@@ -598,6 +614,8 @@ function StudentProfile() {
     }
   };
 
+  const previousmess = () => {};
+
   const [type, setType] = useState("Mess");
 
   return (
@@ -750,6 +768,7 @@ function StudentProfile() {
         <div id="messarchive" className="p-4">
           <h3 align="center">Your Previous Mess Details</h3>
           <br />
+          {previousmess()}
         </div>
         <br />
         <br />
