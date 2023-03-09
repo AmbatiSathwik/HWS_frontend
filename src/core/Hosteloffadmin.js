@@ -1,11 +1,12 @@
-import {React,useRef,useEffect,useState} from "react";
+import {React,useEffect,useState} from "react";
 import Base from "./Base";
 import { Col, Row } from "react-bootstrap";
-import TextField from '@mui/material/TextField';
 import { MDBInput } from 'mdb-react-ui-kit';
 import Button from 'react-bootstrap/Button';
-import { InputLabel,MenuItem,FormControl,Select } from "@mui/material";
-import { TempleHinduSharp } from "@mui/icons-material";
+import { MenuItem,FormControl,Select } from "@mui/material";
+import Modal_1 from "./Modal_1.js";
+import { render } from "react-dom";
+
 function Hosteloffadmin() {
 
     const changeClass = (im) => {
@@ -49,7 +50,7 @@ function Hosteloffadmin() {
 
     //search section
     const [search,setsearch]=useState("");
-
+    const [details,setdetails]=useState("student details");
     //edit cheif warden section
     
     const [cheifname,setcheifname]=useState("");
@@ -88,7 +89,7 @@ function Hosteloffadmin() {
                 </Row>
                 <Row>
                     <Col align="right">
-                        <Button variant="dark" className="me-2 mt-3" >Create</Button>
+                        <Modal_1 heading="Create" className="me-2 mt-3" content="Notification created successfully"/>
                     </Col>
                 </Row>
             </div>
@@ -105,9 +106,14 @@ function Hosteloffadmin() {
                         <MDBInput value={search}  id='typeText' style={{backgroundColor:"white"}} type='text' onChange={(x)=>{setsearch(x.target.value)}} />
                     </Col>
                 </Row>
-                <Row>
+                {/* <Row>
                     <Col align="right">
                         <Button variant="dark" className="me-2 mt-3">Search</Button>
+                    </Col>
+                </Row> */}
+                <Row>
+                    <Col align="right">
+                        <Modal_1  heading="Search" className="me-2 mt-3" content={details}/>
                     </Col>
                 </Row>
             </div>
@@ -145,7 +151,7 @@ function Hosteloffadmin() {
 
                 <Row>
                     <Col align="right">
-                        <Button variant="dark" className="me-2 mt-3">Update</Button>
+                        <Modal_1 heading="Update" className="me-2 mt-3" content="Data updated successfully"/>
                     </Col>
                 </Row>
                 `
@@ -214,7 +220,7 @@ function Hosteloffadmin() {
 
                 <Row>
                     <Col align="right">
-                        <Button variant="dark" className="me-2 mt-3" >Update</Button>
+                        <Modal_1 heading="Update" className="me-2 mt-3" content="Data updated successfully"/>
                     </Col>
                 </Row>
             </div>
