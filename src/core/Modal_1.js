@@ -17,6 +17,9 @@ export default function Modal_1(props) {
       {props.heading==="Search"? <div>
       <Modal.Body>Name: {props.content.name}</Modal.Body>
       <Modal.Body>Roll number: {props.content.roll}</Modal.Body>
+      <Modal.Body>Phone number: {props.content.phno}</Modal.Body>
+      <Modal.Body>room number: {props.content.room}</Modal.Body>
+      <Modal.Body>Address: {props.content.address}</Modal.Body>
       </div> :<Modal.Body>{props.content}</Modal.Body>}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
