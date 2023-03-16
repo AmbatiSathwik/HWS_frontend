@@ -10,6 +10,7 @@ import Dashboard from "./user/Dashboard";
 import Signin from "./user/Signin";
 import Hostels from "./core/Hostels";
 import Messpages from "./mess/messpage";
+import Complaint from "./core/complaint";
 export default function Router() {
   return (
     <div>
@@ -25,6 +26,7 @@ export default function Router() {
           <Route path="/mess" exact element={ <MessAdminProfile/>} />
           <Route path="/hostels/:name" exact element={ <Hostels/>} />
           <Route path="/messpage/:name" exact element={<Messpages />} />
+          <Route path="/complaint" exact element={<Complaint />} />
           <Route
             path="/studentpasswordChange"
             exact

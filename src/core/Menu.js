@@ -119,6 +119,9 @@ function Menu() {
           <div className="loginOptions">
             <Nav>{showLogin()}</Nav>
           </div>
+          <Nav>
+          <Nav.Link href="/complaint">complaints</Nav.Link>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </div>
