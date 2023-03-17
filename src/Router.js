@@ -14,6 +14,8 @@ import Forms from "./core/formspage";
 import Messpages from "./mess/messpage";
 import Complaint from "./core/complaint";
 import Hosteloffadmin from "./core/Hosteloffadmin";
+import Messratingspage from "./mess/Messratingpage";
+
 export default function Router() {
   return (
     <div>
@@ -33,6 +35,7 @@ export default function Router() {
           <Route path="/formspage" exact element={<Forms />} />
           <Route path="/complaint" exact element={<Complaint />} />
           <Route path="/hostelofficeadmin" exact element={<Hosteloffadmin/>} />
+          <Route path="/messratingspage" exact element={<Messratingspage/>}/>
           <Route
             path="/studentpasswordChange"
             exact

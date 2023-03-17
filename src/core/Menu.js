@@ -191,7 +191,7 @@ function Menu() {
 
             <Nav.Link href="/explore_hostel">Explore Hostels</Nav.Link>
             <Nav.Link href="/explore_mess">Explore Messes</Nav.Link>
-            
+            <Nav.Link href="/messratingspage">Mess Ratings</Nav.Link>
             
 
           </Nav>
