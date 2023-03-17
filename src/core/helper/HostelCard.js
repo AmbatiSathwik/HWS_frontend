@@ -16,10 +16,10 @@ function text(props)
         <Col xs="12" lg="6">
             <p>{props.Hosteldetails.description}</p>
             <p>
-                <strong>Warden :</strong> {props.Hosteldetails.warden}
+                <strong>Warden :</strong> {props.wardenname}
             </p>
             <p>
-                <strong>Care Taker :</strong> {props.Hosteldetails.caretaker}
+                <strong>Care Taker :</strong> {props.caretakername}
             </p>
             <p>
                 <strong>Number of rooms :</strong> {props.Hosteldetails.rooms}
@@ -31,7 +31,7 @@ function text(props)
                 <strong>Number of Inmates :</strong> {props.Hosteldetails.inmates}
             </p>
             <p>
-                <strong>Warden Phone No :</strong> {props.Hosteldetails.wphone}
+                <strong>Warden Phone No :</strong> {props.phno}
             </p>
         </Col>
     );
@@ -87,7 +87,7 @@ function Facilities(props)
     else return(<div></div>);
 }
 
-function GroupCards() {
+function GroupCards(props) {
     return (
         <div>
             <Row>
@@ -95,8 +95,8 @@ function GroupCards() {
                     <Card style={{height:"250px"}}>
                         <Card.Body>
                             <Card.Title>Warden</Card.Title>
-                            <Card.Text>Name : </Card.Text>
-                            <Card.Text>Ph No. : </Card.Text>
+                            <Card.Text>Name :{props.wardenname} </Card.Text>
+                            <Card.Text>Ph No. :{props.phno} </Card.Text>
                             <Card.Text>Department : </Card.Text>
                         </Card.Body>
                     </Card>
@@ -105,8 +105,8 @@ function GroupCards() {
                     <Card style={{height:"250px"}}>
                         <Card.Body>
                             <Card.Title>Care Taker</Card.Title>
-                            <Card.Text>Name : </Card.Text>
-                            <Card.Text>Ph No. : </Card.Text>
+                            <Card.Text>Name : {props.caretakername} </Card.Text>
+                            <Card.Text>Ph No. : {props.cphno} </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -115,8 +115,8 @@ function GroupCards() {
                     <Card style={{height:"250px"}}>
                         <Card.Body>
                             <Card.Title>Hostel Sec.</Card.Title>
-                            <Card.Text>Name : </Card.Text>
-                            <Card.Text>Ph No. : </Card.Text>
+                            <Card.Text>Name :{props.hsname} </Card.Text>
+                            <Card.Text>Ph No. :{props.hsphno} </Card.Text>
                             <Card.Text>Room No. : </Card.Text>
                             <Card.Text>Department : </Card.Text>
                         </Card.Body>

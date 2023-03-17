@@ -113,6 +113,68 @@ export const hostelDetails = () => {
   //     });
 };
 
+
+export const getHostelWardenByHostelId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  console.log(token)
+  return fetch(`${API}hostel/hostel-warden/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => { 
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+export const getCareTakerByHostelId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  console.log(token)
+  return fetch(`${API}hostel/care-taker/${id}`, {
+    method: "GET",    
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => { 
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+export const getHostelSecretaryByHostelId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  console.log(token)
+  return fetch(`${API}hostel/hostel-secretary/${id}`, {
+    method: "GET",    
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => { 
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
 export const submitComplaint = (complaint) => {
   return fetch(`${API}complaint`, {
     method: "POST",
