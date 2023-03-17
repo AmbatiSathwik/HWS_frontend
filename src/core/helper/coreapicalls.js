@@ -113,6 +113,7 @@ export const hostelDetails = () => {
   //     });
 };
 
+
 export const getHostelWardenByHostelId = (id) => {
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
   console.log(token)
@@ -173,6 +174,7 @@ export const getHostelSecretaryByHostelId = (id) => {
     });
 };
 
+
 export const submitComplaint = (complaint) => {
   return fetch(`${API}complaint`, {
     method: "POST",
@@ -188,4 +190,3 @@ export const submitComplaint = (complaint) => {
     console.log(e);
   })
 }
-
