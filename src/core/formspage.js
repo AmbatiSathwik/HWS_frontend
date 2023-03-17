@@ -49,15 +49,15 @@ const downloadPdf = (url,name) => {
       
      
   <Base  >
-    <div style={{textAlign:"center"}}>
+    <div style={{textAlign:"center"}} >
     <h6 style={{color:"#3B5CDE",margin:"0 0 8",fontSize:"14px"}} >FORMS AND APPLICATIONS</h6>
     <h5 style={{color:"#091235",fontSize:"21px",margin:"0 0 18"}}>Forms and Formats</h5>
     <p style={{color:"#3B5CDE",padding:"0 0 8",fontSize:"14px"}} >General Forms & Formats</p>
-    <hr style={{border:"2px solid #FFED00", width:"35%",align:"center"}}/>
+    <center><hr style={{border:"2px solid #FFED00", width:"35%"}}/></center>
 
 
     </div>
-    <div>
+    <div className="mb-5">
         {pdfs.map((pdf) => (
         <div  className="container" style={{ cursor: "pointer" }} key={pdf.name} onClick={(event) => {
             console.log(event.target.className);
@@ -88,6 +88,7 @@ const downloadPdf = (url,name) => {
         </div>
         ))}
       </div>
+
     </Base>
     
   );
