@@ -172,3 +172,20 @@ export const getHostelSecretaryByHostelId = (id) => {
       console.log(err);
     });
 };
+
+export const submitComplaint = (complaint) => {
+  return fetch(`${API}complaint`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(complaint),
+  }).then((res) => {
+    // console.log(res.json());
+    return res.json();
+  }).catch((e) => {
+    console.log(e);
+  })
+}
+

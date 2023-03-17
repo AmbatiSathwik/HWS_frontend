@@ -113,6 +113,7 @@ function Menu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
+
             <Nav.Link href="./formspage">Forms&Applications</Nav.Link>
             <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
               <NavDropdown.Item href="./explore_hostel#MegaLadiesHostel">
@@ -187,10 +188,19 @@ function Menu() {
                 F Mess
               </NavDropdown.Item>
             </NavDropdown>
+
+            <Nav.Link href="/explore_hostel">Explore Hostels</Nav.Link>
+            <Nav.Link href="/explore_mess">Explore Messes</Nav.Link>
+            
+            
+
           </Nav>
           <div className="loginOptions">
             <Nav>{showLogin()}</Nav>
           </div>
+          <Nav>
+          <Nav.Link href="/complaint">complaints</Nav.Link>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </div>

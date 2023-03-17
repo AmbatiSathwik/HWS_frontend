@@ -21,9 +21,15 @@ export const studentDetails = () => {
     });
 };
 
+
 export const studentMessDetails = (month,year) => {
   const roll = localStorage.getItem("id")?.slice(1,-1);
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+
+export const studentMessDetails = (month, year) => {
+  const roll = localStorage.getItem("id").slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+
 
   return fetch(`${API}mess/mess-user/${roll}/${year}/${month}/`, {
     method: "GET",
@@ -168,4 +174,24 @@ export const updateStudentMess = (mess) => {
     .catch((e) => {
       console.log(e);
     });
-}
+};
+
+export const previousMessDetails = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const roll = localStorage.getItem("id").slice(1, -1);
+
+  return fetch(`${API}mess/previous-mess-user/${roll}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
