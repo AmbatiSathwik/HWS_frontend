@@ -205,7 +205,7 @@ function StudentProfile() {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
-    const roll = localStorage.getItem("id").slice(1, -1);
+    const roll = localStorage.getItem("id")?.slice(1,-1);
     const review = {
       messId: messdetails.messId,
       studentId: roll,

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Base from "./Base";
-import { messDetails } from "../mess/helper/messapicalls";
+import { messDetails,getMessAdminByMessId } from "../mess/helper/messapicalls";
+
 import {Link, useNavigate} from "react-router-dom";
 import { Row, Col, Nav } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
@@ -23,6 +24,7 @@ const details = messDetails().data;
 let arr=[
   {
     value:"A",
+    id:1,
     name:"A Mess",
     imageSrc:AH,
     contractor:"abcd",
@@ -31,6 +33,7 @@ let arr=[
   },
   {
     value:"B",
+    id:2,
     name:"B Mess",
     imageSrc:BH,
     contractor:"abcd",
@@ -39,6 +42,7 @@ let arr=[
   },
   {
     value:"C",
+    id:3,
     name:"C Mess",
     imageSrc:CH,
     contractor:"abcd",
@@ -47,6 +51,7 @@ let arr=[
   },
   {
     value:"D",
+    id:4,
     name:"D Mess",
     imageSrc:DH,
     contractor:"abcd",
@@ -55,6 +60,7 @@ let arr=[
   },
   {
     value:"E",
+    id:5,
     name:"E Mess",
     imageSrc:EH,
     contractor:"abcd",
@@ -63,6 +69,7 @@ let arr=[
   },
   {
     value:"F",
+    id:6,
     name:"F Mess",
     imageSrc:FH,
     contractor:"abcd",
@@ -71,6 +78,7 @@ let arr=[
   },
   {
     value:"G",
+    id:7,
     name:"G Mess",
     imageSrc:GH,
     contractor:"abcd",
@@ -79,6 +87,7 @@ let arr=[
   },
   {
     value:"PG1",
+    id:8,
     name:"PG1 Mess",
     imageSrc:PG1H,
     contractor:"abcd",
@@ -87,6 +96,7 @@ let arr=[
   },
   {
     value:"PG2",
+    id:9,
     name:"PG2 Mess",
     imageSrc:PG1H,
     contractor:"abcd",
@@ -95,6 +105,7 @@ let arr=[
   },
   {
     value:"MHG",
+    id:10,
     name:"Mega Hostel Girls Mess",
     imageSrc:PG1H,
     contractor:"abcd",
@@ -104,6 +115,7 @@ let arr=[
   },
   {
     value:"MHB1",
+    id:11,
     name:"Mega Hostel Boys 1 Mess",
     imageSrc:PG1H,
     contractor:"abcd",
@@ -112,6 +124,7 @@ let arr=[
   },
   {
     value:"MHB2",
+    id:12,
     name:"Mega Hostel Boys 2 Mess",
     imageSrc:PG1H,
     contractor:"abcd",
@@ -120,6 +133,36 @@ let arr=[
   }
 ];
 function ExploreMess() {
+  console.log(arr);
+  const [temp, settemp] = useState(arr);
+  useEffect(() => {
+    let i=0;
+     
+    while(i<12){
+      // console.log(i);
+      i++;
+    
+    getMessAdminByMessId(i).then((data) => {
+       
+      //  console.log(i);
+      //  console.log(data);
+      if(data.data==null){
+        return;
+      }
+      
+      arr.find((x)=>x.id===data.data.messId).contractor=data.data.name;
+      
+      
+      arr.find((x)=>x.id===data.data.messId).phno=data.data.phno;
+       
+      settemp(arr);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+     
+  }});
+
   return (
     <Base title="mess" >  
     <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>
@@ -135,7 +178,7 @@ function ExploreMess() {
             <h6>
              Mobile: {x.phno}
             </h6>
-            <Link to={"/messpage/"+lod.lowerCase(x.name)} state={{from:x.info}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
+            <Link to={"/messpage/"+lod.lowerCase(x.name)} state={{from:x.info,id:x.id}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
             </img>
             </Link>
           </Card.Body>
