@@ -11,6 +11,8 @@ import Signin from "./user/Signin";
 import Hostels from "./core/Hostels";
 import Messpages from "./mess/messpage";
 import Hosteloffadmin from "./core/Hosteloffadmin";
+import Messratingspage from "./mess/Messratingpage";
+
 export default function Router() {
   return (
     <div>
@@ -27,6 +29,7 @@ export default function Router() {
           <Route path="/hostels/:name" exact element={ <Hostels/>} />
           <Route path="/messpage/:name" exact element={<Messpages />} />
           <Route path="/hostelofficeadmin" exact element={<Hosteloffadmin/>} />
+          <Route path="/messratingspage" exact element={<Messratingspage/>}/>
           <Route
             path="/studentpasswordChange"
             exact
