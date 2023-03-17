@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import Base from "./Base";
 import { Link } from "react-router-dom";
 import { Row, Col, Nav } from "react-bootstrap";
@@ -12,59 +12,72 @@ import FH from "../assets/images/fhostel.jpg";
 import GH from "../assets/images/ghostel.jpg";
 import PG1H from "../assets/images/pg1hostel.jpg";
 
+
 import profile from "../../src/assets/GIF/rightarrow.gif";
 let arr=[
   {
+    id:1,
     name:"A",
     imageSrc:AH,
     warden:"abcd",
     phno:999999999,
   },
   {
+    id:2,
     name:"B",
     imageSrc:BH,
     warden:"abcd",
     phno:999999999,
   },
   {
+    id:3,
     name:"C",
     imageSrc:CH,
     warden:"abcd",
     phno:999999999,
   },
   {
+    id:4,
     name:"D",
     imageSrc:DH,
     warden:"abcd",
     phno:999999999,
   },
   {
+    id:5,
     name:"E",
     imageSrc:EH,
     warden:"abcd",
     phno:999999999,
   },
   {
+    id:6,
     name:"F",
     imageSrc:FH,
     warden:"abcd",
     phno:999999999,
   },
   {
+    id:7,
     name:"G",
     imageSrc:GH,
     warden:"abcd",
-    phno:999999999,
+    phno:0,
   },
   {
+    id:8,
     name:"PG1",
     imageSrc:PG1H,
     warden:"abcd",
-    phno:999999999,
+    phno:0,
   }
 ];
 
+
+
+
 function About() {
+
   return (
     <Base title="Hostels" >  
     <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>

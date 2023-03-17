@@ -1,7 +1,7 @@
-import React ,{ useState} from "react";
+import React ,{ useState,useEffect} from "react";
 import Base from "../core/Base";
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
-import {messDetails} from "./helper/messapicalls";
+import { messadminDetails,getMessAdminByMessId, messreviesavg,getMessDetailsByMessId,getMessAvailabilityByMessId} from "./helper/messapicalls";
 import Messdetails from "./messpagetemplate";
 import { Col, Row } from "react-bootstrap";
 import StarRatings from "react-star-ratings";
@@ -131,26 +131,97 @@ const data = {
       }
     ]
 }
-
+ 
 function Messpages(props) {
+  const location = useLocation();
+  const {from,id} = location.state;
+    
     //mess rating state variables
+    const [boys, setboys] = useState(20);
+    const [girls, setgirls] = useState(20);
+   
+    //mess details state vaiables
+    const [messname, setmessname] = useState("");
+    const [totalstrength, settotalstrength] = useState(0);
+    const [boycapacity, setboycapacity] = useState(0);
+    const [girlcapacity, setgirlcapacity] = useState(0);
+    const [isveg, setisveg] = useState("Yes");
+    //mess rating state variables
+  
+    const [rate, setRate] = useState({
+      quality: 0,
+      quantity: 0,
+      taste: 0,
+      catering: 0,
+      hygine: 0,
+      puntuality: 0,
+    });
+  
+    const { quality, quantity, taste, catering, hygine, puntuality } = rate;
+  
+    const [details, setDetails] = useState({
+      mcname: "",
+      email: "",
+      phno: "",
+      messId: "",
+    });
+  
+    useEffect(() => {
+      getMessAdminByMessId(id).then((data) => {
+          console.log(data)
+        setDetails({
+          ...details,
+          name: data.data.name,
+          email: data.data.email,
+          phno: data.data.phno,
+          messId: data.data.messId,
+        });
+        getMessDetailsByMessId(data.data.messId).then((data)=>{
+          
+          setmessname(data.data.name)
+          settotalstrength(data.data?.capacity)
+          setboycapacity(data.data?.boyCapacity)
+          setgirlcapacity(data.data?.girlCapacity)
+          
+        });
+        getMessAvailabilityByMessId(data.data.messId).then((data)=>{
+          console.log(data?.data)
+          setboys(data?.data?.boysCount)
+          setgirls(data?.data?.girlsCount)
+          
+         
+          
+        });
+        
+      });
+    }, []);
+  
+    
+    useEffect(() => {
+      messreviesavg(1).then((data) => {
+        setRate({
+          ...rate,
+          quality: data.data?.quality,
+          quantity: data.data.quantity,
+          taste: data.data.taste,
+          catering: data.data.catering,
+          hygine: data.data.hyginess,
+          puntuality: data.data.punctuality,
+        });
+      });
+    }, []);
+   
 
-  const [quality, setquality] = useState(3);
-  const [hyginity, sethyginity] = useState(4);
-  const [responsiveness, setresponsiveness] = useState(2);
-  const [quantity, setquantity] = useState(1.5);
-  const [availability, setavailability] = useState(4.6);
-  const [overall, setoverall] = useState(3.23);
+   
 
   const [item, setItem] = useState([]);
-    const details = messDetails().data;
-    const location = useLocation();
-    const {from} = location.state;
+    
+   
     return (
         <Base title="">
             <div id="main" style={{margin:"10px"}}>
                 <center><h1>{from.name}</h1></center>
-                <Messdetails name="" image={from.img}  messDetails = {from} type="2"/>
+                <Messdetails name="" image={from.img} mcname={details.name} phno={details.phno} boysCount={boys} girlsCount={girls} messDetails = {from} type="2"/>
             </div>
 
            
@@ -167,112 +238,144 @@ function Messpages(props) {
                 </div>
             </div>
  
-            <div className="card" style={{backgroundColor:"#ECECEC"}}>
-        <h1 align="center">Mess Ratings</h1>
+            <div className="card">
+        <h3 align="center">Mess Ratings</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
+           
           <Row>
-            <Col xs={3}>
+            <Col xs={4} align="right">
               <h4>Quality: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={quality}
+                rating={rate?.quality||0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {quality}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate?.hygine||0}</h4>
             </Col>
           </Row>
+          <br />
           <Row>
-            <Col xs={3}>
-              <h4>Hyginity: </h4>
+            <Col xs={4} align="right">
+              <h4>Hygine: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={hyginity}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {hyginity}</h4>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs={3}>
-              <h4>Responsiveness: </h4>
-            </Col>
-            <Col xs={4}>
-              <StarRatings
-                rating={responsiveness}
-                starRatedColor="blue"
-                numberOfStars={5}
-                starDimension="40px"
-                name="rating"
-              />
-            </Col>
-            <Col align="left" xs={2}>
-              <h4> {responsiveness}</h4>
+            <Col align="left" xs={4}>
+              <h4> {0}</h4>
             </Col>
           </Row>
 
           <Row>
-            <Col xs={3}>
+            <Col xs={4} align="right">
+              <h4>Taste: </h4>
+            </Col>
+            <Col xs={4} align="center" className="mess-admin-rating">
+              <StarRatings
+                rating={rate?.taste || 0}
+                starRatedColor="blue"
+                numberOfStars={5}
+                starDimension="40px"
+                name="rating"
+              />
+            </Col>
+            <Col align="left" xs={4}>
+              <h4> {rate?.taste||0}</h4>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={4} align="right">
               <h4>Quantity: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={quantity}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {quantity}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate?.quantity||0}</h4>
             </Col>
           </Row>
 
           <Row>
-            <Col xs={3}>
-              <h4>Availability: </h4>
+            <Col xs={4} align="right">
+              <h4>Catering: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={availability}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {availability}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate?.catering||0}</h4>
             </Col>
           </Row>
           <Row>
-            <Col xs={3}>
-              <h4>Overall: </h4>
+            <Col xs={4} align="right">
+              <h4>Puntuality: </h4>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={overall}
+                rating={rate?.puntuality || 0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
                 name="rating"
               />
             </Col>
-            <Col align="left" xs={2}>
-              <h4> {overall}</h4>
+            <Col align="left" xs={4}>
+              <h4> {rate?.puntuality||0}</h4>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4} align="right">
+              <h4>Overall: </h4>
+            </Col>
+            <Col xs={4} align="center" className="mess-admin-rating">
+              <StarRatings
+                rating={
+                 0
+                }
+                starRatedColor="blue"
+                numberOfStars={5}
+                starDimension="40px"
+                name="rating"
+              />
+            </Col>
+            <Col align="left" xs={4}>
+              <h4>
+                {" "}
+                {(
+                  (quality +
+                    quantity +
+                    taste +
+                    catering +
+                    hygine +
+                    puntuality) /
+                  6
+                ).toFixed(2)}
+              </h4>
             </Col>
           </Row>
         </Row>

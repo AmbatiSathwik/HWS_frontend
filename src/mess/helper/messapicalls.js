@@ -11,7 +11,7 @@ import GH from "../../assets/images/ghostel.jpg";
 import PG1H from "../../assets/images/pg1hostel.jpg";
 
 export const messreviesavg = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
   return fetch(`${API}mess/mess-review/${id}/${2023}/${1}`, {
     method: "GET",
     headers: {
@@ -29,8 +29,8 @@ export const messreviesavg = (id) => {
 };
 
 export const messadminDetails = () => {
-  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
-  const email = localStorage.getItem("id").slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const email = localStorage.getItem("id")?.slice(1,-1);
   return fetch(`${API}mess/mess-admin-by-email`, {
     method: "POST",
     headers: {
@@ -41,6 +41,26 @@ export const messadminDetails = () => {
     body: JSON.stringify({ email }),
   })
     .then((data) => {
+        
+      return data.json();
+      
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getMessAdminByMessId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  return fetch(`${API}mess/mess-admin/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => { 
       return data.json();
     })
     .catch((err) => {
@@ -48,52 +68,114 @@ export const messadminDetails = () => {
     });
 };
 
+export const getMessDetailsByMessId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  return fetch(`${API}mess/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => { 
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+export const getMessAvailabilityByMessId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  return fetch(`${API}mess/mess-availablitybyid/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => { 
+      console.log(data)
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const updateMessAvailability = (data) => {
+  console.log(data)
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  console.log(token)
+  return fetch(`${API}mess/update-messavailability`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((data) => { 
+      console.log(data)
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
 export const messDetails = () => {
   return {
     data: {
       ahostel: {
-        name: "A Hostel",
+        name: "A Mess",
         description: "Both veg and non-veg messes are available in A-Hostel.",
 
         img: AH,
       },
       bhostel: {
-        name: "B Hostel",
+        name: "B Mess",
         description: "Both veg and non-veg messes are available.  ",
 
         img: BH,
       },
       chostel: {
-        name: "C Hostel",
+        name: "C Mess",
         description: " . Only vegetarian mess is available.",
 
         img: CH,
       },
       dhostel: {
-        name: "D Hostel",
+        name: "D Mess",
         description: "North Indian vegetarian mess is available.",
 
         img: DH,
       },
       ehostel: {
-        name: "E Hostel",
+        name: "E Mess",
         description: "A North Indian Vegetarian mess is available.",
 
         img: EH,
       },
       fhostel: {
-        name: "F Hostel",
+        name: "F Mess",
         description: "A cosmopolitan mess is available. ",
         img: FH,
       },
       ghostel: {
-        name: "G Hostel",
+        name: "G Mess",
         description: "A cosmopolitan mess is available.",
 
         img: GH,
       },
       pg1hostel: {
-        name: "PG1 Hostel",
+        name: "PG1 Mess",
         description: "A cosmopolitan mess is available.",
         img: PG1H,
       },
