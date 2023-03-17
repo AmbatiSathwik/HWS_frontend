@@ -133,6 +133,7 @@ let arr=[
   }
 ];
 function ExploreMess() {
+  console.log(arr);
   const [temp, settemp] = useState(arr);
   useEffect(() => {
     let i=0;
@@ -165,7 +166,7 @@ function ExploreMess() {
   return (
     <Base title="mess" >  
     <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>
-      {temp.map((x) => (
+      {arr.map((x) => (
         <Col >
             <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
           <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />

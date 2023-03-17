@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar, Nav, NavDropdown, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/userapicalls";
+ 
+import "./formspage";
 import Logo from "../assets/images/nitc-logo.png";
 
 function Menu() {
@@ -111,6 +113,7 @@ function Menu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="./formspage">Forms&Applications</Nav.Link>
             <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
               <NavDropdown.Item href="./explore_hostel#MegaLadiesHostel">
                 Mega Hostel-Ladies
