@@ -91,57 +91,20 @@ function MessAdminProfile() {
     messreviesavg(1).then((data) => {
       setRate({
         ...rate,
-        quality: data.data.quality,
-        quantity: data.data.quantity,
-        taste: data.data.taste,
-        catering: data.data.catering,
-        hygine: data.data.hyginess,
-        puntuality: data.data.punctuality,
+        quality: data.data.quality === null ? 0 : data.data.quality,
+        quantity: data.data.quantity === null ? 0 : data.data.quantity,
+        taste: data.data.taste === null ? 0 : data.data.taste,
+        catering: data.data.catering === null ? 0 : data.data.catering,
+        hygine: data.data.hyginess === null ? 0 : data.data.hyginess,
+        puntuality: data.data.punctuality === null ? 0 : data.data.punctuality,
       });
     });
   }, []);
 
-  const config = {
-    rootMargin:"0px 0px 0px 0px",
-    threshold: 0
-  }
-
-  const targetRef = useRef(null)
-
-  useEffect(()=>{
-    console.log(targetRef)
-    const observer = new window.IntersectionObserver((entries,self)=>{
-      entries.forEach((entry)=>{
-        if(entry.isIntersecting)
-        {
-          changeClass(entry.target)
-          self.unobserve(entry.target)
-        }
-        
-      })
-    })
-    const obs = document.querySelectorAll('.card')
-    obs.forEach((ob)=>{
-      observer.observe(ob)
-    },config)
-
-    return ()=>{
-      obs.forEach((ob)=>{
-        observer.unobserve(ob)
-      })
-    }
-
-  },[])
-
-  const changeClass = (im) => {
-    im.className = "card showCard"
-    
-  }
-
   return (
     <Base>
       <h2 align="center">MESS ADMIN DASHBOARD</h2>
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <Row>
           <Col xs={6}>
             <img src={Admin} width="100%" alt="admin-logo" />
@@ -151,7 +114,7 @@ function MessAdminProfile() {
           </Col>
         </Row>
       </div>
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <h3 align="center">Mess Ratings</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
           <div>
@@ -306,7 +269,7 @@ function MessAdminProfile() {
           </Row>
         </Row>
       </div>
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <h3 align="center">Mess Details</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
           <Col xs={6}>
@@ -323,7 +286,7 @@ function MessAdminProfile() {
         </Row>
       </div>
 
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <h3 align="center">Student Details</h3>
         <div
           className="card-body"
@@ -375,7 +338,7 @@ function MessAdminProfile() {
         </div>
       </div>
 
-      <div className="card hideCard">
+      <div className="card">
         <h3 align="center">Update Mess Details</h3>
 
         <Row>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row, Form } from "react-bootstrap";
+import { Button, Col, Row, Form, Table } from "react-bootstrap";
 import Base from "../core/Base";
 import LG1 from "../assets/images/studentintro.png";
 import { Rating } from "react-simple-star-rating";
@@ -224,7 +224,7 @@ function StudentProfile() {
   };
 
   const showRating = () => {
-    const ratingAvailable = date.getDate() >= 0 ? true : false;
+    const ratingAvailable = date.getDate() >= 25 ? true : false;
     if (ratingAvailable) {
       if (!messdetails.isAvailable) {
         return (
@@ -614,7 +614,58 @@ function StudentProfile() {
     }
   };
 
-  const previousmess = () => {};
+  useEffect(() => {
+    previousMessDetails().then((data) => {
+      setpreviousMess({
+        ...previousMess,
+        data: data.data,
+      });
+    });
+  }, []);
+
+//   {id: 1, month: 3, year: 2023, messId: 2, studentId: 'b190500cs'}
+// length
+// : 
+// 1
+// [[Prototype]]
+// : 
+// Array(0)
+// [[Prototype]]
+// : 
+// Object
+
+
+  const previousmess = () => {
+    
+    return (
+      <div>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Mess User Id</th>
+              <th>Month</th>
+              <th>Year</th>
+              <th>Mess Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...previousMess.data].reverse().map((data,index)=>{
+              return(
+                <tr>
+                  <td>{index+1}</td>
+                  <td>{data.id}</td>
+                  <td>{getMonthName(data.month)}</td>
+                  <td>{data.year}</td>
+                  <td>{messname[data.messId]}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
+      </div>
+    );
+  };
 
   const [type, setType] = useState("Mess");
 
