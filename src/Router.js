@@ -9,8 +9,13 @@ import StudentChangePassword from "./student/StudentChangePassword";
 import Dashboard from "./user/Dashboard";
 import Signin from "./user/Signin";
 import Hostels from "./core/Hostels";
+import Noficationpage from "./core/NotificationPage";
+import Forms from "./core/formspage";
 import Messpages from "./mess/messpage";
+import Complaint from "./core/complaint";
 import Hosteloffadmin from "./core/Hosteloffadmin";
+import Messratingspage from "./mess/Messratingpage";
+
 export default function Router() {
   return (
     <div>
@@ -26,7 +31,13 @@ export default function Router() {
           <Route path="/mess" exact element={ <MessAdminProfile/>} />
           <Route path="/hostels/:name" exact element={ <Hostels/>} />
           <Route path="/messpage/:name" exact element={<Messpages />} />
+
+          <Route path="/NotificationPage" exact element={<Noficationpage />} />
+          <Route path="/formspage" exact element={<Forms />} />
+
+          <Route path="/complaint" exact element={<Complaint />} />
           <Route path="/hostelofficeadmin" exact element={<Hosteloffadmin/>} />
+          <Route path="/messratingspage" exact element={<Messratingspage/>}/>
           <Route
             path="/studentpasswordChange"
             exact

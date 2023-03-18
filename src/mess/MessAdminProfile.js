@@ -6,7 +6,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import mess_availability_update from "../assets/images/mess_availability_update.png";
 import StarRatings from "react-star-ratings";
-import { messadminDetails, messreviesavg } from "./helper/messapicalls";
+import { messadminDetails, messreviesavg,getMessDetailsByMessId,getMessAvailabilityByMessId,updateMessAvailability } from "./helper/messapicalls";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
 
@@ -19,12 +19,12 @@ const getMonthName = (monthNumber) => {
 function MessAdminProfile() {
   const [boys, setboys] = useState(20);
   const [girls, setgirls] = useState(20);
-  const [total, settotal] = useState(40);
+ 
   //mess details state vaiables
-  const [messname, setmessname] = useState("A");
-  const [totalstrength, settotalstrength] = useState(400);
-  const [boycapacity, setboycapacity] = useState(200);
-  const [girlcapacity, setgirlcapacity] = useState(200);
+  const [messname, setmessname] = useState("");
+  const [totalstrength, settotalstrength] = useState(0);
+  const [boycapacity, setboycapacity] = useState(0);
+  const [girlcapacity, setgirlcapacity] = useState(0);
   const [isveg, setisveg] = useState("Yes");
   //mess rating state variables
 
@@ -84,6 +84,23 @@ function MessAdminProfile() {
         phno: data.data.phno,
         messId: data.data.messId,
       });
+      getMessDetailsByMessId(data.data.messId).then((data)=>{
+        setmessname(data.data.name)
+        settotalstrength(data.data?.capacity)
+        setboycapacity(data.data?.boyCapacity)
+        setgirlcapacity(data.data?.girlCapacity)
+        setisveg(data.data.isVeg)
+      });
+      getMessAvailabilityByMessId(data.data.messId).then((data)=>{
+        console.log(data?.data)
+        setboys(data?.data?.boysCount)
+        setgirls(data?.data?.girlsCount)
+        setboycapacity(data?.data?.boysCapacity-data.data?.boysCount)
+        setgirlcapacity(data?.data?.girlsCapacity-data.data?.girlsCount)
+       
+        
+      });
+      
     });
   }, []);
 
@@ -91,57 +108,20 @@ function MessAdminProfile() {
     messreviesavg(1).then((data) => {
       setRate({
         ...rate,
-        quality: data.data.quality,
-        quantity: data.data.quantity,
-        taste: data.data.taste,
-        catering: data.data.catering,
-        hygine: data.data.hyginess,
-        puntuality: data.data.punctuality,
+        quality: data.data.quality === null ? 0 : data.data.quality,
+        quantity: data.data.quantity === null ? 0 : data.data.quantity,
+        taste: data.data.taste === null ? 0 : data.data.taste,
+        catering: data.data.catering === null ? 0 : data.data.catering,
+        hygine: data.data.hyginess === null ? 0 : data.data.hyginess,
+        puntuality: data.data.punctuality === null ? 0 : data.data.punctuality,
       });
     });
   }, []);
 
-  const config = {
-    rootMargin:"0px 0px 0px 0px",
-    threshold: 0
-  }
-
-  const targetRef = useRef(null)
-
-  useEffect(()=>{
-    console.log(targetRef)
-    const observer = new window.IntersectionObserver((entries,self)=>{
-      entries.forEach((entry)=>{
-        if(entry.isIntersecting)
-        {
-          changeClass(entry.target)
-          self.unobserve(entry.target)
-        }
-        
-      })
-    })
-    const obs = document.querySelectorAll('.card')
-    obs.forEach((ob)=>{
-      observer.observe(ob)
-    },config)
-
-    return ()=>{
-      obs.forEach((ob)=>{
-        observer.unobserve(ob)
-      })
-    }
-
-  },[])
-
-  const changeClass = (im) => {
-    im.className = "card showCard"
-    
-  }
-
   return (
     <Base>
       <h2 align="center">MESS ADMIN DASHBOARD</h2>
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <Row>
           <Col xs={6}>
             <img src={Admin} width="100%" alt="admin-logo" />
@@ -151,7 +131,7 @@ function MessAdminProfile() {
           </Col>
         </Row>
       </div>
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <h3 align="center">Mess Ratings</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
           <div>
@@ -168,7 +148,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate.quality}
+                rating={rate?.quality||0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -176,7 +156,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate.quality}</h4>
+              <h4> {rate?.hygine||0}</h4>
             </Col>
           </Row>
           <br />
@@ -186,7 +166,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate.hygine}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -194,7 +174,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate.hygine}</h4>
+              <h4> {0}</h4>
             </Col>
           </Row>
 
@@ -204,7 +184,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate.taste}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -212,7 +192,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate.taste}</h4>
+              <h4> {rate?.taste||0}</h4>
             </Col>
           </Row>
 
@@ -222,7 +202,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate.quantity}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -230,7 +210,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate.quantity}</h4>
+              <h4> {rate?.quantity||0}</h4>
             </Col>
           </Row>
 
@@ -240,7 +220,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate.catering}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -248,7 +228,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate.catering}</h4>
+              <h4> {rate?.catering||0}</h4>
             </Col>
           </Row>
           <Row>
@@ -257,7 +237,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate.puntuality}
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -265,7 +245,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate.puntuality}</h4>
+              <h4> {rate?.puntuality || 0}</h4>
             </Col>
           </Row>
           <Row>
@@ -275,13 +255,7 @@ function MessAdminProfile() {
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
                 rating={
-                  (quality +
-                    quantity +
-                    taste +
-                    catering +
-                    hygine +
-                    puntuality) /
-                  6
+                 0
                 }
                 starRatedColor="blue"
                 numberOfStars={5}
@@ -306,7 +280,7 @@ function MessAdminProfile() {
           </Row>
         </Row>
       </div>
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <h3 align="center">Mess Details</h3>
         <Row style={{ marginLeft: "100px", marginTop: "10px" }}>
           <Col xs={6}>
@@ -314,7 +288,7 @@ function MessAdminProfile() {
             <h4>Total Strength: {totalstrength}</h4>
             <h4>Boy Capacity: {boycapacity}</h4>
             <h4>Girl Capacity: {girlcapacity}</h4>
-            <h4>Is Veg: {isveg}</h4>
+            <h4>Is Veg: {{isveg}?"YES":"NO"}</h4>
           </Col>
 
           <Col xs={5}>
@@ -323,7 +297,7 @@ function MessAdminProfile() {
         </Row>
       </div>
 
-      <div className="card hideCard" ref={targetRef}>
+      <div className="card">
         <h3 align="center">Student Details</h3>
         <div
           className="card-body"
@@ -375,7 +349,7 @@ function MessAdminProfile() {
         </div>
       </div>
 
-      <div className="card hideCard">
+      <div className="card">
         <h3 align="center">Update Mess Details</h3>
 
         <Row>
@@ -391,20 +365,20 @@ function MessAdminProfile() {
             <form>
               <div className="form-group">
                 <p>
-                  <strong>Boys Count:</strong> 200
+                  <strong>Boys Count:</strong> {boys}
                 </p>
                 <p>
-                  <strong>Girls Count:</strong> 200
+                  <strong>Girls Count:</strong> {girls}
                 </p>
                 <label>
                   <strong>Boysavailabality:</strong>
                 </label>
                 <input
                   style={{ marginLeft: "8px" }}
-                  value={boys}
+                  value={boycapacity}
+                  type="number"
                   onChange={(x) => {
-                    setboys(x.target.value);
-                    setgirls(total - x.target.value);
+                   setboycapacity(Number(x.target.value))
                   }}
                 ></input>
                 <br></br>
@@ -413,10 +387,11 @@ function MessAdminProfile() {
                 </label>
                 <input
                   style={{ marginLeft: "14px", marginTop: "4px" }}
-                  value={girls}
+                  value={girlcapacity}
+                  type="number"
                   onChange={(x) => {
-                    setgirls(x.target.value);
-                    setboys(total - x.target.value);
+                    setgirlcapacity(Number(x.target.value));
+                   
                   }}
                 ></input>
                 <button
@@ -428,6 +403,19 @@ function MessAdminProfile() {
                     transform: "scale(0.6)",
                     backgroundColor: "black",
                     padding: "8px 16px",
+                    
+                    
+                  }}
+                  
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log(girlcapacity)
+                    console.log(girls)
+                    updateMessAvailability({
+                    "girlCapacity":girls+girlcapacity,
+                    "boyCapacity":boys+boycapacity,
+                    "messId":details.messId
+                    });
                   }}
                 >
                   Update Avaiability

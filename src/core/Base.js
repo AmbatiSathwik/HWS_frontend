@@ -8,8 +8,6 @@ const Base = ({ children }) => {
       <div>
         <Menu />
         <div className="children">
-          
-          
           <div>{children}</div>
         </div>
       </div>

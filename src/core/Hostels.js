@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Base from "./Base";
 import {Table} from "react-bootstrap"
-import { hostelDetails } from "./helper/coreapicalls";
+import { hostelDetails,getHostelWardenByHostelId,getCareTakerByHostelId,getHostelSecretaryByHostelId} from "./helper/coreapicalls";
 import {HostelCard,Facilities,GroupCards} from "./helper/HostelCard";
 import "../styles.css";
 import {useLocation} from "react-router-dom";
 import CH from "../assets/images/chostel.jpg";
 import Gallery from "./Gallery"
 
-
-
+  
 const images = [
     {
         source : "../assets/images/chostel.jpg",
@@ -49,11 +48,46 @@ function Hostels(props) {
     const details = hostelDetails().data;
     const location = useLocation();
     const {from} = location.state;
+    const [wardenname, setwardenname] = useState("");
+    const [phno, setphno] = useState("");
+    const [caretakername,setcaretakername]=useState("")
+    const [cphno, setcphno] = useState("");
+    const [hsname,sethsname]=useState("")
+    const [hsphno, sethsphno] = useState("");
+
+  
+
+ 
+useEffect(() => {
+    getHostelWardenByHostelId(1).then((data)=>{
+         
+        setwardenname(data.data.name)
+        setphno(data.data?.phno)
+     
+      })  
+    });
+
+useEffect(() => {
+        
+          getCareTakerByHostelId(1).then((data)=>{
+            setcaretakername(data.data.name)
+            setcphno(data.data?.phno)
+    
+          })
+        });
+
+useEffect(() => {
+            getHostelSecretaryByHostelId(1).then((data)=>{
+                sethsname(data.data.name)
+                sethsphno(data.data?.phno)
+             
+              })  
+            });
     return (
         <Base title="">
             <div id="main" style={{margin:"10px"}}>
                 <center><h1>{from.name}</h1></center>
-                <HostelCard name="" image={from.img} Hosteldetails = {from} type="2"/>
+                <HostelCard name={wardenname} phno={phno} cname={caretakername}  image={from.img} Hosteldetails = {from} type="2"/>
             </div>
 
             <hr></hr>
@@ -66,7 +100,7 @@ function Hostels(props) {
 
             <div id="Administration" style={{margin:"20px 10px 10px 10px"}}>
                 <center><h1>Administration</h1></center>
-                <GroupCards />
+                <GroupCards name={wardenname} phno={phno} cname={caretakername} cphno={cphno} hsname={hsname} hsphno={hsphno} />
             </div>
 
             <hr></hr>
