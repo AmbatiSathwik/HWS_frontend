@@ -17,6 +17,7 @@ import {
 import MC from "../assets/images/messcard.png";
 import { jsPDF } from "jspdf";
 import NL1 from "../assets/images/nitc-logo-black.png";
+import { Switch } from "@mui/material";
 
 //details, mess registration, mess card details with download, mess dues,
 function StudentProfile() {
@@ -56,6 +57,9 @@ function StudentProfile() {
   const messname = {
     1: "Test 1",
     2: "Test 2",
+    3: "Test 3",
+    4: "Test 4",
+    5: "Test 5",
   };
 
   const getMonthName = (monthNumber) => {
@@ -205,7 +209,7 @@ function StudentProfile() {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
-    const roll = localStorage.getItem("id")?.slice(1,-1);
+    const roll = localStorage.getItem("id")?.slice(1, -1);
     const review = {
       messId: messdetails.messId,
       studentId: roll,
@@ -412,129 +416,218 @@ function StudentProfile() {
   };
 
   const showMessRegistration = () => {
-    if (date.getDate() >= 25 && rating.isDone) {
-      if (!messdetails.isAvailable) {
-        return (
-          <div>
-            <Row>
-              <Col xs={4} align="right">
-                <strong>Available mess :</strong>
-              </Col>
-              <Col xs={8} align="left">
-                <Form.Select onChange={handleMessReg}>
-                  <option value="none">Select Mess</option>
-                  {vacancy.available.map((mess) => {
-                    if (
-                      details.gender === "male" &&
-                      mess.boysCapacity - mess.boysCount > 0
-                    ) {
-                      return (
-                        <option value={mess.messId} key={mess.messId}>{`${
-                          messname[mess.messId]
-                        } - ${
-                          mess.boysCapacity - mess.boysCount
-                        } seats vacant right now`}</option>
-                      );
-                    } else if (
-                      details.gender === "female" &&
-                      mess.girlsCapacity - mess.girlsCount > 0
-                    ) {
-                      return (
-                        <option key={mess.messId}>{`${
-                          messname[mess.messId]
-                        } - ${
-                          mess.girlsCapacity - mess.girlsCount
-                        } seats vacant right now`}</option>
-                      );
-                    }
-                  })}
-                </Form.Select>
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              <Col align="right" className="mx-4">
-                <Button onClick={messRegistration}>Submit</Button>
-              </Col>
-            </Row>
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            <Row>
-              <Col align="center">
-                You already took {messdetails.messName} mess for this month. But
-                you can still change mess till 1st of next month.
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              <Col xs={4} align="right">
-                <strong>Change mess :</strong>
-              </Col>
-              <Col xs={8} align="left">
-                <Form.Select onChange={handleMessReg}>
-                  <option value="none">Select Mess</option>
-                  {vacancy.available.map((mess) => {
-                    if (
-                      details.gender === "male" &&
-                      mess.boysCapacity - mess.boysCount > 0
-                    ) {
-                      return (
-                        <option value={mess.messId} key={mess.messId}>{`${
-                          messname[mess.messId]
-                        } - ${
-                          mess.boysCapacity - mess.boysCount
-                        } seats vacant right now`}</option>
-                      );
-                    } else if (
-                      details.gender === "female" &&
-                      mess.girlsCapacity - mess.girlsCount > 0
-                    ) {
-                      return (
-                        <option key={mess.messId}>{`${
-                          messname[mess.messId]
-                        } - ${
-                          mess.girlsCapacity - mess.girlsCount
-                        } seats vacant right now`}</option>
-                      );
-                    }
-                  })}
-                </Form.Select>
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              <Col align="right" className="mx-4">
-                <Button onClick={messUpdate}>Submit</Button>
-              </Col>
-            </Row>
-          </div>
-        );
+    // if (date.getDate() >= 25 && rating.isDone) {
+    //   if (!messdetails.isAvailable) {
+    //     return (
+    //       <div>
+    //         <Row>
+    //           <Col xs={4} align="right">
+    //             <strong>Available mess :</strong>
+    //           </Col>
+    //           <Col xs={8} align="left">
+    //             <Form.Select onChange={handleMessReg}>
+    //               <option value="none">Select Mess</option>
+    //               {vacancy.available.map((mess) => {
+    //                 if (
+    //                   details.gender === "male" &&
+    //                   mess.boysCapacity - mess.boysCount > 0
+    //                 ) {
+    //                   return (
+    //                     <option value={mess.messId} key={mess.messId}>{`${
+    //                       messname[mess.messId]
+    //                     } - ${
+    //                       mess.boysCapacity - mess.boysCount
+    //                     } seats vacant right now`}</option>
+    //                   );
+    //                 } else if (
+    //                   details.gender === "female" &&
+    //                   mess.girlsCapacity - mess.girlsCount > 0
+    //                 ) {
+    //                   return (
+    //                     <option key={mess.messId}>{`${
+    //                       messname[mess.messId]
+    //                     } - ${
+    //                       mess.girlsCapacity - mess.girlsCount
+    //                     } seats vacant right now`}</option>
+    //                   );
+    //                 }
+    //               })}
+    //             </Form.Select>
+    //           </Col>
+    //         </Row>
+    //         <br />
+    //         <Row>
+    //           <Col align="right" className="mx-4">
+    //             <Button onClick={messRegistration}>Submit</Button>
+    //           </Col>
+    //         </Row>
+    //       </div>
+    //     );
+    //   } else {
+    //     return (
+    //       <div>
+    //         <Row>
+    //           <Col align="center">
+    //             You already took {messdetails.messName} mess for this month. But
+    //             you can still change mess till 1st of next month.
+    //           </Col>
+    //         </Row>
+    //         <br />
+    //         <Row>
+    //           <Col xs={4} align="right">
+    //             <strong>Change mess :</strong>
+    //           </Col>
+    //           <Col xs={8} align="left">
+    //             <Form.Select onChange={handleMessReg}>
+    //               <option value="none">Select Mess</option>
+    //               {vacancy.available.map((mess) => {
+    //                 if (
+    //                   details.gender === "male" &&
+    //                   mess.boysCapacity - mess.boysCount > 0
+    //                 ) {
+    //                   return (
+    //                     <option value={mess.messId} key={mess.messId}>{`${
+    //                       messname[mess.messId]
+    //                     } - ${
+    //                       mess.boysCapacity - mess.boysCount
+    //                     } seats vacant right now`}</option>
+    //                   );
+    //                 } else if (
+    //                   details.gender === "female" &&
+    //                   mess.girlsCapacity - mess.girlsCount > 0
+    //                 ) {
+    //                   return (
+    //                     <option key={mess.messId}>{`${
+    //                       messname[mess.messId]
+    //                     } - ${
+    //                       mess.girlsCapacity - mess.girlsCount
+    //                     } seats vacant right now`}</option>
+    //                   );
+    //                 }
+    //               })}
+    //             </Form.Select>
+    //           </Col>
+    //         </Row>
+    //         <br />
+    //         <Row>
+    //           <Col align="right" className="mx-4">
+    //             <Button onClick={messUpdate}>Submit</Button>
+    //           </Col>
+    //         </Row>
+    //       </div>
+    //     );
+    //   }
+    // } else if (date.getDate() < 25) {
+    //   return (
+    //     <Row>
+    //       <Col align="center">
+    //         <strong>
+    //           Mess registration for next month will be available from 25th of
+    //           this month
+    //         </strong>
+    //       </Col>
+    //     </Row>
+    //   );
+    // } else if (messdetails.isAvailable && !rating.isDone) {
+    //   return (
+    //     <Row>
+    //       <Col align="center">
+    //         <strong>
+    //           Please rate the precious mess to register for next month mess.
+    //         </strong>
+    //       </Col>
+    //     </Row>
+    //   );
+    // }
+
+    const [mess_availabe, setMessAvailable] = useState([1, 2, 3, 4, 5]);
+
+    const [preferences, setPreferences] = useState({
+      pref1: null,
+      pref2: null,
+      pref3: null,
+      pref4: null,
+    });
+
+    const [veg, changeVeg] = useState(false);
+
+    const handleVeg = () => {
+      changeVeg(!veg);
+    };
+
+    const handleOptions = (e) => {
+      if (e.target.name === "pref1") {
+        if (e.target.value === "null" && preferences.pref1 !== null) {
+          setMessAvailable([].concat(mess_availabe,preferences.pref1));
+          setPreferences({ ...preferences, pref1: null });
+        } else {
+          setPreferences({ ...preferences, pref1: parseInt(e.target.value) });
+          const ind = mess_availabe.indexOf(parseInt(e.target.value));
+          const new_mess = []
+          mess_availabe.forEach((item)=>{new_mess.push(item)})
+          new_mess.splice(ind,1)
+          setMessAvailable(new_mess);
+        }
       }
-    } else if (date.getDate() < 25) {
-      return (
+    };
+
+    return (
+      <div>
         <Row>
           <Col align="center">
-            <strong>
-              Mess registration for next month will be available from 25th of
-              this month
-            </strong>
+            <Switch checked={veg} onChange={handleVeg}></Switch>
+            <label for="veggie-toggle">Are you vegiterian??</label>
           </Col>
         </Row>
-      );
-    } else if (messdetails.isAvailable && !rating.isDone) {
-      return (
         <Row>
-          <Col align="center">
-            <strong>
-              Please rate the precious mess to register for next month mess.
-            </strong>
+          <Col className="pref-1" align="center">
+            <label for="pref1">Preference - 1:</label>
+            <br />
+            <select
+              id="pref1"
+              name="pref1"
+              className="pref"
+              onChange={handleOptions}
+            >
+              <option value="null">Preference - 1</option>
+              {mess_availabe.map((item) => {
+                return <option value={item}>{messname[item]}</option>;
+              })}
+            </select>
+          </Col>
+          <Col className="pref-2" align="center">
+            <label for="pref2">Preference - 2:</label>
+            <br />
+            <select id="pref2" name="pref2" className="pref">
+              <option value="null">Preference - 2</option>
+              {mess_availabe.map((item) => {
+                return <option value={item}>{messname[item]}</option>;
+              })}
+            </select>
+          </Col>
+          <Col className="pref-3" align="center">
+            <label for="pref3">Preference - 3:</label>
+            <br />
+            <select id="pref3" name="pref3" className="pref">
+              <option value="null">Preference - 3</option>
+              {mess_availabe.map((item) => {
+                return <option value={item}>{messname[item]}</option>;
+              })}
+            </select>
+          </Col>
+          <Col className="pref-4" align="center">
+            <label for="pref4">Preference - 4:</label>
+            <br />
+            <select id="pref4" name="pref4" className="pref">
+              <option value="null">Preference - 4</option>
+              {mess_availabe.map((item) => {
+                return <option value={item}>{messname[item]}</option>;
+              })}
+            </select>
           </Col>
         </Row>
-      );
-    }
+      </div>
+    );
   };
 
   const messCardDownload = () => {
@@ -623,20 +716,18 @@ function StudentProfile() {
     });
   }, []);
 
-//   {id: 1, month: 3, year: 2023, messId: 2, studentId: 'b190500cs'}
-// length
-// : 
-// 1
-// [[Prototype]]
-// : 
-// Array(0)
-// [[Prototype]]
-// : 
-// Object
-
+  //   {id: 1, month: 3, year: 2023, messId: 2, studentId: 'b190500cs'}
+  // length
+  // :
+  // 1
+  // [[Prototype]]
+  // :
+  // Array(0)
+  // [[Prototype]]
+  // :
+  // Object
 
   const previousmess = () => {
-    
     return (
       <div>
         <Table striped bordered hover>
@@ -650,16 +741,16 @@ function StudentProfile() {
             </tr>
           </thead>
           <tbody>
-            {[...previousMess.data].reverse().map((data,index)=>{
-              return(
+            {[...previousMess.data].reverse().map((data, index) => {
+              return (
                 <tr>
-                  <td>{index+1}</td>
+                  <td>{index + 1}</td>
                   <td>{data.id}</td>
                   <td>{getMonthName(data.month)}</td>
                   <td>{data.year}</td>
                   <td>{messname[data.messId]}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
