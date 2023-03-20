@@ -16,7 +16,7 @@ import Complaint from "./core/complaint";
 import Hosteloffadmin from "./core/Hosteloffadmin";
 import Messratingspage from "./mess/Messratingpage";
 import Cheifwarden from "./core/cheifWarden";
-
+import Warden from "./core/Warden";
 export default function Router() {
   return (
     <div>
@@ -35,7 +35,7 @@ export default function Router() {
           <Route path="/cheifwarden" exact element={<Cheifwarden/>}/>
           <Route path="/NotificationPage" exact element={<Noficationpage />} />
           <Route path="/formspage" exact element={<Forms />} />
-
+          <Route path="/warden" exact element={<Warden/>}/>
           <Route path="/complaint" exact element={<Complaint />} />
           <Route path="/hostelofficeadmin" exact element={<Hosteloffadmin/>} />
           <Route path="/messratingspage" exact element={<Messratingspage/>}/>
