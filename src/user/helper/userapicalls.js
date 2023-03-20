@@ -1,44 +1,27 @@
 import { API } from "../../backend";
 
 export const signin = (user) => {
-  if (user.loginas === "student") {
-    return fetch(`${API}student/login`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
+  return fetch(`${API}auth/login`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => {
+      return res.json();
     })
-      .then((res) => {
-        return res.json();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  } else if (user.loginas === "mess-admin") {
-    return fetch(`${API}mess/mess-admin/login`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
+    .catch((e) => {
+      console.log(e);
+    });
 };
 
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
     localStorage.setItem("jwt", JSON.stringify(data.data.token));
-    if (JSON.stringify(data.data.rollno)) {
-      localStorage.setItem("id", JSON.stringify(data.data.rollno));
+    if (JSON.stringify(data.data.id)) {
+      localStorage.setItem("id", JSON.stringify(data.data.id));
     } else {
       localStorage.setItem("id", JSON.stringify(data.data.email));
     }

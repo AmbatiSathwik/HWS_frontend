@@ -4,10 +4,16 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
 import LOGO from "../assets/GIF/fingerprint-scan.gif";
 import key from "../assets/GIF/key.gif";
 import Pic from "../assets/images/login_nitc.jpg";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { InputAdornment,IconButton,InputLabel,FormControl,OutlinedInput } from '@mui/material';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {Input,TextField} from '@mui/material';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import {
+  InputAdornment,
+  IconButton,
+  InputLabel,
+  FormControl,
+  OutlinedInput,
+} from "@mui/material";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Input, TextField } from "@mui/material";
 
 import { Button, Form } from "react-bootstrap";
 import {
@@ -21,16 +27,15 @@ import { Label } from "@mui/icons-material";
 
 function Signin() {
   const [details, setDetails] = useState({
-    username: "b190500cs",
-    password: "B190500CS",
+    username: "b190501cs",
+    password: "Sathwik@2311",
     forgot: false,
     loading: false,
-    loginas: "student",
     error: "",
   });
-  const [showPassword, setshowPassword] = useState(false)
-  
-  const { username, password, forgot, loading, loginas, error } = details;
+  const [showPassword, setshowPassword] = useState(false);
+
+  const { username, password, forgot, loading, error } = details;
 
   const contactHO = () => {
     if (username === "") {
@@ -105,18 +110,16 @@ function Signin() {
   const onSubmit = (event) => {
     event.preventDefault();
     setDetails({ ...details, error: "", loading: true });
-    signin({ rollno: username, pswd: password, loginas })
+    signin({ id: username, pswd: password })
       .then((data) => {
         if (data.err) {
           console.log(data.err);
           setDetails({ ...details, error: data.err, loading: false });
         } else {
-          data.data.role = details.loginas;
           authenticate(data, () => {
             setDetails({
               username: "",
               password: "",
-              loginas: "student",
               error: "",
               loading: false,
               forgot: false,
@@ -128,8 +131,7 @@ function Signin() {
         console.log(e);
       });
   };
-  
-  
+
   return (
     <Base>
       {errorMessage()}
@@ -170,54 +172,43 @@ function Signin() {
                   > 
                   </MDBInput>
                  */}
-                 <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-                <OutlinedInput
-                  style={{borderRadius:"8px" ,height:"50px"}}
-                  value={username}
-                  onChange={handleChange("username")}
-                  placeholder="Username"
-                />
-                <p>Username</p>
-                </FormControl>
-                
                 <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-                <OutlinedInput
-                  style={{borderRadius:"8px" ,height:"50px"}}
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => {setshowPassword( !showPassword);}}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  onChange={handleChange("password")}
-                  placeholder="Password"
-                />
-                <p>Password</p>
+                  <OutlinedInput
+                    style={{ borderRadius: "8px", height: "50px" }}
+                    value={username}
+                    onChange={handleChange("username")}
+                    placeholder="Username"
+                  />
+                  <p>Username</p>
                 </FormControl>
-                <Form.Select
-                  className="mb-4 mx-5 w-100"
-                  aria-label="Default select example"
-                  onChange={handleChange("loginas")}
-                >
-                  <option value="student">Student</option>
-                  <option value="warden">Hostel Warden</option>
-                  <option value="hostelofficeadmin">Hostel Office Admin</option>
-                  <option value="hostelofficemanager">
-                    Hostel Office Manager
-                  </option>
-                  <option value="has">HAS</option>
-                  <option value="caretaker">Hostel Caretaker</option>
 
-                  <option value="hostelseceretary">Hostel Seceretary</option>
-                  <option value="mess-admin">Mess Admin</option>
-                </Form.Select>
+                <FormControl variant="outlined" className="mb-4 mx-5 w-100">
+                  <OutlinedInput
+                    style={{ borderRadius: "8px", height: "50px" }}
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => {
+                            setshowPassword(!showPassword);
+                          }}
+                          edge="end"
+                        >
+                          {showPassword ? (
+                            <VisibilityOffIcon />
+                          ) : (
+                            <VisibilityIcon />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    onChange={handleChange("password")}
+                    placeholder="Password"
+                  />
+                  <p>Password</p>
+                </FormControl>
 
                 <Button
                   className="mb-4 px-5 mx-5 w-100"
