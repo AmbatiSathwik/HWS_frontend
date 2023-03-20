@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@mui/icons-material": "^5.11.9",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -24,6 +24,7 @@
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
     "react-carousel-minimal": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-horizontal-scrolling": "^0.1.13",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
