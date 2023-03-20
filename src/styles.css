@@ -482,8 +482,15 @@ code {
   transition: opacity 2s linear;
 }
 
+.complaint-title:hover {
+  cursor: pointer;
+  color: darkblue;
+}
+
+
 .pref {
   border-radius: 10px;
   width: 250px;
   height: 30px;
 }
+
