@@ -10,6 +10,24 @@ import FH from "../../assets/images/fhostel.jpg";
 import GH from "../../assets/images/ghostel.jpg";
 import PG1H from "../../assets/images/pg1hostel.jpg";
 
+export const getMessReviewByMessId = (id,year,month) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  return fetch(`${API}mess/mess-review/${id}/${year}/${month}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const messreviesavg = (id) => {
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
   return fetch(`${API}mess/mess-review/${id}/${2023}/${1}`, {
