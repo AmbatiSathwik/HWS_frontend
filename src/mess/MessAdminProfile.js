@@ -6,9 +6,22 @@ import React, { useState, useEffect, useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import mess_availability_update from "../assets/images/mess_availability_update.png";
 import StarRatings from "react-star-ratings";
-import { messadminDetails, messreviesavg,getMessDetailsByMessId,getMessAvailabilityByMessId,updateMessAvailability } from "./helper/messapicalls";
+import {
+  messadminDetails,
+  messreviesavg,
+  getMessDetailsByMessId,
+  getMessAvailabilityByMessId,
+  updateMessAvailability,
+} from "./helper/messapicalls";
+
+import {
+  FormControl,
+  OutlinedInput,
+} from "@mui/material";
+import { Button } from "react-bootstrap";
 
 //mess-details-update, messadminarchives,messreviews, students details in mess
+import { registerStudentMess } from "../student/helper/studentapicalls";
 
 const getMonthName = (monthNumber) => {
   const date = new Date();
@@ -19,7 +32,7 @@ const getMonthName = (monthNumber) => {
 function MessAdminProfile() {
   const [boys, setboys] = useState(20);
   const [girls, setgirls] = useState(20);
- 
+
   //mess details state vaiables
   const [messname, setmessname] = useState("");
   const [totalstrength, settotalstrength] = useState(0);
@@ -84,23 +97,20 @@ function MessAdminProfile() {
         phno: data.data.phno,
         messId: data.data.messId,
       });
-      getMessDetailsByMessId(data.data.messId).then((data)=>{
-        setmessname(data.data.name)
-        settotalstrength(data.data?.capacity)
-        setboycapacity(data.data?.boyCapacity)
-        setgirlcapacity(data.data?.girlCapacity)
-        setisveg(data.data.isVeg)
+      getMessDetailsByMessId(data.data.messId).then((data) => {
+        setmessname(data.data.name);
+        settotalstrength(data.data?.capacity);
+        setboycapacity(data.data?.boyCapacity);
+        setgirlcapacity(data.data?.girlCapacity);
+        setisveg(data.data.isVeg);
       });
-      getMessAvailabilityByMessId(data.data.messId).then((data)=>{
-        console.log(data?.data)
-        setboys(data?.data?.boysCount)
-        setgirls(data?.data?.girlsCount)
-        setboycapacity(data?.data?.boysCapacity-data.data?.boysCount)
-        setgirlcapacity(data?.data?.girlsCapacity-data.data?.girlsCount)
-       
-        
+      getMessAvailabilityByMessId(data.data.messId).then((data) => {
+        console.log(data?.data);
+        setboys(data?.data?.boysCount);
+        setgirls(data?.data?.girlsCount);
+        setboycapacity(data?.data?.boysCapacity - data.data?.boysCount);
+        setgirlcapacity(data?.data?.girlsCapacity - data.data?.girlsCount);
       });
-      
     });
   }, []);
 
@@ -117,6 +127,39 @@ function MessAdminProfile() {
       });
     });
   }, []);
+
+  const [messUserdetails, setMessUserDetails] = useState({
+    studentId: "",
+    month: "",
+    year: "",
+    messId: "",
+  });
+
+  const { studentId, month, year, messId } = messUserdetails;
+
+  const handleChange = (name) => (event) => {
+    setMessUserDetails({
+      ...messUserdetails,
+      [name]: event.target.value,
+    });
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(messUserdetails);
+    registerStudentMess(messUserdetails)
+      .then((data) => {
+        if (data.err) {
+          console.log(data.err);
+          alert(data.err);
+        } else {
+          alert("success");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <Base>
@@ -148,7 +191,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={rate?.quality||0}
+                rating={rate?.quality || 0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -156,7 +199,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate?.hygine||0}</h4>
+              <h4> {rate?.hygine || 0}</h4>
             </Col>
           </Row>
           <br />
@@ -192,7 +235,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate?.taste||0}</h4>
+              <h4> {rate?.taste || 0}</h4>
             </Col>
           </Row>
 
@@ -210,7 +253,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate?.quantity||0}</h4>
+              <h4> {rate?.quantity || 0}</h4>
             </Col>
           </Row>
 
@@ -228,7 +271,7 @@ function MessAdminProfile() {
               />
             </Col>
             <Col align="left" xs={4}>
-              <h4> {rate?.catering||0}</h4>
+              <h4> {rate?.catering || 0}</h4>
             </Col>
           </Row>
           <Row>
@@ -254,9 +297,7 @@ function MessAdminProfile() {
             </Col>
             <Col xs={4} align="center" className="mess-admin-rating">
               <StarRatings
-                rating={
-                 0
-                }
+                rating={0}
                 starRatedColor="blue"
                 numberOfStars={5}
                 starDimension="40px"
@@ -288,7 +329,7 @@ function MessAdminProfile() {
             <h4>Total Strength: {totalstrength}</h4>
             <h4>Boy Capacity: {boycapacity}</h4>
             <h4>Girl Capacity: {girlcapacity}</h4>
-            <h4>Is Veg: {{isveg}?"YES":"NO"}</h4>
+            <h4>Is Veg: {{ isveg } ? "YES" : "NO"}</h4>
           </Col>
 
           <Col xs={5}>
@@ -378,7 +419,7 @@ function MessAdminProfile() {
                   value={boycapacity}
                   type="number"
                   onChange={(x) => {
-                   setboycapacity(Number(x.target.value))
+                    setboycapacity(Number(x.target.value));
                   }}
                 ></input>
                 <br></br>
@@ -391,7 +432,6 @@ function MessAdminProfile() {
                   type="number"
                   onChange={(x) => {
                     setgirlcapacity(Number(x.target.value));
-                   
                   }}
                 ></input>
                 <button
@@ -403,18 +443,15 @@ function MessAdminProfile() {
                     transform: "scale(0.6)",
                     backgroundColor: "black",
                     padding: "8px 16px",
-                    
-                    
                   }}
-                  
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(girlcapacity)
-                    console.log(girls)
+                    console.log(girlcapacity);
+                    console.log(girls);
                     updateMessAvailability({
-                    "girlCapacity":girls+girlcapacity,
-                    "boyCapacity":boys+boycapacity,
-                    "messId":details.messId
+                      girlCapacity: girls + girlcapacity,
+                      boyCapacity: boys + boycapacity,
+                      messId: details.messId,
                     });
                   }}
                 >
@@ -424,6 +461,55 @@ function MessAdminProfile() {
             </form>
           </Col>
         </Row>
+      </div>
+      <div className="card">
+        <h3 align="center">Add student to Mess</h3>
+        <div>
+          <FormControl variant="outlined" className="mb-4 w-100">
+            <OutlinedInput
+              style={{ borderRadius: "8px", height: "50px" }}
+              value={studentId}
+              onChange={handleChange("studentId")}
+              placeholder="Name"
+            />
+            <p>studentId</p>
+          </FormControl>
+          <FormControl variant="outlined" className="mb-4 w-100">
+            <OutlinedInput
+              style={{ borderRadius: "8px", height: "50px" }}
+              value={month}
+              onChange={handleChange("month")}
+              placeholder="Rollno"
+            />
+            <p>month</p>
+          </FormControl>
+          <FormControl variant="outlined" className="mb-4 w-100">
+            <OutlinedInput
+              style={{ borderRadius: "8px", height: "50px" }}
+              value={year}
+              onChange={handleChange("year")}
+              placeholder="Mess name"
+            />
+            <p>year</p>
+          </FormControl>
+          <FormControl variant="outlined" className="mb-4 w-100">
+            <OutlinedInput
+              style={{ borderRadius: "8px", height: "50px" }}
+              value={messId}
+              onChange={handleChange("messId")}
+              placeholder="Wrtite your complaint here"
+            />
+            <p>messId</p>
+          </FormControl>
+          <Button
+            className="mb-4 px-5 w-100"
+            onClick={onSubmit}
+            color="info"
+            size="lg"
+          >
+            Submit
+          </Button>
+        </div>
       </div>
     </Base>
   );

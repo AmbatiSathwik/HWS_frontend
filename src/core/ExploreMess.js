@@ -164,29 +164,72 @@ function ExploreMess() {
   }});
 
   return (
-    <Base title="mess" >  
-    <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>
-      {arr.map((x) => (
-        <Col >
-            <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
-          <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />
-          <Card.Body>
-            <center><Card.Title > {x.name}</Card.Title></center>
-            <h6>
-             contractor: {x.contractor}
-            </h6>
-            <h6>
-             Mobile: {x.phno}
-            </h6>
-            <Link to={"/messpage/"+lod.lowerCase(x.name)} state={{from:x.info,id:x.id}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
-            </img>
-            </Link>
-          </Card.Body>
-        </Card>
+    <Base title="mess" > 
+      <Row>
+        <Col md={2}>
+          <Nav defaultActiveKey="/home" className="flex-column">
+            {arr.map((x) => (
+              <Nav.Item key={x.id}>
+                <Nav.Link href={"/messpage/"+lod.lowerCase(x.name)} state={{from:x.info,id:x.id}}>
+                  {x.name}
+                </Nav.Link>
+              </Nav.Item>
+            ))}
+          </Nav>
         </Col>
-      ))}
-    </Row> 
-  </Base>)
-}
+        <Col md={10}>
+          <Row xs={1} sm={2} md={2} lg={3} className="mx-auto" style={{margin:"20px"}}>
+            {temp.map((x) => (
+              <Col key={x.id}>
+                <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
+                  <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />
+                  <Card.Body>
+                    <center><Card.Title > {x.name}</Card.Title></center>
+                    <h6>
+                      contractor: {x.contractor}
+                    </h6>
+                    <h6>
+                      Mobile: {x.phno}
+                    </h6>
+                    <Link to={"/messpage/"+lod.lowerCase(x.name)} state={{from:x.info,id:x.id}}>
+                      <img className="img-fluid" style={{width:"40px",backgroundColor:"#fff"}} src={profile} alt="profile" />
+                    </Link>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
+    </Base>
+  )
+            }
+  
+
+//   return (
+//     <Base title="mess" >  
+//     <Row xs={1} sm={2} md={2} lg={3} className="mx-auto"  style={{margin:"20px"}}>
+//       {arr.map((x) => (
+//         <Col >
+//             <Card style={{ width:'80%',height:"90%",padding:"0px",backgroundColor:"white" }} className="hostel_card">
+//           <Card.Img variant="top" style={{borderRadius:"20px 20px 0px 0px"}} src={x.imageSrc} />
+//           <Card.Body>
+//             <center><Card.Title > {x.name}</Card.Title></center>
+//             <h6>
+//              contractor: {x.contractor}
+//             </h6>
+//             <h6>
+//              Mobile: {x.phno}
+//             </h6>
+//             <Link to={"/messpage/"+lod.lowerCase(x.name)} state={{from:x.info,id:x.id}}><img className="img-fluid" style={{width:"40px",backgroundColor:"#f8efef",marginLeft:"80%",borderRadius:"100%"}} src={profile}>
+//             </img>
+//             </Link>
+//           </Card.Body>
+//         </Card>
+//         </Col>
+//       ))}
+//     </Row> 
+//   </Base>)
+// }
 
 export default ExploreMess;
