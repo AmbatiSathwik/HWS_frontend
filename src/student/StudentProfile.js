@@ -543,10 +543,10 @@ function StudentProfile() {
     const [mess_availabe, setMessAvailable] = useState([1, 2, 3, 4, 5]);
 
     const [preferences, setPreferences] = useState({
-      pref1: null,
-      pref2: null,
-      pref3: null,
-      pref4: null,
+      pref1: "null",
+      pref2: "null",
+      pref3: "null",
+      pref4: "null",
     });
 
     const [veg, changeVeg] = useState(false);
@@ -557,16 +557,29 @@ function StudentProfile() {
 
     const handleOptions = (e) => {
       if (e.target.name === "pref1") {
-        if (e.target.value === "null" && preferences.pref1 !== null) {
-          setMessAvailable([].concat(mess_availabe,preferences.pref1));
-          setPreferences({ ...preferences, pref1: null });
-        } else {
-          setPreferences({ ...preferences, pref1: parseInt(e.target.value) });
-          const ind = mess_availabe.indexOf(parseInt(e.target.value));
-          const new_mess = []
-          mess_availabe.forEach((item)=>{new_mess.push(item)})
-          new_mess.splice(ind,1)
-          setMessAvailable(new_mess);
+        if (e.target.value !== "null") {
+          if (preferences.pref1 === "null") {
+            setPreferences({ ...preferences, pref1: e.target.value });
+            console.log(e.target.value)
+            const new_mess = [];
+            mess_availabe.forEach((item) => {
+              if (item !== parseInt(e.target.value)) {
+                new_mess.push(item);
+              }
+            });
+            setMessAvailable(new_mess);
+          } else {
+            const old_pref = parseInt(preferences.pref1);
+            console.log(preferences)
+            setPreferences({ ...preferences, pref1: e.target.value });
+            const new_mess = [old_pref];
+            mess_availabe.forEach((item) => {
+              if (item !== parseInt(e.target.value)) {
+                new_mess.push(item);
+              }
+            });
+            setMessAvailable(new_mess);
+          }
         }
       }
     };
@@ -588,10 +601,11 @@ function StudentProfile() {
               name="pref1"
               className="pref"
               onChange={handleOptions}
+              value={preferences.pref1}
             >
               <option value="null">Preference - 1</option>
               {mess_availabe.map((item) => {
-                return <option value={item}>{messname[item]}</option>;
+                return <option value={toString(item)}>{messname[item]}</option>;
               })}
             </select>
           </Col>
