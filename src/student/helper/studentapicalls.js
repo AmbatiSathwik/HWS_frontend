@@ -22,9 +22,9 @@ export const studentDetails = () => {
 };
 
 
-export const studentMessDetails = (month,year) => {
-  const roll = localStorage.getItem("id")?.slice(1,-1);
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+// export const studentMessDetails = (month,year) => {
+//   const roll = localStorage.getItem("id")?.slice(1,-1);
+//   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
 
 export const studentMessDetails = (month, year) => {
   const roll = localStorage.getItem("id").slice(1, -1);
@@ -194,4 +194,4 @@ export const previousMessDetails = (id) => {
     .catch((e) => {
       console.log(e);
     });
-};
+  }

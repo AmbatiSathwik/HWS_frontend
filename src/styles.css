@@ -482,3 +482,7 @@ code {
   filter: blur(0px);
   transition: opacity 2s linear;
 }
+.complaint-title:hover {
+  cursor: pointer;
+  color: darkblue;
+}

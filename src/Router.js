@@ -15,6 +15,7 @@ import Messpages from "./mess/messpage";
 import Complaint from "./core/complaint";
 import Hosteloffadmin from "./core/Hosteloffadmin";
 import Messratingspage from "./mess/Messratingpage";
+import Cheifwarden from "./core/cheifWarden";
 
 export default function Router() {
   return (
@@ -31,7 +32,7 @@ export default function Router() {
           <Route path="/mess" exact element={ <MessAdminProfile/>} />
           <Route path="/hostels/:name" exact element={ <Hostels/>} />
           <Route path="/messpage/:name" exact element={<Messpages />} />
-
+          <Route path="/cheifwarden" exact element={<Cheifwarden/>}/>
           <Route path="/NotificationPage" exact element={<Noficationpage />} />
           <Route path="/formspage" exact element={<Forms />} />
 
