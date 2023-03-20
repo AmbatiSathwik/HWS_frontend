@@ -115,21 +115,60 @@ let arr = [
   },
 ];
 
+function HostelNav() {
+  return (
+    <Nav className="flex-column">
+      <Nav.Item>
+        <Nav.Link href="/hostels/A">A Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/B">B Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/C">C Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/D">D Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/E">E Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/F">F Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/G">G Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/PG1">PG1 Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/PG2">PG2 Hostel</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/MHG">Mega Hostel Girls</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/MHB1">Mega Hostel Boys 1</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/hostels/MHB2">Mega Hostel Boys 2</Nav.Link>
+      </Nav.Item>
+    </Nav>
+  );
+}
+
 function About() {
   const navigate = useNavigate();
   return (
     <Base title="Hostels">
-      <Row
-        xs={1}
-        sm={2}
-        md={2}
-        lg={3}
-        className="mx-auto sop"
-        style={{ margin: "20px" }}
-      >
-        
+      <Row xs={1} sm={2} md={2} lg={3} className="mx-auto sop" style={{ margin: "20px" }}>
+        <Col xs={4} md={3} lg={2}>
+          <HostelNav />
+        </Col>
+        <Col xs={8} md={9} lg={10}>
           {arr.map((x) => (
-            <div className="hostel-card-div" >
+            <div className="hostel-card-div">
               <Link to={"/hostels/" + x.value + "/"} state={{ from: x.info }}>
                 <Col align="center">
                   <Card
@@ -169,10 +208,71 @@ function About() {
               </Link>
             </div>
           ))}
-        
+        </Col>
       </Row>
-    </Base>
+      </Base>
   );
-}
+ }
+
+
+// function About() {
+//   const navigate = useNavigate();
+//   return (
+//     <Base title="Hostels">
+//       <Row
+//         xs={1}
+//         sm={2}
+//         md={2}
+//         lg={3}
+//         className="mx-auto sop"
+//         style={{ margin: "20px" }}
+//       >
+        
+//           {arr.map((x) => (
+//             <div className="hostel-card-div" >
+//               <Link to={"/hostels/" + x.value + "/"} state={{ from: x.info }}>
+//                 <Col align="center">
+//                   <Card
+//                     style={{
+//                       width: "80%",
+//                       height: "90%",
+//                       padding: "0px",
+//                       backgroundColor: "white",
+//                     }}
+//                     className="hostel_card"
+//                   >
+//                     <Card.Img
+//                       variant="top"
+//                       style={{ borderRadius: "20px 20px 0px 0px" }}
+//                       src={x.imageSrc}
+//                     />
+//                     <Card.Body>
+//                       <center>
+//                         <Card.Title> {x.name}</Card.Title>
+//                       </center>
+//                       <h6>Warden: {x.warden}</h6>
+//                       <h6>Mobile: {x.phno}</h6>
+
+//                       <img
+//                         className="img-fluid"
+//                         style={{
+//                           width: "40px",
+//                           backgroundColor: "#f8efef",
+//                           marginLeft: "80%",
+//                           borderRadius: "100%",
+//                         }}
+//                         src={profile}
+//                       ></img>
+//                     </Card.Body>
+//                   </Card>
+//                 </Col>
+//               </Link>
+//             </div>
+//           ))}
+        
+//       </Row>
+//     </Base>
+//   );
+// }
 
 export default About;
