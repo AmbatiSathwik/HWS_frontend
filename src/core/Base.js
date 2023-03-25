@@ -5,11 +5,9 @@ import Menu from "./Menu";
 const Base = ({ children }) => {
   return (
     <div>
-      <div>
-        <Menu />
-        <div className="children">
-          <div>{children}</div>
-        </div>
+      <Menu />
+      <div className="children">
+        <div>{children}</div>
       </div>
       <Footer />
     </div>

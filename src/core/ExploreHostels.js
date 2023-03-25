@@ -162,7 +162,14 @@ function About() {
   const navigate = useNavigate();
   return (
     <Base title="Hostels">
-      <Row xs={1} sm={2} md={2} lg={3} className="mx-auto sop" style={{ margin: "20px" }}>
+      <Row
+        xs={1}
+        sm={2}
+        md={2}
+        lg={3}
+        className="mx-auto sop"
+        style={{ margin: "20px" }}
+      >
         <Col xs={4} md={3} lg={2}>
           <HostelNav />
         </Col>
@@ -210,10 +217,9 @@ function About() {
           ))}
         </Col>
       </Row>
-      </Base>
+    </Base>
   );
- }
-
+}
 
 // function About() {
 //   const navigate = useNavigate();
@@ -227,7 +233,7 @@ function About() {
 //         className="mx-auto sop"
 //         style={{ margin: "20px" }}
 //       >
-        
+
 //           {arr.map((x) => (
 //             <div className="hostel-card-div" >
 //               <Link to={"/hostels/" + x.value + "/"} state={{ from: x.info }}>
@@ -269,7 +275,7 @@ function About() {
 //               </Link>
 //             </div>
 //           ))}
-        
+
 //       </Row>
 //     </Base>
 //   );

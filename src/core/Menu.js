@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, NavDropdown, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/userapicalls";
- 
+
 import "./formspage";
 import Logo from "../assets/images/nitc-logo.png";
 
@@ -16,7 +16,7 @@ function Menu() {
         </>
       );
     } else {
-      if (localStorage.getItem("role")?.slice(1,-1) === "student") {
+      if (localStorage.getItem("role")?.slice(1, -1) === "student") {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
@@ -58,7 +58,7 @@ function Menu() {
             </Nav.Link>
           </>
         );
-      } else if (localStorage.getItem("role")?.slice(1,-1) === "mess-admin") {
+      } else if (localStorage.getItem("role")?.slice(1, -1) === "mess-admin") {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
@@ -115,7 +115,7 @@ function Menu() {
             <Nav.Link href="/">Home</Nav.Link>
 
             <Nav.Link href="./formspage">Forms&Applications</Nav.Link>
-            <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
+            {/* <NavDropdown title="Explore Hostels" id="basic-nav-dropdown">
               <NavDropdown.Item href="./explore_hostel#MegaLadiesHostel">
                 Mega Hostel-Ladies
               </NavDropdown.Item>
@@ -187,19 +187,17 @@ function Menu() {
               <NavDropdown.Item href="/explore_mess#F_Mess">
                 F Mess
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
 
             <Nav.Link href="/explore_hostel">Explore Hostels</Nav.Link>
             <Nav.Link href="/explore_mess">Explore Messes</Nav.Link>
             <Nav.Link href="/messratingspage">Mess Ratings</Nav.Link>
-            
-
           </Nav>
           <div className="loginOptions">
             <Nav>{showLogin()}</Nav>
           </div>
           <Nav>
-          <Nav.Link href="/complaint">complaints</Nav.Link>
+            <Nav.Link href="/complaint">complaints</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
