@@ -46,7 +46,7 @@ function Menu() {
 
             <Nav.Link>
               <span
-                className="text-warning"
+                className="text-warning signout"
                 onClick={() => {
                   signout(() => {
                     navigate("/");
@@ -82,7 +82,7 @@ function Menu() {
 
             <Nav.Link>
               <span
-                className="text-warning"
+                className="text-warning signout"
                 onClick={() => {
                   signout(() => {
                     navigate("/");
@@ -127,7 +127,7 @@ function Menu() {
             <Nav.Link href="/complaint">Complaints</Nav.Link>
           </Nav>
           <div className="loginOptions">
-            <Nav>{showLogin()}</Nav>
+            <Nav className="login-nav">{showLogin()}</Nav>
           </div>
           </Nav>
         </Navbar.Collapse>

@@ -232,8 +232,8 @@ function Cheifwarden() {
         const [data,setdata]=useState(studentDetails);
         return (
             <>
-                <Button  onClick={handleShow}>
-                    search
+                <Button  variant="dark" onClick={handleShow}>
+                    Search
                 </Button>
                 <Modal show={show} onHide={handleClose} animation={false} keyboard={true}>
                      <div>
@@ -395,11 +395,11 @@ function Cheifwarden() {
                 
                 <Row align="center">
                     <Col  xs="5">
-                        <h3 style={{display:"inline-block", fontSize:"25px"}}>Hostel</h3>
+                        <h3 className="card-subhead">Hostel</h3>
                     </Col>
                     <Col xs="2"></Col>
                     <Col  xs="5">
-                        <h3 style={{display:"inline-block", fontSize:"25px"}}>No. of inmates</h3>
+                        <h3 className="card-subhead">No. of inmates</h3>
                     </Col>
                 </Row>
                 <div style={{height:"200px" ,overflowX:"hidden" ,overflowY:"auto"}}>
@@ -407,11 +407,11 @@ function Cheifwarden() {
                         return (
                             <Row align="center">
                                 <Col  xs="5">
-                                    <p style={{display:"inline-block", fontSize:"15px"}}>{x.hostel}</p>
+                                    <p style={{display:"inline-block", fontSize:"18px"}}>{x.hostel}</p>
                                 </Col>
                                 <Col xs="2"></Col>
                                 <Col  xs="5">
-                                    <p style={{display:"inline-block", fontSize:"15px"}}>{x.inmates}</p>
+                                    <p style={{display:"inline-block", fontSize:"18px"}}>{x.inmates}</p>
                                 </Col>
                                 
                             </Row>)
@@ -424,17 +424,17 @@ function Cheifwarden() {
                 
                 <Row align="center">
                     <Col  xs="3" >
-                        <h3 style={{display:"inline-block", fontSize:"25px"}}>Hostel</h3>
+                        <h3 className="card-subhead">Hostel</h3>
                     </Col>
                     
                     <Col  xs="3" >
-                        <h3 style={{display:"inline-block", fontSize:"25px"}}>Name</h3>
+                        <h3 className="card-subhead">Name</h3>
                     </Col>
                     <Col  xs="3" >
-                        <h3 style={{display:"inline-block", fontSize:"25px"}}>Position</h3>
+                        <h3 className="card-subhead">Position</h3>
                     </Col>
                     <Col  xs="3">
-                        <h3 style={{display:"inline-block", fontSize:"25px"}}>Phno.</h3>
+                        <h3 className="card-subhead">Phno.</h3>
                     </Col>
                 </Row>
                 <div style={{height:"200px" ,overflowX:"hidden" ,overflowY:"auto"}}>

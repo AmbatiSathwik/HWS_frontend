@@ -429,6 +429,16 @@ code {
     margin: 15px;
     border-radius: 7%;
   }
+  .card-subhead{
+    display:inline-block;
+    font-size:18px;
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .card-subhead{
+    font-size:25px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -443,11 +453,26 @@ code {
     margin: 25px;
     border-radius: 7%;
   }
+  .nav-link {
+    font-size: 1.6rem;
+  }
+  .login-nav{
+    position: absolute;
+    right: 20px;
+  }
+  .nav-link{
+    font-size: medium;
+    margin: auto 4px;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .swiper-container {
     width: 992px;
+  }
+  .nav-link{
+    font-size: medium;
+    margin: auto 6px;
   }
 }
 
@@ -503,4 +528,17 @@ button.navbar-toggler{
 
 .navbar-nav{
   margin: 0;
+}
+
+div.menu{
+  height: 90px;
+}
+
+.nav-link:hover{
+  color: #85CDFD;
+  text-decoration: none;
+}
+
+.signout:hover{
+  text-decoration: underline;
 }
