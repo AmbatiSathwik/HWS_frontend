@@ -491,3 +491,9 @@ code {
   width: 250px;
   height: 30px;
 }
+
+.modal-btn:hover{
+  font-weight: 500;
+  color: white;  
+  background-color: black;
+}

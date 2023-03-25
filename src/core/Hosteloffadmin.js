@@ -88,7 +88,7 @@ function Hosteloffadmin() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col align="right">
+                    <Col align="center" >
                         <Modal_1 heading="Create" className="me-2 mt-3" content="Notification created successfully"/>
                     </Col>
                 </Row>
@@ -112,7 +112,7 @@ function Hosteloffadmin() {
                     </Col>
                 </Row> */}
                 <Row>
-                    <Col align="right">
+                    <Col align="center">
                         <Modal_1  heading="Search" className="me-2 mt-3" content={details}/>
                     </Col>
                 </Row>
@@ -150,7 +150,7 @@ function Hosteloffadmin() {
                 </Row>
 
                 <Row>
-                    <Col align="right">
+                    <Col align="center">
                         <Modal_1 heading="Update" className="me-2 mt-3" content="Data updated successfully"/>
                     </Col>
                 </Row>
@@ -219,7 +219,7 @@ function Hosteloffadmin() {
                 </Row>
 
                 <Row>
-                    <Col align="right">
+                    <Col align="center">
                         <Modal_1 heading="Update" className="me-2 mt-3" content="Data updated successfully"/>
                     </Col>
                 </Row>
