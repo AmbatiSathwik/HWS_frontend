@@ -189,6 +189,9 @@ code {
 
 .menu {
   padding-top: 0px;
+  border-radius: 0;
+  background-color: #212529;
+  margin-bottom: 0;
 }
 
 .mainlogo {
@@ -196,11 +199,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1% 0 0 0;
-}
-
-.menu {
-  background-color: #212529;
+  padding: 0;
 }
 
 /* .loginOptions {
@@ -490,4 +489,18 @@ code {
   border-radius: 10px;
   width: 250px;
   height: 30px;
+}
+
+.navbar-brand{
+  float: none;
+}
+
+button.navbar-toggler{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.navbar-nav{
+  margin: 0;
 }
