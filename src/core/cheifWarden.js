@@ -1,16 +1,20 @@
 import { React, useEffect, useState } from "react";
-import Base from "./Base";
 import { Col, Row } from "react-bootstrap";
 import { MDBInput } from "mdb-react-ui-kit";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "../styles.css";
 import Accordion from "react-bootstrap/Accordion";
+import { FormControl, MenuItem, Select } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import Base from "./Base";
+import StudentsList from "./studentsByHostel";
+import "../styles.css";
 
 {
   /* Static Data */
 }
+
 let arr = [
   {
     name: "Rajesh Kumar",
@@ -59,22 +63,45 @@ let arr = [
   },
 ];
 let studentDetails = [
-  {name: "Levi", roll: "B160793CS", phone: "9182736540", hostel: "A", room: "123", address: "near abcd street",},
-  {name: "Eren", roll: "P200989cs", phone: "9182736540", hostel: "A", room: "123", address: "near abcd street",},
-  {name: "Mikasa", roll: "B240567CS", phone: "9182736540", hostel: "A", room: "123", address: "near abcd street",},
+  {
+    name: "Levi",
+    roll: "B160793CS",
+    phone: "9182736540",
+    hostel: "A",
+    room: "123",
+    address: "near abcd street",
+  },
+  {
+    name: "Eren",
+    roll: "P200989cs",
+    phone: "9182736540",
+    hostel: "A",
+    room: "123",
+    address: "near abcd street",
+  },
+  {
+    name: "Mikasa",
+    roll: "B240567CS",
+    phone: "9182736540",
+    hostel: "A",
+    room: "123",
+    address: "near abcd street",
+  },
 ];
 
 let staffDetails = {
-    columns: [
-        { label: "Hostel", field: "hostel", sort: "asc" },
-        { label: "Name", field: "name", sort: "asc" },
-        { label: "Position", field: "pos", sort: "asc" },
-        { label: "Phone", field: "phone", sort: "asc" }],
-    rows:[
-        { hostel: "A", name: "Jon", pos: "Warden", phone: "999999999" },
-        { hostel: "B", name: "Abcde", pos: "Caretaker", phone: "999999999" },
-        { hostel: "C", name: "Efijkl", pos: "Warden", phone: "999999999" }]
-}
+  columns: [
+    { label: "Hostel", field: "hostel", sort: "asc" },
+    { label: "Name", field: "name", sort: "asc" },
+    { label: "Position", field: "pos", sort: "asc" },
+    { label: "Phone", field: "phone", sort: "asc" },
+  ],
+  rows: [
+    { hostel: "A", name: "Jon", pos: "Warden", phone: "999999999" },
+    { hostel: "B", name: "Abcde", pos: "Caretaker", phone: "999999999" },
+    { hostel: "C", name: "Efijkl", pos: "Warden", phone: "999999999" },
+  ],
+};
 
 const mess = {
   columns: [
@@ -128,16 +155,37 @@ const archives = {
 };
 
 const achievements = {
-    columns: [
-        { label: "Year", field: "first", sort: "asc" },
-        { label: "Achievements", field: "second", sort: "asc" },
-    ],
-    rows: [
-        { first: "2019", second: <a href='https://google.com' style={{textDecoration:"none"}}>Achievement 1</a>},
-        { first: "2018", second: <a href='https://google.com' style={{textDecoration:"none"}}>Achievement 2</a>},
-        { first: "2017", second: <a href='https://google.com' style={{textDecoration:"none"}}>Achievement 3</a>}
-    ]
-}
+  columns: [
+    { label: "Year", field: "first", sort: "asc" },
+    { label: "Achievements", field: "second", sort: "asc" },
+  ],
+  rows: [
+    {
+      first: "2019",
+      second: (
+        <a href="https://google.com" style={{ textDecoration: "none" }}>
+          Achievement 1
+        </a>
+      ),
+    },
+    {
+      first: "2018",
+      second: (
+        <a href="https://google.com" style={{ textDecoration: "none" }}>
+          Achievement 2
+        </a>
+      ),
+    },
+    {
+      first: "2017",
+      second: (
+        <a href="https://google.com" style={{ textDecoration: "none" }}>
+          Achievement 3
+        </a>
+      ),
+    },
+  ],
+};
 function Accord(data) {
   return (
     <Accordion defaultActiveKey="0" flush>
@@ -224,6 +272,7 @@ function Cheifwarden() {
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState({});
   const [type, setType] = useState("hostel");
+  const [hostel, setHostel] = useState("");
 
   function StudentModal() {
     const [show, setShow] = useState(false);
@@ -342,6 +391,8 @@ function Cheifwarden() {
       </div>
     );
   }
+  //function to show the details of the student based on the hostel
+  const navigate = useNavigate();
   return (
     <Base title="Chief Warden">
       <h1 className="mt-3 mb-2">
@@ -380,7 +431,62 @@ function Cheifwarden() {
           </Col>
         </Row>
       </div>
-
+      <div className="card">
+        <center>
+          <h2>Students by hostel</h2>
+        </center>
+        <div>
+          <Row>
+            <Col xs="4" sm="3" className="column">
+              <p style={{ display: "inline-block", fontSize: "20px" }}>
+                Hostel:
+              </p>
+            </Col>
+            <Col xs="8" sm="6">
+              <FormControl fullWidth>
+                <Select
+                  style={{ height: "40px", backgroundColor: "white" }}
+                  displayEmpty
+                  value={hostel}
+                  onChange={(x) => {
+                    setHostel(x.target.value);
+                  }}
+                >
+                  <MenuItem value={"A"}>A Hostel</MenuItem>
+                  <MenuItem value={"B"}>B Hostel</MenuItem>
+                  <MenuItem value={"C"}>C Hostel</MenuItem>
+                  <MenuItem value={"D"}>D Hostel</MenuItem>
+                  <MenuItem value={"E"}>E Hostel</MenuItem>
+                  <MenuItem value={"F"}>F Hostel</MenuItem>
+                  <MenuItem value={"G"}>G Hostel</MenuItem>
+                  <MenuItem value={"PG"}>PG1 Hostel</MenuItem>
+                  <MenuItem value={"PG2"}>PG2 Hostel</MenuItem>
+                  <MenuItem value={"MLH"}>MLH</MenuItem>
+                  <MenuItem value={"LH"}>LH </MenuItem>
+                  <MenuItem value={"MHB1"}>MHB 1</MenuItem>
+                  <MenuItem value={"MHB2"}>MHB 2</MenuItem>
+                </Select>
+              </FormControl>
+            </Col>
+          </Row>
+          <Row>
+            <Col align={"right"}>
+              <Link to="/studentsList" state={{ from: hostel }}>
+                <Button
+                  variant="dark"
+                  value={hostel}
+                  className="me-2 mt-3"
+                  onClick={() => {
+                    console.log(hostel);
+                  }}
+                >
+                  Search
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+        </div>
+      </div>
       <div className="card">
         <h2 align="center" className="mb-4">
           Complaints
@@ -441,7 +547,8 @@ function Cheifwarden() {
       <div className="card">
         <div>
           <center>
-            <h3>Hostel Staff Details</h3></center>
+            <h3>Hostel Staff Details</h3>
+          </center>
           <div>
             <MDBTable scrollY>
               <MDBTableHead columns={staffDetails.columns} />
@@ -475,25 +582,28 @@ function Cheifwarden() {
       <div className="card">
         <div>
           <center>
-            <h2>Archives</h2></center>
-            <div>
-                <MDBTable scrollY>
-                    <MDBTableHead columns={archives.columns} />
-                    <MDBTableBody rows={archives.rows} className="text-center" />
-                </MDBTable>
-            </div>
+            <h2>Archives</h2>
+          </center>
+          <div>
+            <MDBTable scrollY>
+              <MDBTableHead columns={archives.columns} />
+              <MDBTableBody rows={archives.rows} className="text-center" />
+            </MDBTable>
+          </div>
         </div>
       </div>
 
-        <div className="card">
-            <center><h2>Achievements</h2></center>
-            <div>
-                <MDBTable scrollY>
-                    <MDBTableHead columns={achievements.columns} />
-                    <MDBTableBody rows={achievements.rows} />
-                </MDBTable>
-            </div>
+      <div className="card">
+        <center>
+          <h2>Achievements</h2>
+        </center>
+        <div>
+          <MDBTable scrollY>
+            <MDBTableHead columns={achievements.columns} />
+            <MDBTableBody rows={achievements.rows} />
+          </MDBTable>
         </div>
+      </div>
     </Base>
   );
 }

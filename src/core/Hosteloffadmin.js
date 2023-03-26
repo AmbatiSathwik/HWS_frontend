@@ -46,15 +46,15 @@ function Hosteloffadmin() {
     //state variables of hostel office admin
 
     //notification section
-    const [title,settitle]=useState("");
-    const [link,setlink]=useState("");
+    const [title,setTitle]=useState("");
+    const [link,setLink]=useState("");
 
     //search section
-    const [search,setsearch]=useState("");
-    const [details,setdetails]=useState("student details");
+    const [search,setSearch]=useState("");
+    const [details,setDetails]=useState("student details");
     //edit cheif warden section
     
-    const [cheifname,setcheifname]=useState("");
+    const [cheifName,setcheifName]=useState("");
     const [cheifdept,setcheifdept]=useState("");
     const [cheifphno,setcheifphno]=useState("");
 
@@ -76,7 +76,7 @@ function Hosteloffadmin() {
 
                     <Col xs="8" sm="6">
                         <MDBInput value={title} id='typeText' style={{backgroundColor:"white"}} type='text' onChange={ (x)=>{
-                          settitle(x.target.value);
+                          setTitle(x.target.value);
                         }} />
                     </Col>
                 </Row>
@@ -85,7 +85,7 @@ function Hosteloffadmin() {
                         <p style={{display:"inline-block", fontSize:"25px"}}>Link :</p>
                     </Col>
                     <Col xs="8" sm="6">
-                        <MDBInput  value={link} id='typeText' type='text' style={{backgroundColor:"white"}} onChange={ (x)=>{setlink(x.target.value);}}/>
+                        <MDBInput  value={link} id='typeText' type='text' style={{backgroundColor:"white"}} onChange={ (x)=>{setLink(x.target.value);}}/>
                     </Col>
                 </Row>
                 <Row>
@@ -104,7 +104,7 @@ function Hosteloffadmin() {
                         <p style={{display:"inline-block", fontSize:"25px"}}>Name/ID:</p>
                     </Col>
                     <Col xs="8" sm="6">
-                        <MDBInput value={search}  id='typeText' style={{backgroundColor:"white"}} type='text' onChange={(x)=>{setsearch(x.target.value)}} />
+                        <MDBInput value={search}  id='typeText' style={{backgroundColor:"white"}} type='text' onChange={(x)=>{setSearch(x.target.value)}} />
                     </Col>
                 </Row>
                 <Row>
@@ -123,7 +123,7 @@ function Hosteloffadmin() {
                         <p style={{display:"inline-block", fontSize:"25px"}}>Name/ID:</p>
                     </Col>
                     <Col xs="8" sm="6">
-                        <MDBInput  id='typeText' type='text'style={{backgroundColor:"white"}} value={cheifname} onChange={(x)=>{setcheifname(x.target.value)}} />
+                        <MDBInput  id='typeText' type='text'style={{backgroundColor:"white"}} value={cheifName} onChange={(x)=>{setcheifName(x.target.value)}} />
                     </Col>
                 </Row>
 
