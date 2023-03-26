@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { MenuItem,FormControl,Select } from "@mui/material";
 import Modal_1 from "./Modal_1.js";
 import { render } from "react-dom";
+import "../styles.css";
 
 function Hosteloffadmin() {
 
@@ -65,8 +66,8 @@ function Hosteloffadmin() {
     
     return (
         <Base title="Hosteloffadmin">
-            <h1 className="mt-3 mb-2"><center>Hostel Office Admin</center></h1>
-            <div className="card">
+            <h1 className="mt-3 mb-4"><center>Hostel Office Admin</center></h1>
+            <div className="card" style={{width:"85%",margin:"10px auto"}}>
                 <h2 align="center" className="mb-4">Create Notifications</h2>
                 <Row>
                     <Col  xs="4" sm="3" className="column">
@@ -96,7 +97,7 @@ function Hosteloffadmin() {
 
             <br></br>
 
-            <div className="card" >
+            <div className="card" style={{width:"85%",margin:"10px auto"}}>
                 <h2 align="center" className="mb-4">Search Student</h2>
                 <Row>
                     <Col  xs="4" sm="3" className="column">
@@ -106,11 +107,6 @@ function Hosteloffadmin() {
                         <MDBInput value={search}  id='typeText' style={{backgroundColor:"white"}} type='text' onChange={(x)=>{setsearch(x.target.value)}} />
                     </Col>
                 </Row>
-                {/* <Row>
-                    <Col align="right">
-                        <Button variant="dark" className="me-2 mt-3">Search</Button>
-                    </Col>
-                </Row> */}
                 <Row>
                     <Col align="right">
                         <Modal_1  heading="Search" className="me-2 mt-3" content={details}/>
@@ -120,7 +116,7 @@ function Hosteloffadmin() {
 
             <br></br>
 
-            <div className="card" >
+            <div className="card" style={{width:"85%",margin:"10px auto"}}>
                 <h2 align="center" className="mb-4">Edit Cheif Warden</h2>
                 <Row>
                     <Col  xs="4" sm="3" className="column">
@@ -159,7 +155,7 @@ function Hosteloffadmin() {
 
             <br></br>
 
-            <div className="card" >
+            <div className="card" style={{width:"85%",margin:"10px auto"}}>
                 <h2 align="center" className="mb-4">Edit Warden</h2>
                 <Row>
                     <Col  xs="4" sm="3" className="column">

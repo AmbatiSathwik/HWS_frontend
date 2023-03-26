@@ -103,7 +103,7 @@ function Menu() {
       <div className="menu">
         <Navbar.Brand href="/">
           <div className="mainlogo">
-            <img src={Logo} height="60" alt="Logo" />
+            <img src={Logo} height="50" alt="Logo" />
             <h3 style={{ color: "white" }}>NITC Hostels</h3>
           </div>
         </Navbar.Brand>
@@ -114,7 +114,7 @@ function Menu() {
           <Nav className="me-auto" style={{ maxHeight: '120px' }} navbarScroll>
             <Nav>
             <Nav.Link href="/">Home</Nav.Link>
-            <NavDropdown title="Explore" id="basic-nav-dropdown">
+            <NavDropdown title="Explore" id="basic-nav-dropdown" >
             <NavDropdown.Item href="/explore_hostel">
                 Hostels
               </NavDropdown.Item>
@@ -122,9 +122,10 @@ function Menu() {
                 Messes
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="./formspage">Forms&Applications</Nav.Link>
+            <Nav.Link href="/administration">Administration</Nav.Link>
             <Nav.Link href="/messratingspage">Mess Ratings</Nav.Link>
             <Nav.Link href="/complaint">Complaints</Nav.Link>
+            <Nav.Link href="./formspage">Forms & Applications</Nav.Link>
           </Nav>
           <div className="loginOptions">
             <Nav className="login-nav">{showLogin()}</Nav>
