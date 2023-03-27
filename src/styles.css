@@ -210,7 +210,11 @@ code {
 .navbarOptions {
   margin-left: 40px;
 }
-
+/* css for rules and regulations*/
+.read-or-hide{
+  color: rgb(61, 44, 148);
+  cursor: pointer;
+  }
 /* css for team  */
 
 .our-team {
