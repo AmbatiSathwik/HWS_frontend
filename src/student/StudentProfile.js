@@ -694,7 +694,7 @@ function StudentProfile() {
                 <strong>Preference - 2 : </strong>
                 <span>{preferences.pref2}</span>
               </Col>
-              <Col align="center" >
+              <Col align="center">
                 <strong>Preference - 3 : </strong>
                 <span>{preferences.pref3}</span>
               </Col>
@@ -907,152 +907,154 @@ function StudentProfile() {
 
   return (
     <Base>
-      <h2 align="center">STUDENT DASHBOARD</h2>
-      <div className="studentContainer">
-        <div id="profile" className="p-4">
-          <h3 align="center">Student Details</h3>
+      <div>
+        <h2 align="center">STUDENT DASHBOARD</h2>
+        <div className="studentContainer">
+          <div id="profile" className="p-4">
+            <h3 align="center">Student Details</h3>
+            <br />
+            <Row>
+              <Col align="center" xs={12} md={4} className="p-3">
+                <strong>
+                  <label>Name</label>
+                </strong>
+                <div>{details.name}</div>
+              </Col>
+              <Col align="center" xs={6} md={4} className="p-3">
+                <strong>
+                  <label>Roll Number</label>
+                </strong>
+                <div>{details.rollno.toUpperCase()}</div>
+              </Col>
+              <Col align="center" xs={6} md={4} className="p-3">
+                <strong>
+                  <label>Degree</label>
+                </strong>
+                <div>{degree}</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col align="center" xs={6} md={4} className="p-3">
+                <strong>
+                  <label>Hostel Name</label>
+                </strong>
+                <div></div>
+              </Col>
+              <Col align="center" xs={6} md={4} className="p-3">
+                <strong>
+                  <label>Room Number</label>
+                </strong>
+                <div></div>
+              </Col>
+              <Col align="center" xs={6} md={4} className="p-3">
+                <strong>
+                  <label>Date of Birth</label>
+                </strong>
+                <div>{details.dob.split("-").reverse().join("-")}</div>
+              </Col>
+              <Col align="center" xs={6} md={4} className="p-3">
+                <strong>
+                  <label>Phone Number</label>
+                </strong>
+                <div>{details.phno}</div>
+              </Col>
+              <Col align="center" xs={12} md={4} className="p-3">
+                <strong>
+                  <label>Email</label>
+                </strong>
+                <div>{details.email}</div>
+              </Col>
+              <Col align="center" xs={12} md={4} className="p-3">
+                <strong>
+                  <label>Address</label>
+                </strong>
+                <div>{details.address}</div>
+              </Col>
+            </Row>
+            <br />
+          </div>
           <br />
-          <Row>
-            <Col align="center" xs={12} md={4} className="p-3">
-              <strong>
-                <label>Name</label>
-              </strong>
-              <div>{details.name}</div>
-            </Col>
-            <Col align="center" xs={6} md={4} className="p-3">
-              <strong>
-                <label>Roll Number</label>
-              </strong>
-              <div>{details.rollno.toUpperCase()}</div>
-            </Col>
-            <Col align="center" xs={6} md={4} className="p-3">
-              <strong>
-                <label>Degree</label>
-              </strong>
-              <div>{degree}</div>
-            </Col>
-          </Row>
-          <Row>
-            <Col align="center" xs={6} md={4} className="p-3">
-              <strong>
-                <label>Hostel Name</label>
-              </strong>
-              <div></div>
-            </Col>
-            <Col align="center" xs={6} md={4} className="p-3">
-              <strong>
-                <label>Room Number</label>
-              </strong>
-              <div></div>
-            </Col>
-            <Col align="center" xs={6} md={4} className="p-3">
-              <strong>
-                <label>Date of Birth</label>
-              </strong>
-              <div>{details.dob.split("-").reverse().join("-")}</div>
-            </Col>
-            <Col align="center" xs={6} md={4} className="p-3">
-              <strong>
-                <label>Phone Number</label>
-              </strong>
-              <div>{details.phno}</div>
-            </Col>
-            <Col align="center" xs={12} md={4} className="p-3">
-              <strong>
-                <label>Email</label>
-              </strong>
-              <div>{details.email}</div>
-            </Col>
-            <Col align="center" xs={12} md={4} className="p-3">
-              <strong>
-                <label>Address</label>
-              </strong>
-              <div>{details.address}</div>
-            </Col>
-          </Row>
-          <br />
-        </div>
-        <br />
 
-        <div id="messdue" className="p-4">
-          <h3 align="center">Dues</h3>
+          <div id="messdue" className="p-4">
+            <h3 align="center">Dues</h3>
+            <br />
+          </div>
           <br />
-        </div>
-        <br />
 
-        <div>
-          <Row>
-            <Col className="studentPageCol" align="right">
-              <button
-                className={
-                  type === "Mess"
-                    ? "studentPageButton studentPageButtonactive"
-                    : "studentPageButton"
-                }
-                onClick={() => {
-                  setType("Mess");
-                }}
-              >
-                <strong>MESS</strong>
-              </button>
-            </Col>
-            <Col className="studentPageCol" align="left ">
-              <button
-                className={
-                  type === "Hostel"
-                    ? "studentPageButton studentPageButtonactive"
-                    : "studentPageButton"
-                }
-                onClick={() => {
-                  setType("Hostel");
-                }}
-                disabled
-              >
-                <strong>HOSTEL</strong>
-              </button>
-            </Col>
-          </Row>
-        </div>
-        <br />
+          <div>
+            <Row>
+              <Col className="studentPageCol" align="right">
+                <button
+                  className={
+                    type === "Mess"
+                      ? "studentPageButton studentPageButtonactive"
+                      : "studentPageButton"
+                  }
+                  onClick={() => {
+                    setType("Mess");
+                  }}
+                >
+                  <strong>MESS</strong>
+                </button>
+              </Col>
+              <Col className="studentPageCol" align="left ">
+                <button
+                  className={
+                    type === "Hostel"
+                      ? "studentPageButton studentPageButtonactive"
+                      : "studentPageButton"
+                  }
+                  onClick={() => {
+                    setType("Hostel");
+                  }}
+                  disabled
+                >
+                  <strong>HOSTEL</strong>
+                </button>
+              </Col>
+            </Row>
+          </div>
+          <br />
 
-        <div id="studentintro" className="p-4 mt-2">
-          <Row>
-            <Col align="center" className="studentintroimg">
-              <img src={LG1} alt="student image" width="80%" height="100%" />
-            </Col>
-            <Col>
-              <div className="studentintrotex">{msg()}</div>
-            </Col>
-          </Row>
-        </div>
-        <br />
+          <div id="studentintro" className="p-4 mt-2">
+            <Row>
+              <Col align="center" className="studentintroimg">
+                <img src={LG1} alt="student image" width="80%" height="100%" />
+              </Col>
+              <Col>
+                <div className="studentintrotex">{msg()}</div>
+              </Col>
+            </Row>
+          </div>
+          <br />
 
-        <div id="messrating" className="p-4">
-          <h3 align="center">Mess Rating</h3>
+          <div id="messrating" className="p-4">
+            <h3 align="center">Mess Rating</h3>
+            <br />
+            {showRating()}
+          </div>
           <br />
-          {showRating()}
-        </div>
-        <br />
-        <div id="messregistration" className="p-4">
-          <h3 align="center">Mess Registration</h3>
+          <div id="messregistration" className="p-4">
+            <h3 align="center">Mess Registration</h3>
+            <br />
+            {showMessRegistration()}
+          </div>
           <br />
-          {showMessRegistration()}
-        </div>
-        <br />
-        <div id="messcard" className="p-4">
-          <h3 align="center">Mess Card Download</h3>
+          <div id="messcard" className="p-4">
+            <h3 align="center">Mess Card Download</h3>
+            <br />
+            {showMessCard()}
+          </div>
           <br />
-          {showMessCard()}
-        </div>
-        <br />
 
-        <div id="messarchive" className="p-4">
-          <h3 align="center">Your Previous Mess Details</h3>
+          <div id="messarchive" className="p-4">
+            <h3 align="center">Your Previous Mess Details</h3>
+            <br />
+            {previousmess()}
+          </div>
           <br />
-          {previousmess()}
+          <br />
         </div>
-        <br />
-        <br />
       </div>
     </Base>
   );

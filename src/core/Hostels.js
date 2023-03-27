@@ -230,12 +230,12 @@ function Hostels({ name }) {
 
       <hr></hr>
 
-      {/* <div id="Gallery">
-        <center>
-          <h1>Gallery</h1>
-        </center>
-        <Gallery images={images} />
-      </div> */}
+      <div id="Gallery">
+        <h1 align="center">Gallery</h1>
+        <div className="galleryinexplore">
+          <Gallery images={images} />
+        </div>
+      </div>
     </div>
   );
 }
