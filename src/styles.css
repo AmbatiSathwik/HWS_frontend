@@ -1,10 +1,8 @@
 body {
   margin: 0;
   width: 100%;
-  background-color: #fef5e5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  background-color: #d8d8d8;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -189,6 +187,9 @@ code {
 
 .menu {
   padding-top: 0px;
+  border-radius: 0;
+  background-color: #212529;
+  margin-bottom: 0;
 }
 
 .mainlogo {
@@ -196,11 +197,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1% 0 0 0;
-}
-
-.menu {
-  background-color: #212529;
+  padding: 0;
 }
 
 /* .loginOptions {
@@ -210,7 +207,11 @@ code {
 .navbarOptions {
   margin-left: 40px;
 }
-
+/* css for rules and regulations*/
+.read-or-hide {
+  color: rgb(61, 44, 148);
+  cursor: pointer;
+}
 /* css for team  */
 
 .our-team {
@@ -430,6 +431,19 @@ code {
     margin: 15px;
     border-radius: 7%;
   }
+  .card-subhead {
+    display: inline-block;
+    font-size: 18px;
+  }
+  div.menu {
+    height: 60px;
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .card-subhead {
+    font-size: 25px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -444,11 +458,27 @@ code {
     margin: 25px;
     border-radius: 7%;
   }
+  .nav-link {
+    font-size: 1.6rem;
+  }
+  .login-nav {
+    position: absolute;
+    right: 20px;
+  }
+  .nav-link {
+    font-size: medium;
+    margin: auto 4px;
+    color: #e8e2e2;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .swiper-container {
     width: 992px;
+  }
+  .nav-link {
+    font-size: medium;
+    margin: auto 10px;
   }
 }
 
@@ -468,7 +498,7 @@ code {
 .hostel_card:hover {
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
-  filter: drop-shadow(0px 0px 6px rgb(44, 62,  80));
+  filter: drop-shadow(0px 0px 6px rgb(44, 62, 80));
 }
 
 .hideCard {
@@ -490,4 +520,91 @@ code {
   border-radius: 10px;
   width: 250px;
   height: 30px;
+}
+
+.navbar-brand {
+  float: none;
+}
+
+button.navbar-toggler {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.navbar-nav {
+  margin: 0;
+}
+
+div.menu {
+  height: 75px;
+}
+
+.nav-link:hover {
+  color: #85cdfd;
+  text-decoration: none;
+}
+
+.signout:hover {
+  text-decoration: underline;
+}
+
+a.dropdown-item {
+  background-color: #393e42;
+  color: white;
+  padding: 5px;
+}
+
+a.dropdown-item:hover {
+  background-color: #393e42;
+  color: #85cdfd;
+  text-decoration: none;
+}
+
+div.dropdown-menu.show {
+  padding: 0;
+}
+
+th,
+td {
+  text-align: center;
+}
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+.colorwhite {
+  background-color: white;
 }
