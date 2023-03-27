@@ -25,6 +25,8 @@ export const authenticate = (data, next) => {
       "b5762f643468edf47f075f0ea900fb25fb5a302c4ceabaf56f3a6e64f89a07b3938356de2a00b4b03d3052e43848d7db45756db3304e3877d280491515de4801",
     hostelOfficeAdmin:
       "5ce11b6691da74dbe9f799fa9a2b5fa54a0a70a6de2eba86daed418eb0a8f76aeeaaa827952984a3de46e83ea5caacd32cbb86fea601b45ac59fe94b0b3baf8d",
+    cheifWarden:
+      "3db390eddb0af4f2aac8c7bc7944d694724383352acb3cb047f838602620454dbdcf996d588de5d2ef0219a2965d912e723cd8a7169b7b60cd34b63d7c52ca47",
   };
   if (typeof window !== undefined) {
     localStorage.setItem("jwt", JSON.stringify(data.data.token));

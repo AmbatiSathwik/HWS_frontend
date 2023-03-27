@@ -9,11 +9,8 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import StudentsList from "./studentsByHostel";
-import "../styles.css";
 
-{
-  /* Static Data */
-}
+
 
 let arr = [
   {

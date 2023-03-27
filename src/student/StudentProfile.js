@@ -686,15 +686,15 @@ function StudentProfile() {
             </Row>
             <br />
             <Row>
-              <Col>
+              <Col align="center">
                 <strong>Preference - 1 : </strong>
                 <span>{preferences.pref1}</span>
               </Col>
-              <Col>
+              <Col align="center">
                 <strong>Preference - 2 : </strong>
                 <span>{preferences.pref2}</span>
               </Col>
-              <Col>
+              <Col align="center" >
                 <strong>Preference - 3 : </strong>
                 <span>{preferences.pref3}</span>
               </Col>
@@ -872,17 +872,6 @@ function StudentProfile() {
     });
   }, []);
 
-  //   {id: 1, month: 3, year: 2023, messId: 2, studentId: 'b190500cs'}
-  // length
-  // :
-  // 1
-  // [[Prototype]]
-  // :
-  // Array(0)
-  // [[Prototype]]
-  // :
-  // Object
-
   const previousmess = () => {
     return (
       <div>
@@ -924,13 +913,13 @@ function StudentProfile() {
           <h3 align="center">Student Details</h3>
           <br />
           <Row>
-              <Col align="center" xs={12} md={4}  className="p-3">
-                <strong>
-                  <label>Name</label>
-                </strong>
-                <div>{details.name}</div>
+            <Col align="center" xs={12} md={4} className="p-3">
+              <strong>
+                <label>Name</label>
+              </strong>
+              <div>{details.name}</div>
             </Col>
-            <Col align="center" xs={6} md={4}  className="p-3">
+            <Col align="center" xs={6} md={4} className="p-3">
               <strong>
                 <label>Roll Number</label>
               </strong>
@@ -942,8 +931,8 @@ function StudentProfile() {
               </strong>
               <div>{degree}</div>
             </Col>
-            </Row>
-            <Row>
+          </Row>
+          <Row>
             <Col align="center" xs={6} md={4} className="p-3">
               <strong>
                 <label>Hostel Name</label>
