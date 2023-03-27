@@ -608,3 +608,7 @@ td {
 .colorwhite {
   background-color: white;
 }
+
+.vertical-tab-style {
+  background: #212529;
+}

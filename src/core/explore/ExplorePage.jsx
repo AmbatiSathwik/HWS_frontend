@@ -4,16 +4,42 @@ import {
   MDBTabsItem,
   MDBTabsLink,
   MDBTabsContent,
-  MDBTabsPane,
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
+import Hostels from "../Hostels";
+import Messpages from "../../mess/messpage";
 
-let hostels = Array("A", "B", "C", "D", "E", "F", "PG1");
-// let mess =  Array("A", "B")
+let hostels = Array(
+  "ahostel",
+  "bhostel",
+  "chostel",
+  "dhostel",
+  "ehostel",
+  "fhostel",
+  "pg1hostel"
+);
+let mess = Array(
+  "amess",
+  "bmess",
+  "cmess",
+  "dmess",
+  "emess",
+  "fmess",
+  "gmess",
+  "pg1mess",
+  "lhmess"
+);
 
 export default function ExplorePage({ option }) {
-  const [verticalActive, setVerticalActive] = useState("tab1");
+  let array = [];
+  if (option === 1) {
+    array = mess;
+  } else {
+    array = hostels;
+  }
+
+  const [verticalActive, setVerticalActive] = useState(array[0]);
 
   const handleVerticalClick = (value) => {
     if (value === verticalActive) {
@@ -25,46 +51,42 @@ export default function ExplorePage({ option }) {
 
   return (
     <>
+      <div>
+        {array.map((x, index) => {
+          console.log(x);
+        })}
+      </div>
       <MDBRow>
-        <MDBCol size="3">
+        <MDBCol size="2" className="vertical-tab-style">
           <MDBTabs className="flex-column text-center">
-            <MDBTabsItem>
-              <MDBTabsLink
-                onClick={() => handleVerticalClick("tab1")}
-                active={verticalActive === "tab1"}
-              >
-                Home
-              </MDBTabsLink>
-            </MDBTabsItem>
-            <MDBTabsItem>
-              <MDBTabsLink
-                onClick={() => handleVerticalClick("tab2")}
-                active={verticalActive === "tab2"}
-              >
-                Profile
-              </MDBTabsLink>
-            </MDBTabsItem>
-            <MDBTabsItem>
-              <MDBTabsLink
-                onClick={() => handleVerticalClick("tab3")}
-                active={verticalActive === "tab3"}
-              >
-                Messages
-              </MDBTabsLink>
-            </MDBTabsItem>
+            {array.map((x, index) => {
+              return (
+                <MDBTabsItem key={index}>
+                  <MDBTabsLink
+                    onClick={() => handleVerticalClick(x)}
+                    active={verticalActive === x}
+                  >
+                    {x.toUpperCase()}
+                  </MDBTabsLink>
+                </MDBTabsItem>
+              );
+            })}
           </MDBTabs>
         </MDBCol>
-        <MDBCol size="9">
+        <MDBCol size="10">
           <MDBTabsContent>
-            <MDBTabsPane show={verticalActive === "tab1"}>
-              Home content
-            </MDBTabsPane>
-            <MDBTabsPane show={verticalActive === "tab2"}>
-              Profile content
-            </MDBTabsPane>
-            <MDBTabsPane show={verticalActive === "tab3"}>
-              Messages content
-            </MDBTabsPane>
+            {array.map((x, index) => {
+              return (
+                <div>
+                  {verticalActive === x && (
+                    <MDBTabs show={verticalActive === x}>
+                      {option === 0 && <Hostels name={x} />}
+                      {option === 1 && <Messpages name={x} />}
+                    </MDBTabs>
+                  )}
+                </div>
+              );
+            })}
           </MDBTabsContent>
         </MDBCol>
       </MDBRow>

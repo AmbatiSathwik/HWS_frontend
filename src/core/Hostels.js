@@ -62,18 +62,19 @@ const hostelNameIdMap = new Map([
 ]);
 
 function Hostel_name() {
-  let { name } = useParams();
+  // let { name } = useParams();
+  let name = "A";
   name = name.toLocaleLowerCase() + "hostel";
-  console.log(name, "🟥🟥🟥🟥🟥");
+  // console.log(name, "🟥🟥🟥🟥🟥");
   return name;
 }
 
-function Hostels() {
+function Hostels({ name }) {
   const details = hostelDetails().data;
-  const name = Hostel_name();
+  // const name = Hostel_name();
   // from = details[name];
-  // console.log(from, "🐣🐣🐣🐣");
-  const hosteldetails = details[name];
+  let hname = name ? name : Hostel_name();
+  const hosteldetails = details[hname];
   console.log(hosteldetails, "🥲🥲🥲");
   const [wardenname, setwardenname] = useState("Wardenname");
   const [phno, setphno] = useState("phno");
@@ -84,26 +85,26 @@ function Hostels() {
 
   useEffect(() => {
     getHostelWardenByHostelId(1).then((data) => {
-      setwardenname(data.data?.name);
-      setphno(data.data?.phno);
+      setwardenname(data?.data?.name);
+      setphno(data?.data?.phno);
     });
   });
 
   useEffect(() => {
     getCareTakerByHostelId(1).then((data) => {
-      setcaretakername(data.data.name);
-      setcphno(data.data?.phno);
+      setcaretakername(data?.data?.name);
+      setcphno(data?.data?.phno);
     });
   });
 
   useEffect(() => {
     getHostelSecretaryByHostelId(1).then((data) => {
-      sethsname(data.data.name);
-      sethsphno(data.data?.phno);
+      sethsname(data?.data?.name);
+      sethsphno(data?.data?.phno);
     });
   });
   return (
-    <Base title="">
+    <div>
       <div id="main" style={{ margin: "10px" }}>
         <center>
           <h1>{hosteldetails.name}</h1>
@@ -229,13 +230,13 @@ function Hostels() {
 
       <hr></hr>
 
-      <div id="Gallery">
+      {/* <div id="Gallery">
         <center>
           <h1>Gallery</h1>
         </center>
         <Gallery images={images} />
-      </div>
-    </Base>
+      </div> */}
+    </div>
   );
 }
 

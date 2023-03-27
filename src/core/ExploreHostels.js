@@ -290,7 +290,7 @@ export default function About() {
   return (
     <Base title="Hostels">
       <div>
-        <ExplorePage />
+        <ExplorePage option={0} />
       </div>
     </Base>
   );

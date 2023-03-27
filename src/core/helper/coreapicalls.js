@@ -113,6 +113,112 @@ export const hostelDetails = () => {
   //     });
 };
 
+export const messDetails = () => {
+  return {
+    data: {
+      amess: {
+        name: "A Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: AH,
+        capacity: 200,
+        boyCapcity: 200,
+        girlCapcity: 0,
+      },
+      bmess: {
+        name: "B Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: BH,
+        capacity: 200,
+        boyCapcity: 200,
+        girlCapcity: 0,
+      },
+      cmess: {
+        name: "C Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: CH,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      dmess: {
+        name: "D Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: DH,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      emess: {
+        name: "E Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: EH,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      fmess: {
+        name: "F Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: FH,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      gmess: {
+        name: "G Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: GH,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      pg1mess: {
+        name: "PG1 Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: PG1H,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      ihmess: {
+        name: "IH Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: AH,
+        capacity: 200,
+        boyCapcity: 100,
+        girlCapcity: 100,
+      },
+      lhmess: {
+        name: "LH Mess",
+        description:
+          "A serves for first years and is very nutritious food and serves a quality food",
+        img: AH,
+        capacity: 200,
+        boyCapcity: 0,
+        girlCapcity: 200,
+      },
+    },
+  };
+  //   return fetch(`${API}hosteldetails`, {
+  //     method: "GET",
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+};
+
 export const getHostelWardenByHostelId = (id) => {
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   console.log(token);
