@@ -17,6 +17,7 @@ import Hosteloffadmin from "./core/Hosteloffadmin";
 import Messratingspage from "./mess/Messratingpage";
 import Cheifwarden from "./core/cheifWarden";
 import Warden from "./core/Warden";
+import HostelOfficeManager from "./core/HostelOfficeManager";
 import StudentsList from "./core/studentsByHostel";
 import NotFound from "./core/NotFound";
 
@@ -43,7 +44,11 @@ export default function Router() {
           <Route path="/complaint" exact element={<Complaint />} />
           <Route path="/hostelofficeadmin" exact element={<Hosteloffadmin/>} />
           <Route path="/messratingspage" exact element={<Messratingspage/>}/>
+          <Route path="/hostelofficemanager" exact element={<HostelOfficeManager/>}/>
+          
+
           <Route path="/studentsList" exact element={<StudentsList/>}/>
+
           <Route
             path="/studentpasswordChange"
             exact

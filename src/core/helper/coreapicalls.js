@@ -189,4 +189,42 @@ export const submitComplaint = (complaint) => {
   }).catch((e) => {
     console.log(e);
   })
-}
+};
+
+export const getHostelDetailsByHostelId = (id) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  return fetch(`${API}/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+/*
+export const getHostelManagerArchives = () => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  return fetch(`${API}/archives`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+*/
