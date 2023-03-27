@@ -20,6 +20,7 @@ export const studentDetails = () => {
       console.log(err);
     });
 };
+
 export const studentMessDetails = (month, year) => {
   const roll = localStorage.getItem("id").slice(1, -1);
   const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);

@@ -88,7 +88,7 @@ function StudentProfile() {
           email: data.data.email,
           rollno: data.data.rollno,
           dob: data.data.dob,
-          phno: data.data.phno,
+          phone: data.data.phno,
           address: data.data.address,
           gender: data.data.gender,
         });
@@ -924,67 +924,61 @@ function StudentProfile() {
           <h3 align="center">Student Details</h3>
           <br />
           <Row>
-            <Col align="center">
+              <Col align="center" xs={12} md={4}  className="p-3">
+                <strong>
+                  <label>Name</label>
+                </strong>
+                <div>{details.name}</div>
+            </Col>
+            <Col align="center" xs={6} md={4}  className="p-3">
               <strong>
                 <label>Roll Number</label>
               </strong>
               <div>{details.rollno.toUpperCase()}</div>
             </Col>
-            <Col align="center">
+            <Col align="center" xs={6} md={4} className="p-3">
               <strong>
-                <label>Name</label>
-              </strong>
-              <div>{details.name}</div>
-            </Col>
-            <Col align="center">
-              <strong>
-                {" "}
                 <label>Degree</label>
               </strong>
               <div>{degree}</div>
             </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="center">
-              <strong>
-                <label>Email</label>
-              </strong>
-              <div>{details.email}</div>
-            </Col>
-            <Col align="center">
-              <strong>
-                <label>Date of Birth</label>
-              </strong>
-              <div>{details.dob.split("-").reverse().join("-")}</div>
-            </Col>
-            <Col align="center">
-              <strong>
-                <label>Phone Number</label>
-              </strong>
-              <div>{details.phno}</div>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col align="center">
-              <strong>
-                {" "}
-                <label>Address</label>
-              </strong>
-              <div>{details.address}</div>
-            </Col>
-            <Col align="center">
+            </Row>
+            <Row>
+            <Col align="center" xs={6} md={4} className="p-3">
               <strong>
                 <label>Hostel Name</label>
               </strong>
               <div></div>
             </Col>
-            <Col align="center">
+            <Col align="center" xs={6} md={4} className="p-3">
               <strong>
                 <label>Room Number</label>
               </strong>
               <div></div>
+            </Col>
+            <Col align="center" xs={6} md={4} className="p-3">
+              <strong>
+                <label>Date of Birth</label>
+              </strong>
+              <div>{details.dob.split("-").reverse().join("-")}</div>
+            </Col>
+            <Col align="center" xs={6} md={4} className="p-3">
+              <strong>
+                <label>Phone Number</label>
+              </strong>
+              <div>{details.phno}</div>
+            </Col>
+            <Col align="center" xs={12} md={4} className="p-3">
+              <strong>
+                <label>Email</label>
+              </strong>
+              <div>{details.email}</div>
+            </Col>
+            <Col align="center" xs={12} md={4} className="p-3">
+              <strong>
+                <label>Address</label>
+              </strong>
+              <div>{details.address}</div>
             </Col>
           </Row>
           <br />
