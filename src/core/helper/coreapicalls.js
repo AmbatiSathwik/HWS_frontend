@@ -192,35 +192,8 @@ export const submitMessComplaint = (complaint) => {
     });
 };
 
-
-
-export const submitMessComplaint = (complaint) => {
-  const studentId = localStorage.getItem("id")?.slice(1,-1);
-  complaint.studentId = studentId;
-  console.log(complaint);
-  return fetch(`${API}complaint/mess`, {
-
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(complaint),
-  })
-
-    .then((res) => {
-      // console.log(res.json());
-      return res.json();
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-
-};
-
-
 export const submitHostelComplaint = (complaint) => {
-  const studentId = localStorage.getItem("id")?.slice(1,-1);
+  const studentId = localStorage.getItem("id")?.slice(1, -1);
   complaint.studentId = studentId;
   console.log(complaint);
   return fetch(`${API}complaint/hostel`, {
@@ -230,13 +203,14 @@ export const submitHostelComplaint = (complaint) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(complaint),
-  }).then((res) => {
-    // console.log(res.json());
-    return res.json();
-  }).catch((e) => {
-    console.log(e);
   })
-
+    .then((res) => {
+      // console.log(res.json());
+      return res.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 };
 
 export const submitAnonymousComplaint = (complaint) => {
@@ -247,7 +221,6 @@ export const submitAnonymousComplaint = (complaint) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(complaint),
-
   })
     .then((res) => {
       // console.log(res.json());
@@ -260,19 +233,6 @@ export const submitAnonymousComplaint = (complaint) => {
 
 export const getHostelDetailsByHostelId = (id) => {
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
-
-  }).then((res) => {
-    // console.log(res.json());
-    return res.json();
-  }).catch((e) => {
-    console.log(e);
-  })
-};
-
-
-export const getHostelDetailsByHostelId = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
-
   return fetch(`${API}/${id}`, {
     method: "GET",
     headers: {

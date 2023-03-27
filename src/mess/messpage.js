@@ -15,7 +15,7 @@ import "../styles.css";
 import { useLocation } from "react-router-dom";
 import CH from "../assets/images/chostel.jpg";
 import Gallery from "../core/Gallery";
-import { messDetails } from "../core/helper/coreapicalls";
+import { messDetails } from "../mess/helper/messapicalls";
 
 const images = [
   {

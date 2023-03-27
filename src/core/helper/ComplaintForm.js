@@ -8,7 +8,11 @@ import {
   MenuItem,
 } from "@mui/material";
 import { Button } from "react-bootstrap";
-import { submitMessComplaint, submitHostelComplaint, submitAnonymousComplaint} from "./coreapicalls";
+import {
+  submitMessComplaint,
+  submitHostelComplaint,
+  submitAnonymousComplaint,
+} from "./coreapicalls";
 import { fontSize } from "@mui/system";
 
 export function MessComplaintForm() {
@@ -186,19 +190,14 @@ export function AnonymousComplaintForm() {
     <div>
       <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px"}}
+          style={{ borderRadius: "8px", height: "50px" }}
           value={complt}
           onChange={handleChange("complt")}
           placeholder="Write your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
-      <Button
-        className="mb-4 w-100"
-        onClick={onSubmit}
-        color="info"
-        size="lg"
-      >
+      <Button className="mb-4 w-100" onClick={onSubmit} color="info" size="lg">
         Submit
       </Button>
     </div>
