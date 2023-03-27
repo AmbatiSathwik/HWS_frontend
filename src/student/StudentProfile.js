@@ -13,6 +13,9 @@ import {
   registerStudentMess,
   updateStudentMess,
   previousMessDetails,
+  getPreferences,
+  submitpreference,
+  updatepreference,
 } from "./helper/studentapicalls";
 import MC from "../assets/images/messcard.png";
 import { jsPDF } from "jspdf";
@@ -416,133 +419,10 @@ function StudentProfile() {
   };
 
   const showMessRegistration = () => {
-    // if (date.getDate() >= 25 && rating.isDone) {
-    //   if (!messdetails.isAvailable) {
-    //     return (
-    //       <div>
-    //         <Row>
-    //           <Col xs={4} align="right">
-    //             <strong>Available mess :</strong>
-    //           </Col>
-    //           <Col xs={8} align="left">
-    //             <Form.Select onChange={handleMessReg}>
-    //               <option value="none">Select Mess</option>
-    //               {vacancy.available.map((mess) => {
-    //                 if (
-    //                   details.gender === "male" &&
-    //                   mess.boysCapacity - mess.boysCount > 0
-    //                 ) {
-    //                   return (
-    //                     <option value={mess.messId} key={mess.messId}>{`${
-    //                       messname[mess.messId]
-    //                     } - ${
-    //                       mess.boysCapacity - mess.boysCount
-    //                     } seats vacant right now`}</option>
-    //                   );
-    //                 } else if (
-    //                   details.gender === "female" &&
-    //                   mess.girlsCapacity - mess.girlsCount > 0
-    //                 ) {
-    //                   return (
-    //                     <option key={mess.messId}>{`${
-    //                       messname[mess.messId]
-    //                     } - ${
-    //                       mess.girlsCapacity - mess.girlsCount
-    //                     } seats vacant right now`}</option>
-    //                   );
-    //                 }
-    //               })}
-    //             </Form.Select>
-    //           </Col>
-    //         </Row>
-    //         <br />
-    //         <Row>
-    //           <Col align="right" className="mx-4">
-    //             <Button onClick={messRegistration}>Submit</Button>
-    //           </Col>
-    //         </Row>
-    //       </div>
-    //     );
-    //   } else {
-    //     return (
-    //       <div>
-    //         <Row>
-    //           <Col align="center">
-    //             You already took {messdetails.messName} mess for this month. But
-    //             you can still change mess till 1st of next month.
-    //           </Col>
-    //         </Row>
-    //         <br />
-    //         <Row>
-    //           <Col xs={4} align="right">
-    //             <strong>Change mess :</strong>
-    //           </Col>
-    //           <Col xs={8} align="left">
-    //             <Form.Select onChange={handleMessReg}>
-    //               <option value="none">Select Mess</option>
-    //               {vacancy.available.map((mess) => {
-    //                 if (
-    //                   details.gender === "male" &&
-    //                   mess.boysCapacity - mess.boysCount > 0
-    //                 ) {
-    //                   return (
-    //                     <option value={mess.messId} key={mess.messId}>{`${
-    //                       messname[mess.messId]
-    //                     } - ${
-    //                       mess.boysCapacity - mess.boysCount
-    //                     } seats vacant right now`}</option>
-    //                   );
-    //                 } else if (
-    //                   details.gender === "female" &&
-    //                   mess.girlsCapacity - mess.girlsCount > 0
-    //                 ) {
-    //                   return (
-    //                     <option key={mess.messId}>{`${
-    //                       messname[mess.messId]
-    //                     } - ${
-    //                       mess.girlsCapacity - mess.girlsCount
-    //                     } seats vacant right now`}</option>
-    //                   );
-    //                 }
-    //               })}
-    //             </Form.Select>
-    //           </Col>
-    //         </Row>
-    //         <br />
-    //         <Row>
-    //           <Col align="right" className="mx-4">
-    //             <Button onClick={messUpdate}>Submit</Button>
-    //           </Col>
-    //         </Row>
-    //       </div>
-    //     );
-    //   }
-    // } else if (date.getDate() < 25) {
-    //   return (
-    //     <Row>
-    //       <Col align="center">
-    //         <strong>
-    //           Mess registration for next month will be available from 25th of
-    //           this month
-    //         </strong>
-    //       </Col>
-    //     </Row>
-    //   );
-    // } else if (messdetails.isAvailable && !rating.isDone) {
-    //   return (
-    //     <Row>
-    //       <Col align="center">
-    //         <strong>
-    //           Please rate the precious mess to register for next month mess.
-    //         </strong>
-    //       </Col>
-    //     </Row>
-    //   );
-    // }
-
     const [mess_availabe, setMessAvailable] = useState([1, 2, 3, 4, 5]);
 
     const [preferences, setPreferences] = useState({
+      havePrefs: false,
       pref1: "null",
       pref2: "null",
       pref3: "null",
@@ -553,6 +433,23 @@ function StudentProfile() {
     const handleVeg = () => {
       changeVeg(!veg);
     };
+
+    useEffect(() => {
+      getPreferences().then((data) => {
+        if (data.err) {
+          console.log(data);
+        } else {
+          changeVeg(data.data.isVeg);
+          setPreferences({
+            ...preferences,
+            havePrefs: true,
+            pref1: data.data.pref1,
+            pref2: data.data.pref2,
+            pref3: data.data.pref3,
+          });
+        }
+      });
+    }, []);
 
     const handleOptions = (e) => {
       if (e.target.name === "pref1") {
@@ -568,7 +465,6 @@ function StudentProfile() {
             setMessAvailable(new_mess);
           } else {
             const old_pref = parseInt(preferences.pref1);
-            console.log(preferences);
             setPreferences({ ...preferences, pref1: e.target.value });
             const new_mess = [old_pref];
             mess_availabe.forEach((item) => {
@@ -578,6 +474,16 @@ function StudentProfile() {
             });
             setMessAvailable(new_mess);
           }
+        } else {
+          const old_pref = parseInt(preferences.pref1);
+          setPreferences({ ...preferences, pref1: "null" });
+          const new_mess = [old_pref];
+          mess_availabe.forEach((item) => {
+            if (item !== parseInt(e.target.value)) {
+              new_mess.push(item);
+            }
+          });
+          setMessAvailable(new_mess);
         }
       } else if (e.target.name === "pref2") {
         if (e.target.value !== "null") {
@@ -603,6 +509,16 @@ function StudentProfile() {
             });
             setMessAvailable(new_mess);
           }
+        } else {
+          const old_pref = parseInt(preferences.pref2);
+          setPreferences({ ...preferences, pref2: "null" });
+          const new_mess = [old_pref];
+          mess_availabe.forEach((item) => {
+            if (item !== parseInt(e.target.value)) {
+              new_mess.push(item);
+            }
+          });
+          setMessAvailable(new_mess);
         }
       } else if (e.target.name === "pref3") {
         if (e.target.value !== "null") {
@@ -628,78 +544,246 @@ function StudentProfile() {
             });
             setMessAvailable(new_mess);
           }
+        } else {
+          const old_pref = parseInt(preferences.pref3);
+          setPreferences({ ...preferences, pref3: "null" });
+          const new_mess = [old_pref];
+          mess_availabe.forEach((item) => {
+            if (item !== parseInt(e.target.value)) {
+              new_mess.push(item);
+            }
+          });
+          setMessAvailable(new_mess);
         }
       }
     };
 
-    return (
-      <div>
+    const addPrefOption = (pref) => {
+      if (pref === 1 && preferences.pref1 !== "null") {
+        return (
+          <option value={preferences.pref1}>
+            {messname[parseInt(preferences.pref1)]}
+          </option>
+        );
+      } else if (pref === 2 && preferences.pref2 !== "null") {
+        return (
+          <option value={preferences.pref2}>
+            {messname[parseInt(preferences.pref2)]}
+          </option>
+        );
+      } else if (pref === 3 && preferences.pref3 !== "null") {
+        return (
+          <option value={preferences.pref3}>
+            {messname[parseInt(preferences.pref3)]}
+          </option>
+        );
+      }
+    };
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    const submitPreference = () => {
+      submitpreference(preferences, veg, details.gender)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((data) => {
+          console.log(data);
+        });
+    };
+
+    const updatePreferece = () => {
+      updatepreference(preferences, veg, details.gender)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((data) => {
+          console.log(data);
+        });
+    };
+
+    const temp = 26; //date.getDate()
+
+    if (temp >= 25) {
+      if (!preferences.havePrefs) {
+        return (
+          <div>
+            <Row>
+              <Col align="center">
+                <Switch checked={veg} onChange={handleVeg}></Switch>
+                <label for="veggie-toggle">Are you vegiterian??</label>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col className="pref-1" align="center">
+                <label for="pref1">Preference - 1:</label>
+                <br />
+                <select
+                  id="pref1"
+                  name="pref1"
+                  className="pref"
+                  onChange={handleOptions}
+                  value={preferences.pref1}
+                >
+                  <option value="null">Preference - 1</option>
+                  {addPrefOption(1)}
+                  {mess_availabe.map((item) => {
+                    return <option value={item}>{messname[item]}</option>;
+                  })}
+                </select>
+              </Col>
+              <Col className="pref-2" align="center">
+                <label for="pref2">Preference - 2:</label>
+                <br />
+                <select
+                  id="pref2"
+                  name="pref2"
+                  className="pref"
+                  onChange={handleOptions}
+                  value={preferences.pref2}
+                >
+                  <option value="null">Preference - 2</option>
+                  {addPrefOption(2)}
+                  {mess_availabe.map((item) => {
+                    return <option value={item}>{messname[item]}</option>;
+                  })}
+                </select>
+              </Col>
+              <Col className="pref-3" align="center">
+                <label for="pref3">Preference - 3:</label>
+                <br />
+                <select
+                  id="pref3"
+                  name="pref3"
+                  className="pref"
+                  onChange={handleOptions}
+                  value={preferences.pref3}
+                >
+                  <option value="null">Preference - 3</option>
+                  {addPrefOption(3)}
+                  {mess_availabe.map((item) => {
+                    return <option value={item}>{messname[item]}</option>;
+                  })}
+                </select>
+              </Col>
+            </Row>
+            <br />
+            <br />
+            <Row>
+              <Col align="center">
+                <Button onClick={submitPreference}>Submit</Button>
+              </Col>
+            </Row>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <Row>
+              <Col align="center">
+                You already submitted your preferences for the next month mess.
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col>
+                <strong>Preference - 1 : </strong>
+                <span>{preferences.pref1}</span>
+              </Col>
+              <Col>
+                <strong>Preference - 2 : </strong>
+                <span>{preferences.pref2}</span>
+              </Col>
+              <Col>
+                <strong>Preference - 3 : </strong>
+                <span>{preferences.pref3}</span>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col align="center">
+                <Switch checked={veg} onChange={handleVeg}></Switch>
+                <label for="veggie-toggle">Are you vegiterian??</label>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col className="pref-1" align="center">
+                <label for="pref1">Preference - 1:</label>
+                <br />
+                <select
+                  id="pref1"
+                  name="pref1"
+                  className="pref"
+                  onChange={handleOptions}
+                  value={preferences.pref1}
+                >
+                  <option value="null">Preference - 1</option>
+                  {addPrefOption(1)}
+                  {mess_availabe.map((item) => {
+                    return <option value={item}>{messname[item]}</option>;
+                  })}
+                </select>
+              </Col>
+              <Col className="pref-2" align="center">
+                <label for="pref2">Preference - 2:</label>
+                <br />
+                <select
+                  id="pref2"
+                  name="pref2"
+                  className="pref"
+                  onChange={handleOptions}
+                  value={preferences.pref2}
+                >
+                  <option value="null">Preference - 2</option>
+                  {addPrefOption(2)}
+                  {mess_availabe.map((item) => {
+                    return <option value={item}>{messname[item]}</option>;
+                  })}
+                </select>
+              </Col>
+              <Col className="pref-3" align="center">
+                <label for="pref3">Preference - 3:</label>
+                <br />
+                <select
+                  id="pref3"
+                  name="pref3"
+                  className="pref"
+                  onChange={handleOptions}
+                  value={preferences.pref3}
+                >
+                  <option value="null">Preference - 3</option>
+                  {addPrefOption(3)}
+                  {mess_availabe.map((item) => {
+                    return <option value={item}>{messname[item]}</option>;
+                  })}
+                </select>
+              </Col>
+            </Row>
+            <br />
+            <br />
+            <Row>
+              <Col align="center">
+                <Button onClick={updatePreferece}>Submit</Button>
+              </Col>
+            </Row>
+          </div>
+        );
+      }
+    } else if (temp >= 1 && temp <= 5) {
+      return <h1>daskjdashnn</h1>;
+    } else {
+      return (
         <Row>
           <Col align="center">
-            <Switch checked={veg} onChange={handleVeg}></Switch>
-            <label for="veggie-toggle">Are you vegiterian??</label>
+            <strong>
+              Mess registration for next month will be available from 25th of
+              this month
+            </strong>
           </Col>
         </Row>
-        <br />
-        <Row>
-          <Col className="pref-1" align="center">
-            <label for="pref1">Preference - 1:</label>
-            <br />
-            <select
-              id="pref1"
-              name="pref1"
-              className="pref"
-              onChange={handleOptions}
-              value={toString(preferences.pref1)}
-            >
-              <option value="null">Preference - 1</option>
-              {mess_availabe.map((item) => {
-                return <option value={item}>{messname[item]}</option>;
-              })}
-            </select>
-          </Col>
-          <Col className="pref-2" align="center">
-            <label for="pref2">Preference - 2:</label>
-            <br />
-            <select
-              id="pref2"
-              name="pref2"
-              className="pref"
-              onChange={handleOptions}
-              value={preferences.pref2}
-            >
-              <option value="null">Preference - 2</option>
-              {mess_availabe.map((item) => {
-                return <option value={item}>{messname[item]}</option>;
-              })}
-            </select>
-          </Col>
-          <Col className="pref-3" align="center">
-            <label for="pref3">Preference - 3:</label>
-            <br />
-            <select
-              id="pref3"
-              name="pref3"
-              className="pref"
-              onChange={handleOptions}
-              value={preferences.pref3}
-            >
-              <option value="null">Preference - 3</option>
-              {mess_availabe.map((item) => {
-                return <option value={item}>{messname[item]}</option>;
-              })}
-            </select>
-          </Col>
-        </Row>
-        <br />
-        <br />
-        <Row>
-          <Col align="center">
-            <Button>Submit</Button>
-          </Col>
-        </Row>
-      </div>
-    );
+      );
+    }
   };
 
   const messCardDownload = () => {
