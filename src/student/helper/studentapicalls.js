@@ -1,8 +1,8 @@
 import { API } from "../../backend";
 
 export const studentDetails = () => {
-  const roll = localStorage.getItem("id")?.slice(1,-1);
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const roll = localStorage.getItem("id")?.slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   const user = { rollno: roll };
   return fetch(`${API}student/get-student-by-rollno/`, {
     method: "POST",
@@ -20,10 +20,10 @@ export const studentDetails = () => {
       console.log(err);
     });
 };
+
 export const studentMessDetails = (month, year) => {
   const roll = localStorage.getItem("id").slice(1, -1);
   const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
-
 
   return fetch(`${API}mess/mess-user/${roll}/${year}/${month}/`, {
     method: "GET",
@@ -42,7 +42,7 @@ export const studentMessDetails = (month, year) => {
 };
 
 export const getMessName = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/${id}/`, {
     method: "GET",
     headers: {
@@ -59,8 +59,8 @@ export const checkMessReview = () => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
-  const roll = localStorage.getItem("id")?.slice(1,-1);
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const roll = localStorage.getItem("id")?.slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   const data = { studentId: roll, year: year, month: month };
   return fetch(`${API}mess/check-mess-review/`, {
     method: "POST",
@@ -80,7 +80,7 @@ export const checkMessReview = () => {
 };
 
 export const submitMessReview = (review) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-review/`, {
     method: "POST",
     headers: {
@@ -99,8 +99,8 @@ export const submitMessReview = (review) => {
 };
 
 export const changePassword = (pass) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
-  const roll = localStorage.getItem("id")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
+  const roll = localStorage.getItem("id")?.slice(1, -1);
   return fetch(`${API}student/change-password/${roll}/`, {
     method: "POST",
     headers: {
@@ -119,7 +119,7 @@ export const changePassword = (pass) => {
 };
 
 export const messVacancy = () => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-availablity/dummy/`, {
     method: "GET",
     headers: {
@@ -133,7 +133,7 @@ export const messVacancy = () => {
 };
 
 export const registerStudentMess = (mess) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-user`, {
     method: "POST",
     headers: {
@@ -152,7 +152,7 @@ export const registerStudentMess = (mess) => {
 };
 
 export const updateStudentMess = (mess) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-user/update`, {
     method: "POST",
     headers: {
@@ -188,4 +188,84 @@ export const previousMessDetails = (id) => {
     .catch((e) => {
       console.log(e);
     });
+};
+
+export const getPreferences = () => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const roll = localStorage.getItem("id").slice(1, -1);
+
+  return fetch(`${API}preferences/${roll}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export const submitpreference = (prefs, veg, gen) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const roll = localStorage.getItem("id").slice(1, -1);
+
+  const sendData = {
+    id: roll.toUpperCase(),
+    pref1: parseInt(prefs.pref1),
+    pref2: parseInt(prefs.pref2),
+    pref3: parseInt(prefs.pref3),
+    isVeg: veg,
+    gen: gen === "male" ? false : true,
+  };
+
+  return fetch(`${API}preferences/create`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(sendData),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export const updatepreference = (prefs,veg,gen) => {
+  const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
+  const roll = localStorage.getItem("id").slice(1, -1);
+
+  const sendData = {
+    pref1: parseInt(prefs.pref1),
+    pref2: parseInt(prefs.pref2),
+    pref3: parseInt(prefs.pref3),
+    isVeg: veg,
+    gen: gen === "male" ? false : true,
   }
+
+  return fetch(`${API}preferences/update/${roll}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify(sendData),
+  })
+    .then((data) => {
+      return data.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+
+};
