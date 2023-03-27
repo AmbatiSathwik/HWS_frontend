@@ -39,7 +39,7 @@ function Footer() {
               <h6 className="text-uppercase fw-bold mb-4">
                 {/* <MDBIcon icon="gem" className="me-3" /> */}
                 <img src={Logo} width="60" />
-                National Institute of Technology , Calicut
+                NIT,Calicut
               </h6>
               <h5>
                 <b>Address :</b>

@@ -55,16 +55,22 @@ function Messratingspage() {
         bordered
         hover
         responsive
+        className="ratings-table"
         style={{
           textAlign: "center",
           backgroundColor: "white",
           width: "90%",
           marginLeft: "5%",
           marginRight: "5%",
+          marginTop: "8px",
         }}
       >
         <thead>
+<<<<<<< HEAD
         <tr style={{ backgroundColor: "#3E54AC", color: "white", fontSize: "1.5rem" }}>
+=======
+          <tr style={{ backgroundColor: "#3E54AC", color: "white", fontSize: "1.5rem" }}>
+>>>>>>> c6b6cb67374df5a6e7fff3a804e0bd6656702d25
             <th style={{ textAlign: "center",verticalAlign: "middle",width:"75px" }}>Sl No.</th>
             <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Mess Name</th>
             <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Taste</th>

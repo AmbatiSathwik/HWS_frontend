@@ -17,6 +17,7 @@ import HostelOficeAdmin from "./HostelOficeAdmin/HostelOficeAdmin";
 import Messratingspage from "./mess/Messratingpage";
 import Cheifwarden from "./core/cheifWarden";
 import Warden from "./core/Warden";
+import HostelOfficeManager from "./core/HostelOfficeManager";
 import StudentsList from "./core/studentsByHostel";
 import NotFound from "./core/NotFound";
 

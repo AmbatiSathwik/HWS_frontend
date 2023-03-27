@@ -61,7 +61,10 @@ function Menu() {
             </Nav.Link>
           </>
         );
-      } else if (localStorage.getItem("role")?.slice(1, -1) === "b5762f643468edf47f075f0ea900fb25fb5a302c4ceabaf56f3a6e64f89a07b3938356de2a00b4b03d3052e43848d7db45756db3304e3877d280491515de4801") {
+      } else if (
+        localStorage.getItem("role")?.slice(1, -1) ===
+        "b5762f643468edf47f075f0ea900fb25fb5a302c4ceabaf56f3a6e64f89a07b3938356de2a00b4b03d3052e43848d7db45756db3304e3877d280491515de4801"
+      ) {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">

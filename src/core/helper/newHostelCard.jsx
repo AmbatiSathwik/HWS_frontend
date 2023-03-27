@@ -1,75 +1,75 @@
 import React from "react";
 import { Col, Row, Card } from "react-bootstrap";
 
-function img(image, name) {
+function img(props) {
   return (
     <Col xs="12" lg="4">
-      <img src={image} alt={name} width="100%" />
+      <img src={props.image} alt={props.name} width="100%" />
     </Col>
   );
 }
 
-function text(Hosteldetails, phno) {
+function text(props) {
   return (
     <Col xs="12" lg="6">
-      <p>{Hosteldetails.description}</p>
+      <p>{props.Hosteldetails.description}</p>
       <p>
-        <strong>Warden :</strong> {Hosteldetails.warden}
+        <strong>Warden :</strong> {props.wardenname}
       </p>
       <p>
-        <strong>Care Taker :</strong> {Hosteldetails.caretaker}
+        <strong>Care Taker :</strong> {props.caretakername}
       </p>
       <p>
-        <strong>Number of rooms :</strong> {Hosteldetails.rooms}
+        <strong>Number of rooms :</strong> {props.Hosteldetails.rooms}
       </p>
       <p>
-        <strong>Number of floors :</strong> {Hosteldetails.floors}
+        <strong>Number of floors :</strong> {props.Hosteldetails.floors}
       </p>
       <p>
-        <strong>Number of Inmates :</strong> {Hosteldetails.inmates}
+        <strong>Number of Inmates :</strong> {props.Hosteldetails.inmates}
       </p>
       <p>
-        <strong>Warden Phone No :</strong> {phno}
+        <strong>Warden Phone No :</strong> {props.phno}
       </p>
     </Col>
   );
 }
 
-function HostelCard({ name, phno, image, Hosteldetails, type }) {
-  if (type === "2")
+function HostelCard(props) {
+  if (props.type === "2")
     return (
       <div
-        // id={props.id}
+        id={props.id}
         className="card"
         style={{ backgroundColor: "#ECECEC" }}
       >
-        <h2 align="center">{Hosteldetails.name}</h2>
+        <h2 align="center">{props.name}</h2>
         <div className="m-5">
           <Row>
-            {img(image, name)}
+            {img(props)}
             <Col xs="12" lg="1"></Col>
-            {text(Hosteldetails, phno)}
+            {text(props)}
           </Row>
         </div>
       </div>
     );
   else
     return (
-      <div className="card">
-        <h2 align="center">{name}</h2>
+      <div id={props.id} className="card">
+        <h2 align="center">{props.name}</h2>
         <div className="m-5">
           <Row>
-            {text(Hosteldetails, phno)}
+            {text(props)}
             <Col xs="12" lg="2"></Col>
-            {img(image, name)}
+            {img(props)}
           </Row>
         </div>
       </div>
     );
 }
 
-function Facilities({ hasFacility, facilityName, description, image }) {
-  if (hasFacility === true)
+function Facilities(props) {
+  if (props.hasFacility === true)
     return (
       <div>
         <center>
@@ -79,17 +79,28 @@ function Facilities({ hasFacility, facilityName, description, image }) {
           className="card"
           style={{ backgroundColor: "#ECECEC", textAlign: "center" }}
         >
-          <h2>{facilityName}</h2>
+          <h2>{props.facilityName}</h2>
           <div className="m-5">
             <Row>
               <Col xs="12" lg="6">
-                <p>{description}</p>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
               </Col>
               <Col xs="12" lg="2"></Col>
               <Col xs="12" lg="4">
                 <img
-                  src={image}
-                  alt={facilityName}
+                  src={props.image}
+                  alt={props.name}
                   width="100%"
                   style={{ margin: "auto" }}
                 />
@@ -102,7 +113,7 @@ function Facilities({ hasFacility, facilityName, description, image }) {
   else return <div></div>;
 }
 
-function GroupCards({ wname, wphno, cname, cphno, hsname, hsphno }) {
+function GroupCards(props) {
   return (
     <div>
       <Row>
@@ -110,8 +121,8 @@ function GroupCards({ wname, wphno, cname, cphno, hsname, hsphno }) {
           <Card style={{ height: "250px" }}>
             <Card.Body>
               <Card.Title>Warden</Card.Title>
-              <Card.Text>Name :{wname} </Card.Text>
-              <Card.Text>Ph No. :{wphno} </Card.Text>
+              <Card.Text>Name :{props.wardenname} </Card.Text>
+              <Card.Text>Ph No. :{props.phno} </Card.Text>
               <Card.Text>Department : </Card.Text>
             </Card.Body>
           </Card>
@@ -120,8 +131,8 @@ function GroupCards({ wname, wphno, cname, cphno, hsname, hsphno }) {
           <Card style={{ height: "250px" }}>
             <Card.Body>
               <Card.Title>Care Taker</Card.Title>
-              <Card.Text>Name : {cname} </Card.Text>
-              <Card.Text>Ph No. : {cphno} </Card.Text>
+              <Card.Text>Name : {props.caretakername} </Card.Text>
+              <Card.Text>Ph No. : {props.cphno} </Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -130,8 +141,8 @@ function GroupCards({ wname, wphno, cname, cphno, hsname, hsphno }) {
           <Card style={{ height: "250px" }}>
             <Card.Body>
               <Card.Title>Hostel Sec.</Card.Title>
-              <Card.Text>Name :{hsname} </Card.Text>
-              <Card.Text>Ph No. :{hsphno} </Card.Text>
+              <Card.Text>Name :{props.hsname} </Card.Text>
+              <Card.Text>Ph No. :{props.hsphno} </Card.Text>
               <Card.Text>Room No. : </Card.Text>
               <Card.Text>Department : </Card.Text>
             </Card.Body>

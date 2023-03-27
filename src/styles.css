@@ -431,6 +431,9 @@ code {
     margin: 15px;
     border-radius: 7%;
   }
+  .rating-table{
+    width: 95%;}
+    
   .card-subhead {
     display: inline-block;
     font-size: 18px;
@@ -461,6 +464,9 @@ code {
     margin: 25px;
     border-radius: 7%;
   }
+  .rating-table{
+    width: 95%;
+    }
   .nav-link {
     font-size: 1.6rem;
   }
@@ -527,6 +533,11 @@ code {
   width: 250px;
   height: 30px;
 }
+
+.modal-btn:hover{
+  font-weight: 500;
+  color: white;  
+  background-color: black;}
 
 .navbar-brand {
   float: none;
@@ -621,3 +632,6 @@ td {
   background-color: black;
 }
 
+.vertical-tab-style {
+  background: #212529;
+}

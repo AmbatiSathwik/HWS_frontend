@@ -1,13 +1,51 @@
-import {React,useState} from "react";
-import Base from "../core/Base";
+import {React,useEffect,useState} from "react";
+import Base from "./Base";
 import { Col, Row } from "react-bootstrap";
 import { MDBInput } from 'mdb-react-ui-kit';
+import Button from 'react-bootstrap/Button';
 import { MenuItem,FormControl,Select } from "@mui/material";
-import Modal_1 from "../core/Modal_1";
+import Modal_1 from "./Modal_1.js";
+import { render } from "react-dom";
 import "../styles.css";
 
-function HostelOficeAdmin() {
+function Hosteloffadmin() {
 
+    const changeClass = (im) => {
+        im.className = "card showCard"
+
+    }
+    const config = {
+        rootMargin:"0px 0px 0px 0px",
+        threshold: 0
+    }
+    useEffect(()=>{
+
+        const observer = new window.IntersectionObserver((entries,self)=>{
+            entries.forEach((entry)=>{
+                if(entry.isIntersecting)
+                {
+                    changeClass(entry.target)
+                    self.unobserve(entry.target)
+                }
+
+            })
+        })
+        const obs = document.querySelectorAll('.card')
+        obs.forEach((ob)=>{
+            observer.observe(ob)
+        },config)
+
+        return ()=>{
+            obs.forEach((ob)=>{
+                observer.unobserve(ob)
+            })
+        }
+
+    },[]);
+    
+    //state variables of hostel office admin
+
+    //notification section
     const [title,setTitle]=useState("");
     const [link,setLink]=useState("");
 
@@ -51,7 +89,7 @@ function HostelOficeAdmin() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col align="center">
+                    <Col align="right">
                         <Modal_1 heading="Create" className="me-2 mt-3" content="Notification created successfully"/>
                     </Col>
                 </Row>
@@ -70,7 +108,7 @@ function HostelOficeAdmin() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col align="center">
+                    <Col align="right">
                         <Modal_1  heading="Search" className="me-2 mt-3" content={details}/>
                     </Col>
                 </Row>
@@ -108,7 +146,7 @@ function HostelOficeAdmin() {
                 </Row>
 
                 <Row>
-                    <Col align="center">
+                    <Col align="right">
                         <Modal_1 heading="Update" className="me-2 mt-3" content="Data updated successfully"/>
                     </Col>
                 </Row>
@@ -177,7 +215,7 @@ function HostelOficeAdmin() {
                 </Row>
 
                 <Row>
-                    <Col align="center">
+                    <Col align="right">
                         <Modal_1 heading="Update" className="me-2 mt-3" content="Data updated successfully"/>
                     </Col>
                 </Row>
@@ -187,4 +225,4 @@ function HostelOficeAdmin() {
     );
 }
 
-export default HostelOficeAdmin;
+export default Hosteloffadmin;

@@ -1,30 +1,27 @@
 import React, { useState } from "react";
 import Base from "../Base";
 import {
-  InputAdornment,
-  IconButton,
   InputLabel,
   FormControl,
   OutlinedInput,
+  Select,
+  MenuItem,
 } from "@mui/material";
-import { Button, Form } from "react-bootstrap";
-import { submitComplaint } from "./coreapicalls";
-
-
-
+import { Button } from "react-bootstrap";
+import {
+  submitMessComplaint,
+  submitHostelComplaint,
+  submitAnonymousComplaint,
+} from "./coreapicalls";
+import { fontSize } from "@mui/system";
 
 export function MessComplaintForm() {
   const [details, setDetails] = useState({
-    name: "",
-    rollno: "",
-    hostel: "",
-    roomno: "",
-    mess: "",
-    typeOfComplaint: "",
-    cmplnt: "",
+    messId: "",
+    complt: "",
   });
 
-  const { name, rollno, hostel, roomno, mess, typeOfComplaint, cmplnt } = details;
+  const { messId, complt } = details;
 
   const handleChange = (name) => (event) => {
     setDetails({
@@ -36,24 +33,13 @@ export function MessComplaintForm() {
   const onSubmit = (event) => {
     event.preventDefault();
     console.log(details);
-    submitComplaint(details)
+    submitMessComplaint(details)
       .then((data) => {
         if (data.err) {
           console.log(data.err);
           alert(data.err);
         } else {
           alert("success");
-          // data.data.role = details.loginas;
-          // authenticate(data, () => {
-          //   setDetails({
-          //     username: "",
-          //     password: "",
-          //     loginas: "student",
-          //     error: "",
-          //     loading: false,
-          //     forgot: false,
-          //   });
-          // });
         }
       })
       .catch((e) => {
@@ -62,45 +48,33 @@ export function MessComplaintForm() {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={name}
-          onChange={handleChange("name")}
-          placeholder="Name"
-        />
-        <p>Name</p>
+    <div>
+      <FormControl variant="outlined" className="mb-4 w-100">
+        <InputLabel id="demo-simple-select-label">Mess</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={messId}
+          label="Age"
+          onChange={handleChange("messId")}
+        >
+          <MenuItem value={1}>A</MenuItem>
+          <MenuItem value={2}>B</MenuItem>
+          <MenuItem value={3}>MBH-2</MenuItem>
+        </Select>
+        <p>Select mess</p>
       </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
+      <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
           style={{ borderRadius: "8px", height: "50px" }}
-          value={rollno}
-          onChange={handleChange("rollno")}
-          placeholder="Rollno"
-        />
-        <p>RollNo</p>
-      </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={mess}
-          onChange={handleChange("mess")}
-          placeholder="Mess name"
-        />
-        <p>Mess</p>
-      </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={cmplnt}
-          onChange={handleChange("cmplnt")}
+          value={complt}
+          onChange={handleChange("complt")}
           placeholder="Wrtite your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
       <Button
-        className="mb-4 px-5 mx-5 w-100"
+        className="mb-4 px-5 w-100"
         onClick={onSubmit}
         color="info"
         size="lg"
@@ -113,16 +87,11 @@ export function MessComplaintForm() {
 
 export function HostelComplaintForm() {
   const [details, setDetails] = useState({
-    name: "",
-    rollno: "",
-    hostel: "",
-    roomno: "",
-    mess: "",
-    typeOfComplaint: "",
-    cmplnt: "",
+    hostelId: "",
+    complt: "",
   });
 
-  const { name, rollno, hostel, roomno, mess, typeOfComplaint, cmplnt } = details;
+  const { hostelId, complt } = details;
 
   const handleChange = (name) => (event) => {
     setDetails({
@@ -134,24 +103,13 @@ export function HostelComplaintForm() {
   const onSubmit = (event) => {
     event.preventDefault();
     console.log(details);
-    submitComplaint(details)
+    submitHostelComplaint(details)
       .then((data) => {
         if (data.err) {
           console.log(data.err);
           alert(data.err);
         } else {
           alert("success");
-          // data.data.role = details.loginas;
-          // authenticate(data, () => {
-          //   setDetails({
-          //     username: "",
-          //     password: "",
-          //     loginas: "student",
-          //     error: "",
-          //     loading: false,
-          //     forgot: false,
-          //   });
-          // });
         }
       })
       .catch((e) => {
@@ -160,54 +118,33 @@ export function HostelComplaintForm() {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={name}
-          onChange={handleChange("name")}
-          placeholder="Name"
-        />
-        <p>Name</p>
+    <div>
+      <FormControl variant="outlined" className="mb-4 w-100">
+        <InputLabel id="demo-simple-select-label">Hostel</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={hostelId}
+          label="Age"
+          onChange={handleChange("hostelId")}
+        >
+          <MenuItem value={1}>A</MenuItem>
+          <MenuItem value={2}>B</MenuItem>
+          <MenuItem value={3}>MBH-2</MenuItem>
+        </Select>
+        <p>Select hostel</p>
       </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
+      <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
           style={{ borderRadius: "8px", height: "50px" }}
-          value={rollno}
-          onChange={handleChange("rollno")}
-          placeholder="Rollno"
-        />
-        <p>RollNo</p>
-      </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={hostel}
-          onChange={handleChange("hostel")}
-          placeholder="Hostel name"
-        />
-        <p>Hostel</p>
-      </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={roomno}
-          onChange={handleChange("roomno")}
-          placeholder="Room No"
-        />
-        <p>RoomNo</p>
-      </FormControl>
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
-        <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
-          value={cmplnt}
-          onChange={handleChange("cmplnt")}
+          value={complt}
+          onChange={handleChange("complt")}
           placeholder="Wrtite your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
       <Button
-        className="mb-4 px-5 mx-5 w-100"
+        className="mb-4 px-5 w-100"
         onClick={onSubmit}
         color="info"
         size="lg"
@@ -220,16 +157,10 @@ export function HostelComplaintForm() {
 
 export function AnonymousComplaintForm() {
   const [details, setDetails] = useState({
-    name: "",
-    rollno: "",
-    hostel: "",
-    roomno: "",
-    mess: "",
-    typeOfComplaint: "",
-    cmplnt: "",
+    complt: "",
   });
 
-  const { name, rollno, hostel, roomno, mess, typeOfComplaint, cmplnt } = details;
+  const { complt } = details;
 
   const handleChange = (name) => (event) => {
     setDetails({
@@ -241,47 +172,32 @@ export function AnonymousComplaintForm() {
   const onSubmit = (event) => {
     event.preventDefault();
     console.log(details);
-    submitComplaint(details)
+    submitAnonymousComplaint(details)
       .then((data) => {
         if (data.err) {
           console.log(data.err);
           alert(data.err);
         } else {
           alert("success");
-          // data.data.role = details.loginas;
-          // authenticate(data, () => {
-          //   setDetails({
-          //     username: "",
-          //     password: "",
-          //     loginas: "student",
-          //     error: "",
-          //     loading: false,
-          //     forgot: false,
-          //   });
-          // });
         }
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
   return (
-    <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-      <FormControl variant="outlined" className="mb-4 mx-5 w-100">
+    <div>
+      <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
           style={{ borderRadius: "8px", height: "50px" }}
-          value={cmplnt}
-          onChange={handleChange("cmplnt")}
-          placeholder="Wrtite your complaint here"
+          value={complt}
+          onChange={handleChange("complt")}
+          placeholder="Write your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
-      <Button
-        className="mb-4 px-5 mx-5 w-100"
-        onClick={onSubmit}
-        color="info"
-        size="lg"
-      >
+      <Button className="mb-4 w-100" onClick={onSubmit} color="info" size="lg">
         Submit
       </Button>
     </div>
