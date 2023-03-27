@@ -2,7 +2,9 @@ body {
   margin: 0;
   width: 100%;
   background-color: #d8d8d8;
-  font-family: "Montserrat", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -187,9 +189,6 @@ code {
 
 .menu {
   padding-top: 0px;
-  border-radius: 0;
-  background-color: #212529;
-  margin-bottom: 0;
 }
 
 .mainlogo {
@@ -197,7 +196,11 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding: 1% 0 0 0;
+}
+
+.menu {
+  background-color: #212529;
 }
 
 /* .loginOptions {
@@ -207,11 +210,7 @@ code {
 .navbarOptions {
   margin-left: 40px;
 }
-/* css for rules and regulations*/
-.read-or-hide{
-  color: rgb(61, 44, 148);
-  cursor: pointer;
-  }
+
 /* css for team  */
 
 .our-team {
@@ -431,18 +430,8 @@ code {
     margin: 15px;
     border-radius: 7%;
   }
-  .card-subhead {
-    display: inline-block;
-    font-size: 18px;
-  }
-  div.menu {
-    height: 60px;
-  }
-}
-
-@media screen and (min-width: 470px) {
-  .card-subhead {
-    font-size: 25px;
+  .rating-table{
+    width: 95%;
   }
 }
 
@@ -458,27 +447,14 @@ code {
     margin: 25px;
     border-radius: 7%;
   }
-  .nav-link {
-    font-size: 1.6rem;
-  }
-  .login-nav {
-    position: absolute;
-    right: 20px;
-  }
-  .nav-link {
-    font-size: medium;
-    margin: auto 4px;
-    color: #e8e2e2;
+  .rating-table{
+    width: 95%;
   }
 }
 
 @media screen and (min-width: 992px) {
   .swiper-container {
     width: 992px;
-  }
-  .nav-link {
-    font-size: medium;
-    margin: auto 10px;
   }
 }
 
@@ -498,7 +474,7 @@ code {
 .hostel_card:hover {
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
-  filter: drop-shadow(0px 0px 6px rgb(44, 62, 80));
+  filter: drop-shadow(0px 0px 6px rgb(44, 62,  80));
 }
 
 .hideCard {
@@ -522,50 +498,8 @@ code {
   height: 30px;
 }
 
-.navbar-brand {
-  float: none;
-}
-
-button.navbar-toggler {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-.navbar-nav {
-  margin: 0;
-}
-
-div.menu {
-  height: 75px;
-}
-
-.nav-link:hover {
-  color: #85cdfd;
-  text-decoration: none;
-}
-
-.signout:hover {
-  text-decoration: underline;
-}
-
-a.dropdown-item {
-  background-color: #393e42;
-  color: white;
-  padding: 5px;
-}
-
-a.dropdown-item:hover {
-  background-color: #393e42;
-  color: #85cdfd;
-  text-decoration: none;
-}
-
-div.dropdown-menu.show {
-  padding: 0;
-}
-
-th,
-td {
-  text-align: center;
+.modal-btn:hover{
+  font-weight: 500;
+  color: white;  
+  background-color: black;
 }
