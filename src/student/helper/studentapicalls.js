@@ -1,8 +1,8 @@
 import { API } from "../../backend";
 
 export const studentDetails = () => {
-  const roll = localStorage.getItem("id")?.slice(1,-1);
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const roll = localStorage.getItem("id")?.slice(1, -1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   const user = { rollno: roll };
   return fetch(`${API}student/get-student-by-rollno/`, {
     method: "GET",
@@ -267,22 +267,4 @@ export const updatepreference = (prefs, veg, gen) => {
     .catch((e) => {
       console.log(e);
     });
-};
-
-  return fetch(`${API}preferences/update/${roll}`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      authorization: token,
-    },
-    body: JSON.stringify(sendData),
-  })
-    .then((data) => {
-      return data.json();
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-
 };
