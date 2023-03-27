@@ -5,7 +5,7 @@ export const studentDetails = () => {
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   const user = { rollno: roll };
   return fetch(`${API}student/get-student-by-rollno/`, {
-    method: "POST",
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -240,7 +240,7 @@ export const submitpreference = (prefs, veg, gen) => {
     });
 };
 
-export const updatepreference = (prefs,veg,gen) => {
+export const updatepreference = (prefs, veg, gen) => {
   const token = "Bearer " + localStorage.getItem("jwt").slice(1, -1);
   const roll = localStorage.getItem("id").slice(1, -1);
 
@@ -250,7 +250,7 @@ export const updatepreference = (prefs,veg,gen) => {
     pref3: parseInt(prefs.pref3),
     isVeg: veg,
     gen: gen === "male" ? false : true,
-  }
+  };
 
   return fetch(`${API}preferences/update/${roll}`, {
     method: "POST",
@@ -267,5 +267,4 @@ export const updatepreference = (prefs,veg,gen) => {
     .catch((e) => {
       console.log(e);
     });
-
 };

@@ -1,52 +1,42 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 
-function img(props)
-{
-    return(
-        <Col xs="12" lg="4">
-            <img src={props.image} alt={props.name} width="100%" />
-        </Col>
-    );
+function img(name, image) {
+  return (
+    <Col xs="12" lg="4">
+      <img src={image} alt={name} width="100%" />
+    </Col>
+  );
 }
 
-function text(props)
-{
-    return(
-        <Col xs="12" lg="6">
-            <h3>{props.messDetails.description}</h3>
-             
-        </Col>
-    );
+function text(messDetails) {
+  return (
+    <Col xs="12" lg="6">
+      <h3>{messDetails.description}</h3>
+    </Col>
+  );
 }
-function Messdetails(props)
-{
-      return(
-        <div id={props.id} className="card" style={{backgroundColor:"#ECECEC"}}>
-            <h2 align="center">{props.name}</h2>
+function Messdetails({ mcname, mcphno, boysCount, girlsCount, messDetails }) {
+  const { name, img } = messDetails;
+  return (
+    <div className="card" style={{ backgroundColor: "#ECECEC" }}>
+      <h2 align="center">{name}</h2>
 
-            <div className="m-5">
-                <Row>
-                    {img(props)}
-                    <Col xs="12" lg="1"></Col>
-                    <Col>
-                    {text(props)}
-                    <h2>mess-contractor:{props.mcname}</h2>
-                    <h2>mobile:{props.phno}</h2>
-                    <h2>boys-count:{props.boysCount}</h2>
-                    <h2>girls-count:{props.girlsCount}</h2>
-                    </Col>
-                    
-                </Row>
-            </div>
-        </div>
-    );
-     
+      <div className="m-5">
+        <Row>
+          {img(name, image)}
+          <Col xs="12" lg="1"></Col>
+          <Col>
+            {text(messDetails)}
+            <h2>mess-contractor:{mcname}</h2>
+            <h2>mobile:{mcphno}</h2>
+            <h2>boys-count:{boysCount}</h2>
+            <h2>girls-count:{girlsCount}</h2>
+          </Col>
+        </Row>
+      </div>
+    </div>
+  );
 }
 
- 
-
- 
-
-
-export default Messdetails ;
+export default Messdetails;
