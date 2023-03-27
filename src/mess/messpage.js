@@ -173,7 +173,7 @@ function Messpages(props) {
           ...details,
           name: data.data.name,
           email: data.data.email,
-          phno: data.data.phno,
+          phone: data.data.phno,
           messId: data.data.messId,
         });
         getMessDetailsByMessId(data.data.messId).then((data)=>{
