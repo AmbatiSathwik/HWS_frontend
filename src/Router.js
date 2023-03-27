@@ -18,12 +18,15 @@ import Messratingspage from "./mess/Messratingpage";
 import Cheifwarden from "./core/cheifWarden";
 import Warden from "./core/Warden";
 import StudentsList from "./core/studentsByHostel";
+import NotFound from "./core/NotFound";
+
 export default function Router() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/:name" element={<NotFound />} />
           <Route path="/explore_hostel" exact element={<ExploreHostels />} />
           <Route path="/explore_mess" exact element={<ExploreMess />} />
           <Route path="/login" exact element={<Signin />} />

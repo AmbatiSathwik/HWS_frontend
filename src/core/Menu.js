@@ -16,7 +16,10 @@ function Menu() {
         </>
       );
     } else {
-      if (localStorage.getItem("role")?.slice(1, -1) === "student") {
+      if (
+        localStorage.getItem("role")?.slice(1, -1) ===
+        "32ade5e7c36fa329ea39dbc352743db40da5aa7460ec55f95b999d6371ad20170094d88d9296643f192e9d5433b8d6d817d6777632e556e96e58f741dc5b3550"
+      ) {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
@@ -58,7 +61,7 @@ function Menu() {
             </Nav.Link>
           </>
         );
-      } else if (localStorage.getItem("role")?.slice(1, -1) === "mess-admin") {
+      } else if (localStorage.getItem("role")?.slice(1, -1) === "b5762f643468edf47f075f0ea900fb25fb5a302c4ceabaf56f3a6e64f89a07b3938356de2a00b4b03d3052e43848d7db45756db3304e3877d280491515de4801") {
         return (
           <>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
@@ -109,27 +112,25 @@ function Menu() {
         </Navbar.Brand>
       </div>
       <Navbar bg="dark" variant="dark" expand="md" className="menu">
-        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-        <Navbar.Collapse id="basic-navbar-nav" >
-          <Nav className="me-auto" style={{ maxHeight: '120px' }} navbarScroll>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto" style={{ maxHeight: "120px" }} navbarScroll>
             <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
-            <NavDropdown title="Explore" id="basic-nav-dropdown" >
-            <NavDropdown.Item href="/explore_hostel">
-                Hostels
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/explore_mess">
-                Messes
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="/administration">Administration</Nav.Link>
-            <Nav.Link href="/messratingspage">Mess Ratings</Nav.Link>
-            <Nav.Link href="/complaint">Complaints</Nav.Link>
-            <Nav.Link href="./formspage">Forms & Applications</Nav.Link>
-          </Nav>
-          <div className="loginOptions">
-            <Nav className="login-nav">{showLogin()}</Nav>
-          </div>
+              <Nav.Link href="/">Home</Nav.Link>
+              <NavDropdown title="Explore" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/explore_hostel">
+                  Hostels
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/explore_mess">Messes</NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link href="/administration">Administration</Nav.Link>
+              <Nav.Link href="/messratingspage">Mess Ratings</Nav.Link>
+              <Nav.Link href="/complaint">Complaints</Nav.Link>
+              <Nav.Link href="./formspage">Forms & Applications</Nav.Link>
+            </Nav>
+            <div className="loginOptions">
+              <Nav className="login-nav">{showLogin()}</Nav>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
