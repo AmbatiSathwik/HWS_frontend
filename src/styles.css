@@ -1,10 +1,15 @@
 body {
   margin: 0;
   width: 100%;
+  overflow-x: hidden; 
   background-color: #d8d8d8;
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
 }
 
 code {
@@ -431,9 +436,10 @@ code {
     margin: 15px;
     border-radius: 7%;
   }
-  .rating-table{
-    width: 95%;}
-    
+  .rating-table {
+    width: 95%;
+  }
+
   .card-subhead {
     display: inline-block;
     font-size: 18px;
@@ -464,9 +470,9 @@ code {
     margin: 25px;
     border-radius: 7%;
   }
-  .rating-table{
+  .rating-table {
     width: 95%;
-    }
+  }
   .nav-link {
     font-size: 1.6rem;
   }
@@ -534,10 +540,11 @@ code {
   height: 30px;
 }
 
-.modal-btn:hover{
+.modal-btn:hover {
   font-weight: 500;
-  color: white;  
-  background-color: black;}
+  color: white;
+  background-color: black;
+}
 
 .navbar-brand {
   float: none;
@@ -634,4 +641,14 @@ td {
 
 .vertical-tab-style {
   background: #212529;
+}
+
+.explore_page {
+  overflow-y: scroll; 
+  overflow-x: hidden; 
+  height: 100vh;
+}
+
+.galleryinexplore {
+  width: 80vw;
 }

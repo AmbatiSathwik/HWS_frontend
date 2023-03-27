@@ -59,7 +59,7 @@ export default function ExplorePage({ option }) {
         {console.log(array[0])}
       </div>
       <MDBRow>
-        <MDBCol size="2" className="vertical-tab-style">
+        <MDBCol size="2" className="vertical-tab-style explore_page-sidetab">
           <MDBTabs className="flex-column text-center">
             {array.map((x, index) => {
               return (
@@ -75,7 +75,7 @@ export default function ExplorePage({ option }) {
             })}
           </MDBTabs>
         </MDBCol>
-        <MDBCol size="10">
+        <MDBCol size="10" className="explore_page">
           <MDBTabsContent>
             {array.map((x, index) => {
               return (

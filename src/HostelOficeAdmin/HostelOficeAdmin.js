@@ -2,10 +2,8 @@ import { React, useEffect, useState } from "react";
 import Base from "../core/Base";
 import { Col, Row } from "react-bootstrap";
 import { MDBInput } from "mdb-react-ui-kit";
-import Button from "react-bootstrap/Button";
 import { MenuItem, FormControl, Select } from "@mui/material";
 import Modal_1 from "../core/Modal_1.js";
-import { render } from "react-dom";
 import "../styles.css";
 
 function Hosteloffadmin() {
