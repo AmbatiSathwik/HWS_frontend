@@ -9,11 +9,11 @@ import MessAdminProfile from "./mess/MessAdminProfile";
 import StudentChangePassword from "./student/StudentChangePassword";
 import Dashboard from "./user/Dashboard";
 import Signin from "./user/Signin";
-import Hostels from "./core/Hostels"; 
+import Hostels from "./core/Hostels";
 import Forms from "./core/formspage";
 import Messpages from "./mess/messpage";
 import Complaint from "./core/complaint";
-import Hosteloffadmin from "./core/Hosteloffadmin";
+import HostelOficeAdmin from "./HostelOficeAdmin/HostelOficeAdmin";
 import Messratingspage from "./mess/Messratingpage";
 import Cheifwarden from "./core/cheifWarden";
 import Warden from "./core/Warden";
@@ -34,16 +34,20 @@ export default function Router() {
           <Route path="/about" exact element={<About />} />
           <Route path="/contact" exact element={<About />} />
           <Route path="/administration" exact element={<Administration />} />
-          <Route path="/mess" exact element={ <MessAdminProfile/>} />
-          <Route path="/hostels/:name" exact element={ <Hostels/>} />
+          <Route path="/mess" exact element={<MessAdminProfile />} />
+          <Route path="/hostels/:name" exact element={<Hostels />} />
           <Route path="/messpage/:name" exact element={<Messpages />} />
-          <Route path="/cheifwarden" exact element={<Cheifwarden/>}/>
+          <Route path="/cheifwarden" exact element={<Cheifwarden />} />
           <Route path="/formspage" exact element={<Forms />} />
-          <Route path="/warden" exact element={<Warden/>}/>
+          <Route path="/warden" exact element={<Warden />} />
           <Route path="/complaint" exact element={<Complaint />} />
-          <Route path="/hostelofficeadmin" exact element={<Hosteloffadmin/>} />
-          <Route path="/messratingspage" exact element={<Messratingspage/>}/>
-          <Route path="/studentsList" exact element={<StudentsList/>}/>
+          <Route
+            path="/hostelofficeadmin"
+            exact
+            element={<HostelOficeAdmin />}
+          />
+          <Route path="/messratingspage" exact element={<Messratingspage />} />
+          <Route path="/studentsList" exact element={<StudentsList />} />
           <Route
             path="/studentpasswordChange"
             exact

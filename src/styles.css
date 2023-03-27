@@ -438,6 +438,9 @@ code {
   div.menu {
     height: 60px;
   }
+  .rating-table {
+    width: 95%;
+  }
 }
 
 @media screen and (min-width: 470px) {
@@ -469,6 +472,9 @@ code {
     font-size: medium;
     margin: auto 4px;
     color: #e8e2e2;
+  }
+  .rating-table {
+    width: 95%;
   }
 }
 
@@ -608,3 +614,10 @@ td {
 .colorwhite {
   background-color: white;
 }
+
+.modal-btn:hover {
+  font-weight: 500;
+  color: white;
+  background-color: black;
+}
+
