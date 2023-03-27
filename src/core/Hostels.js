@@ -75,7 +75,7 @@ function Hostels({ name }) {
   // from = details[name];
   let hname = name ? name : Hostel_name();
   const hosteldetails = details[hname];
-  console.log(hosteldetails, "🥲🥲🥲");
+  console.log(details, "🥲🥲🥲");
   const [wardenname, setwardenname] = useState("Wardenname");
   const [phno, setphno] = useState("phno");
   const [caretakername, setcaretakername] = useState("cname");

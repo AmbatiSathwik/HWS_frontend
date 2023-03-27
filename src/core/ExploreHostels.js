@@ -284,9 +284,8 @@
 import React from "react";
 import ExplorePage from "./explore/ExplorePage";
 import Base from "./Base";
-import { Link, useNavigate } from "react-router-dom";
 
-export default function About() {
+export default function ExploreHostels() {
   return (
     <Base title="Hostels">
       <div>

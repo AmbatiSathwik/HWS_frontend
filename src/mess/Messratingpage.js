@@ -66,26 +66,91 @@ function Messratingspage() {
         }}
       >
         <thead>
-<<<<<<< HEAD
-        <tr style={{ backgroundColor: "#3E54AC", color: "white", fontSize: "1.5rem" }}>
-=======
-          <tr style={{ backgroundColor: "#3E54AC", color: "white", fontSize: "1.5rem" }}>
->>>>>>> c6b6cb67374df5a6e7fff3a804e0bd6656702d25
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"75px" }}>Sl No.</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Mess Name</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Taste</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Quality</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Quantity</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Catering</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Cleanliness and Hygiene</th>
-            <th style={{ textAlign: "center",verticalAlign: "middle",width:"110px" }}>Punctuality</th>
+          <tr
+            style={{
+              backgroundColor: "#3E54AC",
+              color: "white",
+              fontSize: "1.5rem",
+            }}
+          >
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "75px",
+              }}
+            >
+              Sl No.
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Mess Name
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Taste
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Quality
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Quantity
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Catering
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Cleanliness and Hygiene
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+                verticalAlign: "middle",
+                width: "110px",
+              }}
+            >
+              Punctuality
+            </th>
           </tr>
-        
         </thead>
         {/* {arr.sort((a, b) => a.id.localeCompare(b.id))} */}
         {arr.map((x, index) => (
           <tbody key={x.id}>
-            <tr style={{ textAlign: "center",backgroundColor: "#EEF1FF"}}>
+            <tr style={{ textAlign: "center", backgroundColor: "#EEF1FF" }}>
               <td>{index + 1}</td>
               <td>{x.MessName ? x.MessName : messIdMap.get(x.id)}</td>
               <td>

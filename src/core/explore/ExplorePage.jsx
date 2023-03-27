@@ -32,6 +32,7 @@ let mess = Array(
 );
 
 export default function ExplorePage({ option }) {
+  console.log(option, "😎😎");
   let array = [];
   if (option === 1) {
     array = mess;
@@ -55,6 +56,7 @@ export default function ExplorePage({ option }) {
         {array.map((x, index) => {
           console.log(x);
         })}
+        {console.log(array[0])}
       </div>
       <MDBRow>
         <MDBCol size="2" className="vertical-tab-style">

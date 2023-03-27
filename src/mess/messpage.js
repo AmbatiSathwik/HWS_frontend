@@ -12,10 +12,9 @@ import Messdetails from "./messpagetemplate";
 import { Col, Row } from "react-bootstrap";
 import StarRatings from "react-star-ratings";
 import "../styles.css";
-import { useLocation } from "react-router-dom";
-import CH from "../assets/images/chostel.jpg";
 import Gallery from "../core/Gallery";
 import { messDetails } from "../mess/helper/messapicalls";
+import CH from "../assets/images/chostel.jpg";
 
 const images = [
   {
@@ -160,7 +159,7 @@ function Messpages(name) {
 
   const { quality, quantity, taste, catering, hygine, puntuality } = rate;
 
-  const [mcdetails, setDetails] = useState({
+  const [mcdetails, setmcDetails] = useState({
     mcname: "",
     mcemail: "",
     mcphno: "",
@@ -170,8 +169,8 @@ function Messpages(name) {
   useEffect(() => {
     getMessAdminByMessId(id).then((data) => {
       console.log(data);
-      setDetails({
-        ...details,
+      setmcDetails({
+        ...mcdetails,
         mcname: data.data.name,
         mcemail: data.data.email,
         mcphone: data.data.phno,
@@ -207,9 +206,11 @@ function Messpages(name) {
 
   const [item, setItem] = useState([]);
 
-  const details = messDetails().data;
-
-  let messdetails = details[name];
+  const messdetailsAll = messDetails().data;
+  let mname = name ? name : "bmess";
+  console.log(messdetailsAll, mname);
+  let messdetails = messdetailsAll[mname];
+  console.log(messdetails, "🟦🟦🟦🟦");
   return (
     <Base title="">
       <div id="main" style={{ margin: "10px" }}>
@@ -217,11 +218,13 @@ function Messpages(name) {
           <h1>{name}</h1>
         </center>
         <Messdetails
+          name={mname}
+          img={CH}
           mcname={mcdetails.mcname}
           phno={mcdetails.mcphno}
           boysCount={boycapacity}
           girlsCount={girlcapacity}
-          messDetails={messdetails}
+          messdetails={messdetailsAll}
           type="2"
         />
       </div>
