@@ -56,6 +56,7 @@ function Menu() {
                 Sign Out
               </span>
             </Nav.Link>
+            <Nav.Link href="/complaint">complaints</Nav.Link>
           </>
         );
       } else if (localStorage.getItem("role")?.slice(1, -1) === "mess-admin") {
@@ -196,9 +197,6 @@ function Menu() {
           <div className="loginOptions">
             <Nav>{showLogin()}</Nav>
           </div>
-          <Nav>
-            <Nav.Link href="/complaint">complaints</Nav.Link>
-          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </div>

@@ -22,6 +22,7 @@ export const authenticate = (data, next) => {
     localStorage.setItem("jwt", JSON.stringify(data.data.token));
     if (JSON.stringify(data.data.id)) {
       localStorage.setItem("id", JSON.stringify(data.data.id));
+      console.log("---------- "+data.data.id);
     } else {
       localStorage.setItem("id", JSON.stringify(data.data.email));
     }
