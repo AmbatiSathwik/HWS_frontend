@@ -7,6 +7,9 @@ import {
   AnonymousComplaintForm,
 } from "./helper/ComplaintForm";
 import profile from "../../src/assets/GIF/rightarrow.gif";
+import downArrow from "../../src/assets/images/down.png"
+import rightArrow from "../../src/assets/images/right.png"
+
 
 const showForm = true;
 
@@ -24,7 +27,7 @@ function Complaint() {
   }
   return (
     <Base title="Hostels">
-      <div className="rowcard" >
+      <div className="rowcard w-75 mx-auto" >
         <h2 onClick={openform("mess")}>Mess complaint<img
           className="img-fluid"
           style={{
@@ -33,11 +36,11 @@ function Complaint() {
             marginLeft: "8px",
             borderRadius: "100%",
           }}
-          src={profile}
+          src={ (switches["mess"] === false) ? rightArrow : downArrow}
         ></img></h2>
         { switches["mess"] && <MessComplaintForm />}
       </div>
-      <div className="rowcard" >
+      <div className="rowcard w-75 mx-auto" >
         <h2 onClick={openform("hostel")}>Hostel complaint<img
           className="img-fluid"
           style={{
@@ -46,11 +49,11 @@ function Complaint() {
             marginLeft: "8px",
             borderRadius: "100%",
           }}
-          src={profile}
+          src={ (switches["hostel"] === false) ? rightArrow : downArrow}
         ></img></h2>
         { switches["hostel"] && <HostelComplaintForm />}
       </div>
-      <div className="rowcard" >
+      <div className="rowcard w-75 mx-auto" >
         <h2 onClick={openform("anonymous")}>Anonymous complaint<img
           className="img-fluid"
           style={{
@@ -59,7 +62,7 @@ function Complaint() {
             marginLeft: "8px",
             borderRadius: "100%",
           }}
-          src={profile}
+          src={ (switches["anonymous"] === false) ? rightArrow : downArrow}
         ></img></h2>
         { switches["anonymous"] && <AnonymousComplaintForm />}
       </div>
