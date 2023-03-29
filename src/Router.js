@@ -54,6 +54,11 @@ export default function Router() {
             exact
             element={<StudentChangePassword />}
           />
+          <Route
+            path="/hostelofficemanager"
+            exact
+            element={<HostelOfficeManager />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -10,8 +10,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import StudentsList from "./studentsByHostel";
 
-
-
 let arr = [
   {
     name: "Rajesh Kumar",

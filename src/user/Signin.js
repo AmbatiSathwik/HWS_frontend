@@ -142,7 +142,7 @@ function Signin() {
       <div className="loginpage">
         <MDBContainer fluid>
           <MDBRow>
-            <MDBCol sm="6">
+            <MDBCol sm="6" className="logindiv">
               <div className="login-heading">
                 <img src={LOGO} width="70" alt="Login logo" />
                 <span className="login-heading-span">Log In</span>
@@ -155,6 +155,7 @@ function Signin() {
                     value={username}
                     onChange={handleChange("username")}
                     placeholder="Username"
+                    inputProps={{ style: { fontSize: 22 } }}
                   />
                   <p>Username</p>
                 </FormControl>
@@ -164,6 +165,7 @@ function Signin() {
                     style={{ borderRadius: "8px", height: "50px" }}
                     type={showPassword ? "text" : "password"}
                     value={password}
+                    inputProps={{ style: { fontSize: 22 } }}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -203,7 +205,7 @@ function Signin() {
               </div>
             </MDBCol>
 
-            <MDBCol sm="6" className="d-none d-sm-block px-0">
+            <MDBCol sm="6" className="d-none d-sm-block px-0 logindiv">
               <img
                 src={Pic}
                 height="100%"

@@ -1,7 +1,7 @@
 body {
   margin: 0;
   width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   background-color: #d8d8d8;
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,6 +33,7 @@ code {
 .loginpage {
   margin: 20px auto;
   width: 55%;
+  height: 70vh;
   border-radius: 20px;
   font-size: large;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
@@ -43,8 +44,17 @@ code {
   border-radius: 0px 20px 20px 0px;
 }
 
+.logindiv {
+  min-height: 70vh;
+}
+
+.login-input {
+  font-size: large;
+}
+
 .login-heading {
   width: 60%;
+  height: 20%;
   margin: 4% auto;
 }
 .login-heading-span {
@@ -173,7 +183,7 @@ code {
 }
 
 .card {
-  background-color: #f8efef;
+  background-color: #615f62;
   padding: 20px;
   border-radius: 20px;
   margin: 10px 20px;
@@ -182,7 +192,7 @@ code {
 }
 
 .rowcard {
-  background-color: #f8efef;
+  background-color: #aaa8ab;
   padding: 20px;
   border-radius: 20px;
   margin: 10px 20px;
@@ -644,8 +654,8 @@ td {
 }
 
 .explore_page {
-  overflow-y: scroll; 
-  overflow-x: hidden; 
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
 }
 

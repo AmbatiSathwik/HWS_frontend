@@ -10,8 +10,8 @@ import FH from "../../assets/images/fhostel.jpg";
 import GH from "../../assets/images/ghostel.jpg";
 import PG1H from "../../assets/images/pg1hostel.jpg";
 
-export const getMessReviewByMessId = (id,year,month) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+export const getMessReviewByMessId = (id, year, month) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-review/${id}/${year}/${month}`, {
     method: "GET",
     headers: {
@@ -29,7 +29,7 @@ export const getMessReviewByMessId = (id,year,month) => {
 };
 
 export const messreviesavg = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-review/${id}/${2023}/${1}`, {
     method: "GET",
     headers: {
@@ -47,8 +47,8 @@ export const messreviesavg = (id) => {
 };
 
 export const messadminDetails = () => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
-  const email = localStorage.getItem("id")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
+  const email = localStorage.getItem("id")?.slice(1, -1);
   return fetch(`${API}mess/mess-admin-by-email`, {
     method: "POST",
     headers: {
@@ -59,9 +59,7 @@ export const messadminDetails = () => {
     body: JSON.stringify({ email }),
   })
     .then((data) => {
-        
       return data.json();
-      
     })
     .catch((err) => {
       console.log(err);
@@ -69,7 +67,7 @@ export const messadminDetails = () => {
 };
 
 export const getMessAdminByMessId = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-admin/${id}`, {
     method: "GET",
     headers: {
@@ -78,7 +76,7 @@ export const getMessAdminByMessId = (id) => {
       authorization: token,
     },
   })
-    .then((data) => { 
+    .then((data) => {
       return data.json();
     })
     .catch((err) => {
@@ -87,7 +85,7 @@ export const getMessAdminByMessId = (id) => {
 };
 
 export const getMessDetailsByMessId = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/${id}`, {
     method: "GET",
     headers: {
@@ -96,7 +94,7 @@ export const getMessDetailsByMessId = (id) => {
       authorization: token,
     },
   })
-    .then((data) => { 
+    .then((data) => {
       return data.json();
     })
     .catch((err) => {
@@ -104,10 +102,8 @@ export const getMessDetailsByMessId = (id) => {
     });
 };
 
-
-
 export const getMessAvailabilityByMessId = (id) => {
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   return fetch(`${API}mess/mess-availablitybyid/${id}`, {
     method: "GET",
     headers: {
@@ -116,8 +112,8 @@ export const getMessAvailabilityByMessId = (id) => {
       authorization: token,
     },
   })
-    .then((data) => { 
-      console.log(data)
+    .then((data) => {
+      console.log(data);
       return data.json();
     })
     .catch((err) => {
@@ -126,9 +122,9 @@ export const getMessAvailabilityByMessId = (id) => {
 };
 
 export const updateMessAvailability = (data) => {
-  console.log(data)
-  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
-  console.log(token)
+  console.log(data);
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
+  console.log(token);
   return fetch(`${API}mess/update-messavailability`, {
     method: "POST",
     headers: {
@@ -138,8 +134,8 @@ export const updateMessAvailability = (data) => {
     },
     body: JSON.stringify(data),
   })
-    .then((data) => { 
-      console.log(data)
+    .then((data) => {
+      console.log(data);
       return data.json();
     })
     .catch((err) => {
@@ -147,55 +143,58 @@ export const updateMessAvailability = (data) => {
     });
 };
 
-
 export const messDetails = () => {
   return {
     data: {
-      ahostel: {
+      amess: {
         name: "A Mess",
         description: "Both veg and non-veg messes are available in A-Hostel.",
-
         img: AH,
       },
-      bhostel: {
+      bmess: {
         name: "B Mess",
         description: "Both veg and non-veg messes are available.  ",
 
         img: BH,
       },
-      chostel: {
+      cmess: {
         name: "C Mess",
         description: " . Only vegetarian mess is available.",
 
         img: CH,
       },
-      dhostel: {
+      dmess: {
         name: "D Mess",
         description: "North Indian vegetarian mess is available.",
 
         img: DH,
       },
-      ehostel: {
+      emess: {
         name: "E Mess",
         description: "A North Indian Vegetarian mess is available.",
 
         img: EH,
       },
-      fhostel: {
+      fmess: {
         name: "F Mess",
         description: "A cosmopolitan mess is available. ",
         img: FH,
       },
-      ghostel: {
+      gmess: {
         name: "G Mess",
         description: "A cosmopolitan mess is available.",
 
         img: GH,
       },
-      pg1hostel: {
+      pg1mess: {
         name: "PG1 Mess",
         description: "A cosmopolitan mess is available.",
         img: PG1H,
+      },
+      lhmess: {
+        name: "LH Mess",
+        description: "A complete mess for ladies of NITC",
+        img: AH,
       },
     },
   };

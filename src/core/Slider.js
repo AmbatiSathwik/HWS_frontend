@@ -4,75 +4,76 @@ function App() {
   const data = [
     {
       image:
-        "/src/assets/images/hosteloffice.jpg",
-      caption: "Welcome to NITC HOSTELS",
+        "https://drive.google.com/uc?export=view&id=1lVEYFT0xaYf5rDWBYEaBDbJ0klhIEpL4",
     },
     {
       image:
-        "/src/assets/images/ahostel1.png",
+        "https://drive.google.com/uc?export=view&id=1g2tiLjZ5UTGSZ-VOBweSQMrIiSVkQtLV",
       caption: "A-Hostel",
     },
     {
       image:
-        "/src/assets/images/bhostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1bei2rywheZdYJTd7z0DKyLaSnByymFzi",
       caption: "B-Hostel",
     },
     {
       image:
-        "/src/assets/images/chostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1ccLSmtbAVpe160lzTwPOnz9d7MYb0izc",
       caption: "C-Hostel",
     },
     {
       image:
-        "/src/assets/images/dhostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1d8wZ2Xe1RbieTr1EmJHpUl2cMf1LQOBF",
       caption: "D-Hostel",
     },
     {
       image:
-        "/src/assets/images/ehostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1dlPdSHHiew8JeAzx8XFJzvwcAED3dxqQ",
       caption: "E-Hostel",
     },
     {
       image:
-        "/src/assets/images/fhostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1e0mGC0cWEwKEUKejp21WiSRx3ETKCm3c",
+
       caption: "F-Hostel",
     },
     {
       image:
-        "/src/assets/images/ghostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1uBabfxVaB1mNBmiKkwIfESN8B00JGsg7",
       caption: "G-Hostel",
     },
     {
       image:
-        "/src/assets/images/pg1hostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1eWfYGIloovAsragz86K7n284r5AG-yvZ",
       caption: "PG-1 Hostel",
     },
     {
       image:
-        "/src/assets/images/pg2hostel.jpg",
+        "https://drive.google.com/uc?export=view&id=1f5JgrVsKHz0SbOI8BsI0926dlp2aZH4Q",
+
       caption: "PG-2 Hostel ",
     },
     {
       image:
-        "/src/assets/images/mbh1.png",
+        "https://drive.google.com/uc?export=view&id=1uBabfxVaB1mNBmiKkwIfESN8B00JGsg7",
       caption: "MBH-1 Hostel ",
     },
     {
       image:
-        "/src/assets/images/mbh2.png",
+        "https://drive.google.com/uc?export=view&id=1u6kSEopoXppWGaVFEac2TzOPL6XaXqRY",
+
       caption: "MBH-2 Hostel",
     },
     {
       image:
-        "/src/assets/images/ladies.jpg",
+        "https://drive.google.com/uc?export=view&id=1uBabfxVaB1mNBmiKkwIfESN8B00JGsg7",
       caption: "Ladies Hostel ",
     },
     {
       image:
-        "/src/assets/images/mba.png",
+        "https://drive.google.com/uc?export=view&id=1uBabfxVaB1mNBmiKkwIfESN8B00JGsg7",
       caption: "MBA Hostel ",
     },
-
   ];
 
   const captionStyle = {
@@ -92,7 +93,7 @@ function App() {
         height="60vh"
         captionStyle={captionStyle}
         slideNumberStyle={slideNumberStyle}
-        captionPosition="center"
+        captionPosition="bottom"
         automatic={true}
         dots={true}
         pauseIconColor="white"

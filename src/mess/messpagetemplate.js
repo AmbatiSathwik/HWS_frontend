@@ -16,8 +16,16 @@ function text(messDetails) {
     </Col>
   );
 }
-function Messdetails({ mcname, mcphno, boysCount, girlsCount, messDetails }) {
-  const { name, img } = messDetails;
+function Messdetails({
+  name,
+  image,
+  mcname,
+  mcphno,
+  boysCount,
+  girlsCount,
+  details,
+}) {
+  let messdetails = details[name];
   return (
     <div className="card" style={{ backgroundColor: "#ECECEC" }}>
       <h2 align="center">{name}</h2>
@@ -27,7 +35,7 @@ function Messdetails({ mcname, mcphno, boysCount, girlsCount, messDetails }) {
           {img(name, image)}
           <Col xs="12" lg="1"></Col>
           <Col>
-            {text(messDetails)}
+            {text(messdetails)}
             <h2>mess-contractor:{mcname}</h2>
             <h2>mobile:{mcphno}</h2>
             <h2>boys-count:{boysCount}</h2>
