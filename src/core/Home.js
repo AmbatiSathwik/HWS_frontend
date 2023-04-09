@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles.css";
 import Base from "./Base";
 import hostelfee from "../assets/images/hostelrules.png";
 import NotificationCard from "./NotificationCard";
 import Slider from "./Slider";
+import { getNotification } from "./helper/coreapicalls";
 
 const ReadMore = ({ children }) => {
   const text = children;
@@ -40,6 +41,18 @@ function Home() {
       description: 'Someone commented on your post "My favorite movie"',
     },
   ];
+
+  const [notification, setNotification] = useState([]);
+  
+
+ // useeffect for notification
+ useEffect(() => {
+  getNotification().then(data => {
+     setNotification([data]);
+
+  })
+   
+ }, []);
   return (
     <Base title={""}>
       <div className="SlideContainer">
@@ -49,17 +62,20 @@ function Home() {
       </div>
       <br />
       <div className="rules">
-        <h2 align="center">Notifications</h2>
-        <div>
-          {notifications.map((notification) => (
-            <NotificationCard
-              key={notification.id}
-              description={notification.description}
-              url={notification.url}
-            />
-          ))}
-        </div>
+      <h2  align="center">Notifications</h2>
+      <div  >
+        {notification[0]?.data.map(data=> (
+          <NotificationCard
+            key={data.id}
+            description={data.name}
+            url={data.url}
+            
+          />
+         
+        ))}
+        
       </div>
+    </div>
       <div className="rules">
         <h2 align="center">Rules and Regulations</h2>
         <p>

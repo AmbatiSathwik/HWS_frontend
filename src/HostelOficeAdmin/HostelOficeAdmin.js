@@ -5,6 +5,7 @@ import { MDBInput } from "mdb-react-ui-kit";
 import { MenuItem, FormControl, Select } from "@mui/material";
 import Modal_1 from "../core/Modal_1.js";
 import "../styles.css";
+import { createNotification } from "../core/helper/coreapicalls";
 
 function Hosteloffadmin() {
   const changeClass = (im) => {
@@ -37,9 +38,14 @@ function Hosteloffadmin() {
 
   //state variables of hostel office admin
 
-  //notification section
-  const [title, setTitle] = useState("");
-  const [link, setLink] = useState("");
+//notification section
+const [name,setname]=useState("");
+const [url,seturl]=useState("");
+// useeffect for notifications
+const uploadpdf = (e) => {
+   e.preventDefault();
+       createNotification(name,url)
+}
 
   //search section
   const [search, setSearch] = useState("");
@@ -65,48 +71,19 @@ function Hosteloffadmin() {
         <h2 align="center" className="mb-4">
           Create Notifications
         </h2>
-        <Row>
-          <Col xs="4" sm="3" className="column">
-            <p style={{ display: "inline-block", fontSize: "25px" }}>Title :</p>
-          </Col>
+        <form onSubmit={uploadpdf}>
+                        <div className="form-group">
 
-          <Col xs="8" sm="6">
-            <MDBInput
-              value={title}
-              id="typeText"
-              style={{ backgroundColor: "white" }}
-              type="text"
-              onChange={(x) => {
-                setTitle(x.target.value);
-              }}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs="4" sm="3" className="column">
-            <p style={{ display: "inline-block", fontSize: "25px" }}>Link :</p>
-          </Col>
-          <Col xs="8" sm="6">
-            <MDBInput
-              value={link}
-              id="typeText"
-              type="text"
-              style={{ backgroundColor: "white" }}
-              onChange={(x) => {
-                setLink(x.target.value);
-              }}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col align="right">
-            <Modal_1
-              heading="Create"
-              className="me-2 mt-3"
-              content="Notification created successfully"
-            />
-          </Col>
-        </Row>
+                            <label for="exampleFormControlInput1">Name</label>
+                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Name" onChange={(x)=>{setname(x.target.value)}}/>
+                        </div>
+                        <div className="form-group">
+                            <label for="exampleFormControlInput1">Url</label>
+                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Url" onChange={(x)=>{seturl(x.target.value)}}/>
+                        </div>
+                        <input type="submit" />
+                     </form>
+
       </div>
 
       <br></br>
