@@ -114,6 +114,50 @@ export const hostelDetails = () => {
   //     });
 };
 
+export const createNotification = (name,url) => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  console.log(token)
+  return fetch(`${API}notification/upload`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify({"name":name,"url":url}),
+  })
+
+    .then((data) => {
+      return data.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getNotification = () => {
+  const token = "Bearer " + localStorage.getItem("jwt")?.slice(1,-1);
+  console.log(token)
+  return fetch(`${API}notification`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+
+
+    .then((data) => {
+      console.log(data.json)
+      return data.json();
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const getHostelWardenByHostelId = (id) => {
   const token = "Bearer " + localStorage.getItem("jwt")?.slice(1, -1);
   console.log(token);
