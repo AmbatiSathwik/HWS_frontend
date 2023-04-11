@@ -6,7 +6,8 @@ import { isAuthenticated, signout } from "../user/helper/userapicalls";
 import "./formspage";
 import Logo from "../assets/images/nitc-logo.png";
 
-function Menu() {
+function Menu({detail}) {
+  console.log(detail);
   const navigate = useNavigate();
   const showLogin = () => {
     if (!isAuthenticated()) {
@@ -130,6 +131,8 @@ function Menu() {
               <Nav.Link href="/messratingspage">Mess Ratings</Nav.Link>
               <Nav.Link href="/complaint">Complaints</Nav.Link>
               <Nav.Link href="./formspage">Forms & Applications</Nav.Link>
+
+              {detail=="chiefWarden" &&<Nav.Link href="/committees">Committees</Nav.Link>}
             </Nav>
             <div className="loginOptions">
               <Nav className="login-nav">{showLogin()}</Nav>

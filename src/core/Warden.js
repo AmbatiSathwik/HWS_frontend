@@ -1,13 +1,12 @@
 import { React, useEffect, useState } from "react";
 import Base from "./Base";
-import { Col, Row } from "react-bootstrap";
+import {Col, Row, Table} from "react-bootstrap";
 import { MDBInput } from "mdb-react-ui-kit";
 import { MenuItem, FormControl, Select } from "@mui/material";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../styles.css";
 import Accordion from "react-bootstrap/Accordion";
-import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 
 function Accord(data) {
   return (
@@ -98,7 +97,7 @@ function Warden() {
     const [data, setData] = useState(studentDetails);
     return (
       <>
-        <Button variant="dark" onClick={handleShow}>
+        <Button variant="dark" onClick={handleShow} >
           Search
         </Button>
         <Modal
@@ -253,35 +252,28 @@ function Warden() {
     },
   ];
 
-  const staffDetails = {
-    columns: [
-      { label: "Name", field: "name", sort: "asc" },
-      { label: "Position", field: "pos", sort: "asc" },
-      { label: "Phone number", field: "phone", sort: "asc" },
-    ],
+  let staffDetails = {
+    columns: ["Hostel", "Name", "Position", "Phone"],
     rows: [
-      { first: "Suresh", second: "Attendee", third: "999999999" },
-      { first: "Ramesh", second: "Caretaker", third: "999999999" },
-      { first: "Rajesh", second: "Attendee", third: "999999999" },
+      { hostel: "A", name: "Jon", pos: "Warden", phone: "999999999" },
+      { hostel: "B", name: "Abcde", pos: "Caretaker", phone: "999999999" },
+      { hostel: "C", name: "Efijkl", pos: "Warden", phone: "999999999" },
     ],
   };
 
   const archives = {
-    columns: [
-      { label: "Year", field: "first", sort: "asc" },
-      { label: "Name of the Warden", field: "second", sort: "asc" },
-      { label: "Department", field: "third", sort: "asc" },
-    ],
+    columns: ["Year", "Name of the Warden"],
     rows: [
-      { first: "2019-2020", second: "Mr. Abcde", third: "CSE" },
-      { first: "2018-2019", second: "Mr. Efijkl", third: "ECE" },
-      { first: "2017-2018", second: "Mr. Jon", third: "EEE" },
+      { first: "2019-2020", second: "Mr. Rajesh" },
+      { first: "2018-2019", second: "Mr. Ramesh" },
+      { first: "2017-2018", second: "Mr. Karthik" },
     ],
   };
+
   return (
     <Base title="Warden">
-      <h1 className="mt-3 mb-2">
-        <center>Warden</center>
+      <h1 className="mt-4 mb-2">
+        <center>WARDEN</center>
       </h1>
       <div className="card">
         <h2 align="center" className="mb-4">
@@ -302,11 +294,12 @@ function Warden() {
               onChange={(x) => {
                 setSearch(x.target.value);
               }}
+              placeholder="Enter Name/ID of the student"
             />
           </Col>
         </Row>
         <Row>
-          <Col align={"right"}>
+          <Col align={"center"}>
             <StudentModal
               heading="Search"
               className="me-2 mt-3"
@@ -335,11 +328,12 @@ function Warden() {
               onChange={(x) => {
                 setRoom(x.target.value);
               }}
+              placeholder="Enter room no. of the student"
             />
           </Col>
         </Row>
         <Row>
-          <Col align={"right"}>
+          <Col align={"center"}>
             <StudentModal
               heading="Search"
               className="me-2 mt-3"
@@ -455,10 +449,27 @@ function Warden() {
             <h3>Caretaker/Attendees Details</h3>
           </center>
           <div>
-            <MDBTable scrollY>
-              <MDBTableHead columns={staffDetails.columns} />
-              <MDBTableBody rows={staffDetails.rows} className="text-center" />
-            </MDBTable>
+            <Table striped bordered hover responsive style={{textAlign:"center"}}>
+              <thead>
+              <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+                {staffDetails.columns.map((x) => {
+                  return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+                })}
+              </tr>
+              </thead>
+              <tbody>
+              {staffDetails.rows.map((x) => {
+                return (
+                    <tr>
+                      <td>{x.name}</td>
+                      <td>{x.name}</td>
+                      <td>{x.pos}</td>
+                      <td>{x.phone}</td>
+                    </tr>
+                );
+              })}
+              </tbody>
+            </Table>
           </div>
         </div>
       </div>
@@ -468,10 +479,25 @@ function Warden() {
             <h2>Archives</h2>
           </center>
           <div>
-            <MDBTable scrollY>
-              <MDBTableHead columns={archives.columns} />
-              <MDBTableBody rows={archives.rows} className="text-center" />
-            </MDBTable>
+            <Table striped bordered hover responsive style={{textAlign:"center"}}>
+              <thead>
+              <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+                {archives.columns.map((x) => {
+                  return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+                })}
+              </tr>
+              </thead>
+              <tbody>
+              {archives.rows.map((x) => {
+                return (
+                    <tr>
+                      <td>{x.first}</td>
+                      <td>{x.second}</td>
+                    </tr>
+                );
+              })}
+              </tbody>
+            </Table>
           </div>
         </div>
       </div>
