@@ -197,7 +197,7 @@ export function AnonymousComplaintForm() {
         />
         <p>Complaint</p>
       </FormControl>
-      <Button className="mb-4 w-100" onClick={onSubmit} color="info" size="lg">
+      <Button className="mb-4" onClick={onSubmit} color="info" size="lg" >
         Submit
       </Button>
     </div>

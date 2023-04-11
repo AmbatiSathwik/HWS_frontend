@@ -20,6 +20,7 @@ import Warden from "./core/Warden";
 import HostelOfficeManager from "./core/HostelOfficeManager";
 import StudentsList from "./core/studentsByHostel";
 import NotFound from "./core/NotFound";
+import CommitteesTab from "./core/committeesTab";
 
 export default function Router() {
   return (
@@ -42,6 +43,7 @@ export default function Router() {
           <Route path="/formspage" exact element={<Forms />} />
           <Route path="/warden" exact element={<Warden />} />
           <Route path="/complaint" exact element={<Complaint />} />
+          <Route path="/committees" exact element={<CommitteesTab />} />
           <Route
             path="/hostelofficeadmin"
             exact

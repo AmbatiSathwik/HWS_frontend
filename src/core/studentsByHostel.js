@@ -3,15 +3,11 @@ import { useLocation } from "react-router-dom";
 import Base from "./Base";
 import "../styles.css";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import {Table} from "react-bootstrap";
 
 const students = {
   columns: [
-    { label: "S.No", field: "sno", sort: "asc" },
-    { label: "Name", field: "name", sort: "asc" },
-    { label: "Roll No", field: "rollno", sort: "asc" },
-      { label: "Room No", field: "roomno", sort: "asc"},
-    { label: "Department", field: "dept", sort: "asc" },
-  ],
+   "S.No","Name","Roll No","Room No","Department"],
   rows: [
     { sno: "1", name: "John Doe", rollno: "B190012CS",roomNo:212, dept: "CSE" },
     { sno: "2", name: "John Doe", rollno: "B190012CS",roomNo:112, dept: "ECE" },
@@ -38,16 +34,34 @@ function StudentsList() {
   return (
     <Base title="StudentsList">
       <h1 className="mt-3 mb-4">
-        <center>Students List</center>
+        <center>STUDENTS LIST</center>
       </h1>
       <div className="card" style={{ width: "85%", margin: "10px auto" }}>
         <h2 align="center" className="mb-4">
           {from} Hostel
         </h2>
-        <MDBTable bordered hover scrollY maxHeight="70vh">
-          <MDBTableHead columns={students.columns} />
-          <MDBTableBody rows={students.rows} />
-        </MDBTable>
+        <Table striped bordered hover responsive style={{textAlign:"center"}}>
+          <thead>
+          <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+            {students.columns.map((x) => {
+              return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+            })}
+          </tr>
+          </thead>
+          <tbody>
+          {students.rows.map((x) => {
+            return (
+                <tr>
+                  <td>{x.sno}</td>
+                  <td>{x.name}</td>
+                    <td>{x.rollno}</td>
+                    <td>{x.roomNo}</td>
+                  <td>{x.dept}</td>
+                </tr>
+            );
+          })}
+          </tbody>
+        </Table>
       </div>
     </Base>
   );

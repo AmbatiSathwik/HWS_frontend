@@ -191,7 +191,7 @@ function Messratingspage() {
         <h1 className="m-3">
           {" "}
           <center>
-            Mess Ratings
+            MESS RATINGS
             <FaStar style={{ color: "gold" }} />
             <FaStar style={{ color: "gold" }} />
           </center>

@@ -2,10 +2,11 @@ import { React, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { MDBInput } from "mdb-react-ui-kit";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import {Table} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Accordion from "react-bootstrap/Accordion";
-import { FormControl, MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem, Select,InputLabel } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import StudentsList from "./studentsByHostel";
@@ -85,12 +86,7 @@ let studentDetails = [
 ];
 
 let staffDetails = {
-  columns: [
-    { label: "Hostel", field: "hostel", sort: "asc" },
-    { label: "Name", field: "name", sort: "asc" },
-    { label: "Position", field: "pos", sort: "asc" },
-    { label: "Phone", field: "phone", sort: "asc" },
-  ],
+  columns: ["Hostel", "Name", "Position", "Phone"],
   rows: [
     { hostel: "A", name: "Jon", pos: "Warden", phone: "999999999" },
     { hostel: "B", name: "Abcde", pos: "Caretaker", phone: "999999999" },
@@ -99,13 +95,7 @@ let staffDetails = {
 };
 
 const mess = {
-  columns: [
-    { label: "MessName", field: "first", sort: "asc" },
-    { label: "Capacity", field: "second", sort: "asc" },
-    { label: "Vacancy", field: "third", sort: "asc" },
-    { label: "Boys Capacity", field: "fourth", sort: "asc" },
-    { label: "Girls Capacity", field: "fifth", sort: "asc" },
-  ],
+  columns: ["Mess Name", "Vacancy", "Capacity", "Mess In-charge", "Phone"],
   rows: [
     { first: "Mess A", second: 100, third: 0, fourth: 0, fifth: 0 },
     { first: "Mess B", second: 100, third: 0, fourth: 0, fifth: 0 },
@@ -122,11 +112,7 @@ const mess = {
   ],
 };
 const data = {
-  columns: [
-    { label: "Hostel ", field: "first", sort: "asc" },
-    { label: "Vacancy", field: "second", sort: "asc" },
-    { label: "Capacity", field: "third", sort: "asc" },
-  ],
+  columns: ["Hostel", "Vacancy", "Capacity"],
   rows: [
     { first: "A", second: "0", third: "100" },
     { first: "B", second: "0", third: "100" },
@@ -138,22 +124,16 @@ const data = {
 };
 
 const archives = {
-  columns: [
-    { label: "Year", field: "first", sort: "asc" },
-    { label: "Name of the Chief Warden", field: "second", sort: "asc" },
-  ],
+  columns: ["Year", "Name of the Chief Warden"],
   rows: [
-    { first: "2019-2020", second: "Mr. Abcde" },
-    { first: "2018-2019", second: "Mr. Efijkl" },
-    { first: "2017-2018", second: "Mr. Jon" },
+    { first: "2019-2020", second: "Mr. Rajesh" },
+    { first: "2018-2019", second: "Mr. Ramesh" },
+    { first: "2017-2018", second: "Mr. Karthik" },
   ],
 };
 
 const achievements = {
-  columns: [
-    { label: "Year", field: "first", sort: "asc" },
-    { label: "Achievements", field: "second", sort: "asc" },
-  ],
+  columns: ["Year", "Achievement"],
   rows: [
     {
       first: "2019",
@@ -276,7 +256,7 @@ function Cheifwarden() {
     const [data, setData] = useState(studentDetails);
     return (
       <>
-        <Button variant="dark" onClick={handleShow}>
+        <Button variant="dark" size={"lg"} onClick={handleShow} className="mt-2">
           Search
         </Button>
         <Modal
@@ -389,11 +369,10 @@ function Cheifwarden() {
   //function to show the details of the student based on the hostel
   const navigate = useNavigate();
   return (
-    <Base title="Chief Warden">
-      <h1 className="mt-3 mb-2">
-        <center>Chief Warden</center>
+    <Base title="Chief Warden" detail="chiefWarden">
+      <h1 className="mt-4 mb-2">
+        <center>CHIEF WARDEN</center>
       </h1>
-
       <div className="card">
         <h2 align="center" className="mb-4">
           Search Student
@@ -413,12 +392,14 @@ function Cheifwarden() {
               onChange={(x) => {
                 setSearch(x.target.value);
               }}
+              placeholder="Enter Name/ID of the student"
             />
           </Col>
         </Row>
         <Row>
-          <Col align={"right"}>
+          <Col align={"center"}>
             <StudentModal
+
               heading="Search"
               className="me-2 mt-3"
               data={studentDetails}
@@ -439,6 +420,7 @@ function Cheifwarden() {
             </Col>
             <Col xs="8" sm="6">
               <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Hostel</InputLabel>
                 <Select
                   style={{ height: "40px", backgroundColor: "white" }}
                   displayEmpty
@@ -465,11 +447,12 @@ function Cheifwarden() {
             </Col>
           </Row>
           <Row>
-            <Col align={"right"}>
+            <Col align={"center"}>
               <Link to="/studentsList" state={{ from: hostel }}>
                 <Button
                   variant="dark"
                   value={hostel}
+                  size={"lg"}
                   className="me-2 mt-3"
                   onClick={() => {
                     console.log(hostel);
@@ -545,10 +528,27 @@ function Cheifwarden() {
             <h3>Hostel Staff Details</h3>
           </center>
           <div>
-            <MDBTable scrollY>
-              <MDBTableHead columns={staffDetails.columns} />
-              <MDBTableBody rows={staffDetails.rows} className="text-center" />
-            </MDBTable>
+            <Table striped bordered hover responsive style={{textAlign:"center"}}>
+                <thead>
+                    <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+                      {staffDetails.columns.map((x) => {
+                        return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+                      })}
+                    </tr>
+                </thead>
+                <tbody>
+                {staffDetails.rows.map((x) => {
+                    return (
+                        <tr>
+                            <td>{x.name}</td>
+                            <td>{x.name}</td>
+                            <td>{x.pos}</td>
+                            <td>{x.phone}</td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+            </Table>
           </div>
         </div>
       </div>
@@ -557,10 +557,26 @@ function Cheifwarden() {
           <h2>Hostel Count</h2>
         </center>
         <div>
-          <MDBTable scrollY>
-            <MDBTableHead columns={data.columns} />
-            <MDBTableBody rows={data.rows} />
-          </MDBTable>
+          <Table striped bordered hover responsive style={{textAlign:"center"}}>
+                <thead>
+                    <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+                        {data.columns.map((x) => {
+                            return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+                        })}
+                    </tr>
+                </thead>
+                <tbody>
+                {data.rows.map((x) => {
+                    return (
+                        <tr>
+                            <td>{x.first}</td>
+                            <td>{x.second}</td>
+                            <td>{x.third}</td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+          </Table>
         </div>
       </div>
       <div className="card">
@@ -568,10 +584,28 @@ function Cheifwarden() {
           <h2>Mess Count</h2>
         </center>
         <div>
-          <MDBTable scrollY>
-            <MDBTableHead columns={mess.columns} />
-            <MDBTableBody rows={mess.rows} />
-          </MDBTable>
+          <Table striped bordered hover responsive style={{textAlign:"center"}}>
+            <thead>
+            <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+              {mess.columns.map((x) => {
+                return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+              })}
+            </tr>
+            </thead>
+            <tbody>
+            {mess.rows.map((x) => {
+                return (
+                    <tr>
+                      <td>{x.first}</td>
+                      <td>{x.second}</td>
+                      <td>{x.third}</td>
+                      <td>{x.fourth}</td>
+                      <td>{x.fifth}</td>
+                    </tr>
+                );
+            })}
+            </tbody>
+          </Table>
         </div>
       </div>
       <div className="card">
@@ -580,23 +614,53 @@ function Cheifwarden() {
             <h2>Archives</h2>
           </center>
           <div>
-            <MDBTable scrollY>
-              <MDBTableHead columns={archives.columns} />
-              <MDBTableBody rows={archives.rows} className="text-center" />
-            </MDBTable>
+            <Table striped bordered hover responsive style={{textAlign:"center"}}>
+                <thead>
+                    <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+                        {archives.columns.map((x) => {
+                            return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+                        })}
+                    </tr>
+                </thead>
+                <tbody>
+                {archives.rows.map((x) => {
+                    return (
+                        <tr>
+                            <td>{x.first}</td>
+                            <td>{x.second}</td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+            </Table>
           </div>
         </div>
       </div>
 
       <div className="card">
         <center>
-          <h2>Achievements</h2>
+          <h2 >Achievements</h2>
         </center>
         <div>
-          <MDBTable scrollY>
-            <MDBTableHead columns={achievements.columns} />
-            <MDBTableBody rows={achievements.rows} />
-          </MDBTable>
+          <Table striped bordered hover responsive style={{textAlign:"center"}}>
+                <thead>
+                    <tr style={{backgroundColor:"#3E54AC", color:"white", fontSize:"1.5rem"}}>
+                        {achievements.columns.map((x) => {
+                            return <th style={{textAlign:"center", verticalAlign:"middle"}}>{x}</th>;
+                        })}
+                    </tr>
+                </thead>
+                <tbody>
+                {achievements.rows.map((x) => {
+                    return (
+                        <tr>
+                            <td>{x.first}</td>
+                            <td>{x.second}</td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+          </Table>
         </div>
       </div>
     </Base>

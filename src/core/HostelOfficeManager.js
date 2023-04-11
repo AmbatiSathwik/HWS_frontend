@@ -231,7 +231,7 @@ function HostelOfficeManager() {
 
     return (
         <Base title="Hostel Office Manager">
-            <h1 className="mt-3 mb-2"><center>Hostel Office Manager</center></h1>
+            <h1 className="mt-3 mb-2"><center>HOSTEL OFFICE MANAGER</center></h1>
             
             <div className="card" style={{backgroundColor:"#ECECEC"}} >
                 <h2 align="center" className="mb-4">Search Student</h2>
