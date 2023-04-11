@@ -10,7 +10,7 @@ export default function Modal_1(props) {
 
     return (
         <>
-            <Button variant="dark" onClick={handleShow} size = "lg" style = {{width: "120px"}} className = "modal-btn">
+            <Button variant="dark" onClick={handleShow} size = "lg" style = {{width: "120px"}} className = "modal-btn" >
                 {props.heading}
             </Button>
             <Modal show={show} onHide={handleClose} animation={false} keyboard={true}>

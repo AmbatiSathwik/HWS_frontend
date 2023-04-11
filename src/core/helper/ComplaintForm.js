@@ -50,13 +50,14 @@ export function MessComplaintForm() {
   return (
     <div>
       <FormControl variant="outlined" className="mb-4 w-100">
-        <InputLabel id="demo-simple-select-label">Mess</InputLabel>
+        <InputLabel id="demo-simple-select-label" style={{fontSize: "15px", color: "#aaaaaa"}}>Mess</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={messId}
           label="Age"
           onChange={handleChange("messId")}
+          style={{backgroundColor: "white"}}
         >
           <MenuItem value={1}>A</MenuItem>
           <MenuItem value={2}>B</MenuItem>
@@ -66,21 +67,18 @@ export function MessComplaintForm() {
       </FormControl>
       <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
+          style={{ borderRadius: "8px", height: "50px", fontSize: "15px", backgroundColor:"white"}}
           value={complt}
           onChange={handleChange("complt")}
           placeholder="Wrtite your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
-      <Button
-        className="mb-4 px-5 w-100"
-        onClick={onSubmit}
-        color="info"
-        size="lg"
-      >
+      <div className="d-flex justify-content-center">
+      <Button className="mb-4 px-5" onClick={onSubmit} color="info" size="lg" variant="dark">
         Submit
       </Button>
+      </div>
     </div>
   );
 }
@@ -120,13 +118,14 @@ export function HostelComplaintForm() {
   return (
     <div>
       <FormControl variant="outlined" className="mb-4 w-100">
-        <InputLabel id="demo-simple-select-label">Hostel</InputLabel>
+        <InputLabel id="demo-simple-select-label" style={{fontSize: "15px", color: "#aaaaaa"}}>Hostel</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={hostelId}
           label="Age"
           onChange={handleChange("hostelId")}
+          style={{backgroundColor: "white"}}
         >
           <MenuItem value={1}>A</MenuItem>
           <MenuItem value={2}>B</MenuItem>
@@ -136,21 +135,18 @@ export function HostelComplaintForm() {
       </FormControl>
       <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
+          style={{ borderRadius: "8px", height: "50px", fontSize: "15px", backgroundColor:"white"}}
           value={complt}
           onChange={handleChange("complt")}
-          placeholder="Wrtite your complaint here"
+          placeholder="Write your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
-      <Button
-        className="mb-4 px-5 w-100"
-        onClick={onSubmit}
-        color="info"
-        size="lg"
-      >
+      <div className="d-flex justify-content-center">
+      <Button className="mb-4 px-5" onClick={onSubmit} color="info" size="lg" variant="dark">
         Submit
       </Button>
+      </div>
     </div>
   );
 }
@@ -190,16 +186,18 @@ export function AnonymousComplaintForm() {
     <div>
       <FormControl variant="outlined" className="mb-4 w-100">
         <OutlinedInput
-          style={{ borderRadius: "8px", height: "50px" }}
+          style={{ borderRadius: "8px", height: "50px", fontSize: "15px", backgroundColor:"white"}}
           value={complt}
           onChange={handleChange("complt")}
           placeholder="Write your complaint here"
         />
         <p>Complaint</p>
       </FormControl>
-      <Button className="mb-4 w-100" onClick={onSubmit} color="info" size="lg">
+      <div className="d-flex justify-content-center">
+      <Button className="mb-4 px-5" onClick={onSubmit} color="info" size="lg" variant="dark">
         Submit
       </Button>
+      </div>
     </div>
   );
 }
