@@ -27,8 +27,11 @@ function Complaint() {
     });
   };
   return (
-    <Base title="Hostels">
-      <div className="rowcard w-75 mx-auto ">
+    <Base title="complaintForm">
+      <h1 className="mt-3 mb-4">
+        <center>COMPLAINT FORM</center>
+      </h1>
+      <div className="rowcard w-75 mx-auto"  style={{backgroundColor: "#dadee8"}}>
         <h2 onClick={openform("mess")}>
           Mess complaint
           <img
@@ -44,7 +47,7 @@ function Complaint() {
         </h2>
         {switches["mess"] && <MessComplaintForm />}
       </div>
-      <div className="rowcard w-75 mx-auto ">
+      <div className="rowcard w-75 mx-auto " style={{backgroundColor: "#dadee8"}}>
         <h2 onClick={openform("hostel")}>
           Hostel complaint
           <img
@@ -60,7 +63,7 @@ function Complaint() {
         </h2>
         {switches["hostel"] && <HostelComplaintForm />}
       </div>
-      <div className="rowcard w-75 mx-auto">
+      <div className="rowcard w-75 mx-auto"  style={{backgroundColor: "#dadee8"}}>
         <h2 onClick={openform("anonymous")}>
           Anonymous complaint
           <img

@@ -2,9 +2,10 @@ import { React, useEffect, useState } from "react";
 import Base from "../core/Base";
 import { Col, Row } from "react-bootstrap";
 import { MDBInput } from "mdb-react-ui-kit";
-import { MenuItem, FormControl, Select } from "@mui/material";
+import { MenuItem, FormControl, Select, InputLabel} from "@mui/material";
 import Modal_1 from "../core/Modal_1.js";
 import "../styles.css";
+
 
 function Hosteloffadmin() {
   const changeClass = (im) => {
@@ -59,7 +60,7 @@ function Hosteloffadmin() {
   return (
     <Base title="Hosteloffadmin">
       <h1 className="mt-3 mb-4">
-        <center>Hostel Office Admin</center>
+        <center>HOSTEL OFFICE ADMIN</center>
       </h1>
       <div className="card" style={{ width: "85%", margin: "10px auto" }}>
         <h2 align="center" className="mb-4">
@@ -74,8 +75,9 @@ function Hosteloffadmin() {
             <MDBInput
               value={title}
               id="typeText"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
               type="text"
+              placeholder="Enter title of the notification"
               onChange={(x) => {
                 setTitle(x.target.value);
               }}
@@ -91,6 +93,7 @@ function Hosteloffadmin() {
               value={link}
               id="typeText"
               type="text"
+              placeholder="Enter link of the notification"
               style={{ backgroundColor: "white" }}
               onChange={(x) => {
                 setLink(x.target.value);
@@ -99,7 +102,7 @@ function Hosteloffadmin() {
           </Col>
         </Row>
         <Row>
-          <Col align="right">
+          <Col align="center">
             <Modal_1
               heading="Create"
               className="me-2 mt-3"
@@ -125,7 +128,8 @@ function Hosteloffadmin() {
             <MDBInput
               value={search}
               id="typeText"
-              style={{ backgroundColor: "white" }}
+              placeholder="Enter Name/ID of the student"
+              style={{ backgroundColor: "white", fontSize: "15px"}}
               type="text"
               onChange={(x) => {
                 setSearch(x.target.value);
@@ -134,7 +138,7 @@ function Hosteloffadmin() {
           </Col>
         </Row>
         <Row>
-          <Col align="right">
+          <Col align="center">
             <Modal_1 heading="Search" className="me-2 mt-3" content={details} />
           </Col>
         </Row>
@@ -144,7 +148,7 @@ function Hosteloffadmin() {
 
       <div className="card" style={{ width: "85%", margin: "10px auto" }}>
         <h2 align="center" className="mb-4">
-          Edit Cheif Warden
+          Edit Chief Warden
         </h2>
         <Row>
           <Col xs="4" sm="3" className="column">
@@ -156,7 +160,8 @@ function Hosteloffadmin() {
             <MDBInput
               id="typeText"
               type="text"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
+              placeholder="Enter name of the Cheif warden"
               value={cheifName}
               onChange={(x) => {
                 setcheifName(x.target.value);
@@ -172,7 +177,8 @@ function Hosteloffadmin() {
             <MDBInput
               id="typeText"
               type="text"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
+              placeholder="Enter department of the Chief warden"
               value={cheifdept}
               onChange={(x) => {
                 setcheifdept(x.target.value);
@@ -188,7 +194,8 @@ function Hosteloffadmin() {
             <MDBInput
               id="typeText"
               type="text"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
+              placeholder="Enter phone no. of the Chief warden"
               value={cheifphno}
               onChange={(x) => {
                 setcheifphno(x.target.value);
@@ -197,7 +204,7 @@ function Hosteloffadmin() {
           </Col>
         </Row>
         <Row>
-          <Col align="right">
+          <Col align="center">
             <Modal_1
               heading="Update"
               className="me-2 mt-3"
@@ -222,6 +229,7 @@ function Hosteloffadmin() {
           </Col>
           <Col xs="8" sm="6">
             <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label" style={{fontSize: "15px", color: "#aaaaaa"}}>Hostel</InputLabel>
               <Select
                 style={{ height: "40px", backgroundColor: "white" }}
                 displayEmpty
@@ -251,14 +259,15 @@ function Hosteloffadmin() {
         <Row>
           <Col xs="4" sm="3" className="column">
             <p style={{ display: "inline-block", fontSize: "25px" }}>
-              Name/ID:
+              Name:
             </p>
           </Col>
           <Col xs="8" sm="6">
             <MDBInput
               id="typeText"
               type="text"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
+              placeholder="Enter name of the Warden"
               value={wardenname}
               onChange={(x) => {
                 setwardenname(x.target.value);
@@ -275,7 +284,8 @@ function Hosteloffadmin() {
             <MDBInput
               id="typeText"
               type="text"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
+              placeholder="Enter department of the Warden"
               value={wardendept}
               onChange={(x) => {
                 setwardendept(x.target.value);
@@ -292,7 +302,8 @@ function Hosteloffadmin() {
             <MDBInput
               id="typeText"
               type="number"
-              style={{ backgroundColor: "white" }}
+              style={{ backgroundColor: "white", fontSize: "15px"}}
+              placeholder="Enter phone no. of the Warden"
               value={wardenphno}
               onChange={(x) => {
                 setwardenphno(x.target.value);
@@ -302,7 +313,7 @@ function Hosteloffadmin() {
         </Row>
 
         <Row>
-          <Col align="right">
+          <Col align="center">
             <Modal_1
               heading="Update"
               className="me-2 mt-3"
