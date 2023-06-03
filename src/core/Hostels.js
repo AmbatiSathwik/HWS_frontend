@@ -12,7 +12,6 @@ import "../styles.css";
 import { useLocation, useParams } from "react-router-dom";
 import CH from "../assets/images/chostel.jpg";
 import Gallery from "./Gallery";
-import { map } from "lodash";
 
 const images = [
   {
